@@ -15,6 +15,6 @@ public interface IDAOHandler {
    /** @pdOid 125e5050-18a7-44c1-913d-9e8c9c7eda9d */
    boolean modifier();
    /** @pdOid a9e7227d-f849-413a-8a34-f6147147df3b */
-   java.lang.Object lecture();
+   Object lecture();
 
 }
