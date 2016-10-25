@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?PowerDesigner AppLocale="UTF16" ID="{8FDEF077-4E83-4AC5-B87D-D3D604E65A31}" Label="" LastModificationDate="1476784014" Name="MERISE-ParcInfo" Objects="16" Symbols="0" Type="{FF4B6538-9856-42CF-B9B9-304ED370CEAA}" signature="PRJ_MODEL_XML" version="16.5.0.3982"?>
+<?PowerDesigner AppLocale="UTF16" ID="{8FDEF077-4E83-4AC5-B87D-D3D604E65A31}" Label="" LastModificationDate="1476794003" Name="MERISE-ParcInfo" Objects="18" Symbols="1" Type="{FF4B6538-9856-42CF-B9B9-304ED370CEAA}" signature="PRJ_MODEL_XML" version="16.5.0.3982"?>
 <!-- Veuillez ne pas modifier ce fichier -->
 
 <Model xmlns:a="attribute" xmlns:c="collection" xmlns:o="object">
@@ -12,7 +12,7 @@
 <a:Code>MERISE-ParcInfo</a:Code>
 <a:CreationDate>1476780773</a:CreationDate>
 <a:Creator>User</a:Creator>
-<a:ModificationDate>1476780773</a:ModificationDate>
+<a:ModificationDate>1476793989</a:ModificationDate>
 <a:Modifier>User</a:Modifier>
 <a:PackageOptionsText>[FolderOptions]
 
@@ -189,7 +189,7 @@ ConvTablePath=C:\Program Files (x86)\Sybase\PowerAMC 15\Fichiers de ressources\T
 <a:Code>Diagramme_1</a:Code>
 <a:CreationDate>1476780773</a:CreationDate>
 <a:Creator>User</a:Creator>
-<a:ModificationDate>1476780773</a:ModificationDate>
+<a:ModificationDate>1476793989</a:ModificationDate>
 <a:Modifier>User</a:Modifier>
 <a:DisplayPreferences>[DisplayPreferences]
 
@@ -468,13 +468,37 @@ Shadow=0</a:DisplayPreferences>
 <a:PageMargins>((315,354), (433,354))</a:PageMargins>
 <a:PageOrientation>1</a:PageOrientation>
 <a:PaperSource>15</a:PaperSource>
+<c:Symbols>
+<o:ModelDocumentSymbol Id="o4">
+<a:CreationDate>1476793989</a:CreationDate>
+<a:ModificationDate>1476793989</a:ModificationDate>
+<a:IconMode>2</a:IconMode>
+<a:Rect>((-1201,-635), (1198,1764))</a:Rect>
+<a:LineColor>12034707</a:LineColor>
+<a:FillColor>16437422</a:FillColor>
+<a:ShadowColor>12632256</a:ShadowColor>
+<a:FontList>OBJSTRN 0 Arial,8,N
+DISPNAME 0 Arial,8,N
+LABL 0 Arial,8,N</a:FontList>
+<a:BrushStyle>6</a:BrushStyle>
+<a:GradientFillMode>65</a:GradientFillMode>
+<a:CustomPictureType>4</a:CustomPictureType>
+<a:CustomTextMode>1</a:CustomTextMode>
+<a:CustomPictureID>2ADC470A-0402-42D8-BD48-29252CBF5380</a:CustomPictureID>
+<a:GradientEndColor>16777215</a:GradientEndColor>
+<a:KeepAspect>1</a:KeepAspect>
+<c:Object>
+<o:ModelDocument Ref="o5"/>
+</c:Object>
+</o:ModelDocumentSymbol>
+</c:Symbols>
 </o:ProjectDiagram>
 </c:ProjectDiagrams>
 <c:DefaultDiagram>
 <o:ProjectDiagram Ref="o3"/>
 </c:DefaultDiagram>
 <c:ModelsAndFiles>
-<o:ModelDocument Id="o4">
+<o:ModelDocument Id="o6">
 <a:ObjectID>03A33D3F-C5A8-4EF9-AEA4-2E6DEFDE9651</a:ObjectID>
 <a:Name>MCD</a:Name>
 <a:Code>MCD</a:Code>
@@ -486,6 +510,19 @@ Shadow=0</a:DisplayPreferences>
 <a:Extension>mcd</a:Extension>
 <a:ModelDocument.ModelID>25BD5FEC-7F98-4DD1-BE7C-D6B765D2E4D4</a:ModelDocument.ModelID>
 <a:ModelClassID>1E597170-9350-11D1-AB3C-0020AF71E433</a:ModelClassID>
+</o:ModelDocument>
+<o:ModelDocument Id="o5">
+<a:ObjectID>AAD3A052-D4A3-42E0-8183-11D66E1AFC85</a:ObjectID>
+<a:Name>Inventory Manager</a:Name>
+<a:Code>Inventory_Manager</a:Code>
+<a:CreationDate>1476793989</a:CreationDate>
+<a:Creator>User</a:Creator>
+<a:ModificationDate>1476794018</a:ModificationDate>
+<a:Modifier>User</a:Modifier>
+<a:Location>file:///C|/Users/User/Downloads/GestionParcInfo.moo</a:Location>
+<a:Extension>moo</a:Extension>
+<a:ModelDocument.ModelID>DB71BE10-B2A9-4107-B7DE-0107D02ADF98</a:ModelDocument.ModelID>
+<a:ModelClassID>18112060-1A4B-11D1-83D9-444553540000</a:ModelClassID>
 </o:ModelDocument>
 </c:ModelsAndFiles>
 </o:Project>
