@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import com.sun.media.jfxmedia.logging.Logger;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
@@ -23,6 +24,7 @@ import java.util.Date;
 */
 
 import application.DAO.objets.*;
+import application.viewer.OverviewController;
 
 /**
  *
@@ -31,13 +33,16 @@ import application.DAO.objets.*;
 public class MainAppFX extends Application {
     private Stage primaryStage;
     private BorderPane rootLayout;
-    private ObservableList<Machine> Data = FXCollections.observableArrayList();
+    private static ObservableList<Machine> Data = FXCollections.observableArrayList(
+    		new Machine("1","localhost", "localhost", null, "0", "127.0.0.1", "root", null),
+    		new Machine("2","lacolhost", "lacolhost", null, "0", "128.0.0.1", "root", null)
+    		);
  
     public MainAppFX() {
     	
     	// ICI : Récupération des données SGBD pour affichage
     	// A titre d'exemple : Ajout de plusieurs lignes test
-    	Data.add(new Machine("1","localhost", "localhost", null, "0", "128.0.0.1", "root", null));
+    	//Data.add(new Machine("1","localhost", "localhost", null, "0", "127.0.0.1", "root", null));
     	
     }
     
@@ -48,32 +53,11 @@ public class MainAppFX extends Application {
     
     @Override
     public void start(Stage primaryStage) {
-        /*
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
-            }
-        });
-        
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
-        
-        Scene scene = new Scene(root, 300, 250);
-        
-        primaryStage.setTitle("Hello World!");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-        */
-        
+    	
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Parc informatique");
         initRootLayout();
         showOverview();
-
     }
     
     public void initRootLayout() {
@@ -94,13 +78,23 @@ public class MainAppFX extends Application {
     
     public void showOverview() {
         try {
+        	
+        	
             // charger l'apercu (overview) fxml
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainAppFX.class.getResource("viewer/FXMLOverview.fxml"));
-            AnchorPane personOverview = (AnchorPane) loader.load();
-            
+            FXMLLoader loader = new FXMLLoader();//(getClass().getResource("viewer/Overview.fxml"));
+            loader.setLocation(MainAppFX.class.getResource("viewer/Overview.fxml")); 
+            AnchorPane overview = (AnchorPane) loader.load();
+
             // charger cet apercu au centre du layout racine
-            rootLayout.setCenter(personOverview);
+            rootLayout.setCenter(overview);
+                        
+            
+            OverviewController controller = loader.getController();
+            controller.mainAppFX = this;
+            // TODO ERROR : controller.setMainApp();  
+            
+            controller.setMainAppFX();
+        
         } catch (IOException e) {
             e.printStackTrace();
         }

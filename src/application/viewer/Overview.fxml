@@ -14,8 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 <!--  TODO : reference controller -->
-
-<AnchorPane id="AnchorPane" prefHeight="300.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.viewer.OverviewController">
+<AnchorPane id="AnchorPane" prefHeight="300.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml">
   <children>
     <AnchorPane prefHeight="300.0" prefWidth="600.0">
       <children>
@@ -115,6 +114,6 @@
     <AnchorPane prefHeight="3.0" prefWidth="600.0" />
   </children>
   <stylesheets>
-    <URL value="@fxmloverview.css" />
+    <URL value="@fxmloverview.css" /> <!-- TODO -->
   </stylesheets>
 </AnchorPane>
