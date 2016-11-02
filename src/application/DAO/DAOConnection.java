@@ -4,9 +4,7 @@ package application.DAO; /******************************************************
  * Purpose: Defines the Class application.DAO.DAOConnection
  ***********************************************************************/
 
-import application.interfaces.IDAOConnection;
-
-import java.util.*;
+import application.DAO.interfaces.IDAOConnection;
 
 /** @pdOid e1f67259-29a6-4ad8-8312-7ca59c54385f */
 public class DAOConnection implements IDAOConnection {

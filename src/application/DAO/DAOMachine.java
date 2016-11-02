@@ -4,9 +4,7 @@ package application.DAO; /******************************************************
  * Purpose: Defines the Class application.DAO.DAOMachine
  ***********************************************************************/
 
-import application.interfaces.IDAOHandler;
-
-import java.util.*;
+import application.DAO.interfaces.IDAOHandler;
 
 /** @pdOid 8850f737-a717-44d5-85cf-4dc95e6871c5 */
 class DAOMachine implements IDAOHandler {

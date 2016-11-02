@@ -4,9 +4,7 @@ package application.DAO; /******************************************************
  * Purpose: Defines the Class application.DAO.DAOSalle
  ***********************************************************************/
 
-import application.interfaces.IDAOHandler;
-
-import java.util.*;
+import application.DAO.interfaces.IDAOHandler;
 
 /** @pdOid 48949297-0e27-4222-ae4f-02358912267c */
 public class DAOSalle implements IDAOHandler {
