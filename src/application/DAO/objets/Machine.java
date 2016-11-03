@@ -7,27 +7,29 @@ package application.DAO.objets;
 
 import java.util.Collection;
 import java.util.Date;
-import java.util.Map;
+//import java.util.Map;
 import java.util.Properties;
 
-import javafx.beans.binding.Bindings;
 // IMPORT DES PROPERTIES :
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.StringProperty;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-/*	PROPERTIES :
+import javafx.beans.property.SimpleIntegerProperty;
+/*	PROPERTY :
  *	Avec JavaFX il est courant d'utiliser les Properties pour tous les champs de votre classe.
  *	Une Property (propriété) nous permet, par exemple, d'être automatiquement averti lorsque la
  *	variable id ou toute autre variable a été modifiée. 
  *	Ceci nous aide à maintenir la view synchronisée avec les données. 
  */
-import javafx.util.StringConverter;
+
+//import javafx.beans.binding.Bindings;
+//import javafx.util.StringConverter;
+
+
 
 /** @pdOid 29bd1de5-32fa-4bc5-ac7b-a0c0ed192d80 */
-
 public class Machine {
 	
    /** @pdOid 40555939-bba9-4d75-86cd-8625d6989102 */
@@ -37,7 +39,8 @@ public class Machine {
    /** @pdOid 607c1715-5c6c-47fa-886c-54b17c15e2db */
    private final StringProperty idUnique;
    /** @pdOid 772da07e-d119-4af1-9b90-e46745521d0d */
-   private final ObjectProperty<java.util.Date> dateAchat;
+   //private final ObjectProperty<java.util.Date> dateAchat;
+   private final StringProperty dateAchat;
    /** @pdOid c5643e4c-f69a-4635-b4ae-6b6f9f45273f */
    private final StringProperty dureeGarantie;
    /** @pdOid 1b8c0308-3320-4538-ae91-5b266e4b9908 */
@@ -91,6 +94,7 @@ public class Machine {
    }
 
    // DATEACHAT
+   /*
    public Date getDateAchat() {
       return dateAchat.get();
    }
@@ -98,6 +102,16 @@ public class Machine {
       this.dateAchat.set(dateAchat);
    }
    public ObjectProperty<java.util.Date> dateAchatProperty() {
+	   return dateAchat;
+   }
+   */
+   public String getDateAchat() {
+	   return dateAchat.get();
+   }
+   public void setDateAchat(String dateAchat) {
+      this.dateAchat.set(dateAchat);
+   }
+   public StringProperty dateAchatProperty() {
 	   return dateAchat;
    }
 
@@ -151,6 +165,30 @@ public class Machine {
 	      this.adresseIP = new SimpleStringProperty(adresseIP);
    }
    */
+   
+   /*
+   public Machine(String id) {
+	   this.id = new SimpleStringProperty(id);
+   }
+   
+   public Machine(Collection<Composant> composant) {
+	   this.composant = composant;
+   }
+   
+   */
+   
+   
+   public Machine(String id, String idAfpa, String idUnique, String dateAchat, String dureeGarantie, String adresseIP, String type) {
+		  // CONVERSION EN TYPE D'OBJETS OBSERVABLES
+	      this.id = new SimpleStringProperty(id);
+	      this.idAfpa = new SimpleStringProperty(idAfpa);
+	      this.idUnique = new SimpleStringProperty(idUnique);	      
+	      this.dateAchat = new SimpleStringProperty(dateAchat);
+	      this.dureeGarantie = new SimpleStringProperty(dureeGarantie);
+	      this.adresseIP = new SimpleStringProperty(adresseIP);
+	      this.type = new SimpleStringProperty(type);
+   }
+   /*
    public Machine(String id, String idAfpa, String idUnique, Date dateAchat, String dureeGarantie, String adresseIP, String type, Collection<Composant> composant) {
 	  // CONVERSION EN TYPE D'OBJETS OBSERVABLES
       this.id = new SimpleStringProperty(id);
@@ -160,8 +198,10 @@ public class Machine {
       this.dureeGarantie = new SimpleStringProperty(dureeGarantie);
       this.adresseIP = new SimpleStringProperty(adresseIP);
       this.type = new SimpleStringProperty(type);
+      // ET DE COMPOSANTS
       this.composant = composant;
    }
+   */
 
    
    // COMPOSANTS

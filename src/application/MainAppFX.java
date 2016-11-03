@@ -3,10 +3,13 @@ package application;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Collection;
+import java.util.Date;
 
 import com.sun.media.jfxmedia.logging.Logger;
 
@@ -34,9 +37,11 @@ public class MainAppFX extends Application {
     private Stage primaryStage;
     private BorderPane rootLayout;
     private static ObservableList<Machine> Data = FXCollections.observableArrayList(
-    		new Machine("1","localhost", "localhost", null, "0", "127.0.0.1", "root", null),
-    		new Machine("2","lacolhost", "lacolhost", null, "0", "128.0.0.1", "root", null)
+    		new Machine("1","localhost", "localhost", "01/01/2000", "0", "127.0.0.1", "root"),
+    		new Machine("2","lacolhost", "lacolhost", "21/12/2012", "0", "128.0.0.1", "root")
     		);
+
+
  
     public MainAppFX() {
     	
@@ -47,6 +52,7 @@ public class MainAppFX extends Application {
     }
     
     public ObservableList<Machine> getData() {
+    	System.out.println("getData");
     	 return Data;
     }
     
@@ -55,7 +61,7 @@ public class MainAppFX extends Application {
     public void start(Stage primaryStage) {
     	
         this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("Parc informatique");
+        this.primaryStage.setTitle("Hola, Holy Hole !");
         initRootLayout();
         showOverview();
     }
@@ -63,9 +69,11 @@ public class MainAppFX extends Application {
     public void initRootLayout() {
         try {
             // Chargement du layout racine à partir du fichier fxml
-            FXMLLoader loader = new FXMLLoader();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("viewer/RootLayout.fxml"));
             loader.setLocation(MainAppFX.class.getResource("viewer/RootLayout.fxml"));
             rootLayout = (BorderPane) loader.load();
+            loader.setController(this);
+           
             
             // Montrer la scene contenant le layout racine
             Scene scene = new Scene(rootLayout);
@@ -79,9 +87,10 @@ public class MainAppFX extends Application {
     public void showOverview() {
         try {
         	
+        	System.out.println("showOverview");
         	
             // charger l'apercu (overview) fxml
-            FXMLLoader loader = new FXMLLoader();//(getClass().getResource("viewer/Overview.fxml"));
+        	FXMLLoader loader = new FXMLLoader();//(getClass().getResource("viewer/Overview.fxml"));
             loader.setLocation(MainAppFX.class.getResource("viewer/Overview.fxml")); 
             AnchorPane overview = (AnchorPane) loader.load();
 

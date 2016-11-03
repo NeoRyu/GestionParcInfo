@@ -14,7 +14,8 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 <!--  TODO : reference controller -->
-<AnchorPane id="AnchorPane" prefHeight="300.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml">
+
+<AnchorPane id="AnchorPane" prefHeight="300.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.viewer.OverviewController">
   <children>
     <AnchorPane prefHeight="300.0" prefWidth="600.0">
       <children>
@@ -22,13 +23,13 @@
           <items>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
               <children>
-                <TableView fx:id="tableFX" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <TableView fx:id="tableFX" editable="true" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                   <columnResizePolicy>
                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                   </columnResizePolicy>
                   <columns>
-                    <TableColumn fx:id="col1" prefWidth="75.0" text="col1" />
-                    <TableColumn fx:id="col2" prefWidth="75.0" text="col2" />
+                    <TableColumn fx:id="colone" prefWidth="75.0" text="col1" />
+                    <TableColumn fx:id="coltwo" prefWidth="75.0" text="col2" />
                   </columns>
                 </TableView>
               </children>
@@ -114,6 +115,6 @@
     <AnchorPane prefHeight="3.0" prefWidth="600.0" />
   </children>
   <stylesheets>
-    <URL value="@fxmloverview.css" /> <!-- TODO -->
+    <URL value="@fxmloverview.css" />
   </stylesheets>
 </AnchorPane>

@@ -22,9 +22,9 @@ public class OverviewController {
 		@FXML
 		private static TableView<Machine> tableFX; 
 		@FXML
-		private TableColumn<Machine, String> col1;
+		private TableColumn<Machine, String> colone;
 		@FXML
-		private TableColumn<Machine, String> col2;
+		private TableColumn<Machine, String> coltwo;
 		 
 		@FXML
 		private Label label1;
@@ -55,7 +55,6 @@ public class OverviewController {
 			
 		}
 
-
 		*/
 		
 
@@ -65,12 +64,9 @@ public class OverviewController {
 	 */
 	 @FXML
 	 private void initialize() {
-		
-		
 		// Initialise la tableFX avec deux colonnes
-		 col1.setCellValueFactory(cellData -> cellData.getValue().idProperty()); 
-		 col2.setCellValueFactory(cellData -> cellData.getValue().adresseIPProperty());
-		 
+		 colone.setCellValueFactory(cellData -> cellData.getValue().idAfpaProperty()); 
+		 coltwo.setCellValueFactory(cellData -> cellData.getValue().adresseIPProperty());		 
 	}
 	 
 	 /**
@@ -80,14 +76,11 @@ public class OverviewController {
 	 */
 	 public static void setMainAppFX() {
 		 
-		 liste = mainAppFX.getData();
-		 
-		 // Ajout de la liste des données observables dans la tableFX
-		 //tableFX.setEditable(true);
-		 
-		 System.out.println(mainAppFX.getData().get(1));
-		 //tableFX.setItems(liste); //TODO gros probleme
-		 
+		 // Ajout de la liste des données observables dans la tableFX	 
+		 System.out.println(mainAppFX.getData().get(0).getAdresseIP());
+		// TODO : les données marchent mais n'arrivent pas a etre inserees dans le tableview
+		
+		 tableFX.setItems(mainAppFX.getData()); //TODO gros probleme
 		
 	 }
 	
