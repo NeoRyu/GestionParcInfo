@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -56,18 +57,25 @@ public class MainAppFX extends Application {
     }
     
     public ObservableList<Machine> getData() {
-    	System.out.println("getData");
     	 return Data;
     }
     
     
     @Override
     public void start(Stage primaryStage) {
-    	
+
+    	// TITRE + ICONE
         this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("Hola, Holy Hole !");
+        this.primaryStage.setTitle("ITpark Manager");
+    	this.primaryStage.getIcons().add(new Image("@../../res/icon.png"));
         initRootLayout();
-        showOverview();
+        
+        // Methode permettant d'appeler le layout d'intro
+        String choixLayout = "viewer/Overview.fxml";
+        	// choixLayout = "viewer/Machine.fxml";
+        	// Le choix de l'affichage des autres layout se fera par le menubar        	
+        showOverview(choixLayout);
+        
     }
     
     public void initRootLayout() {
@@ -88,14 +96,12 @@ public class MainAppFX extends Application {
         }
     }
     
-    public void showOverview() {
+    public void showOverview(String choixLayout) {
         try {
-        	
-        	System.out.println("showOverview");
         	
             // charger l'apercu (overview) fxml
         	FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainAppFX.class.getResource("viewer/Overview.fxml")); 
+            loader.setLocation(MainAppFX.class.getResource(choixLayout)); 
             AnchorPane overview = (AnchorPane) loader.load();
 
             // charger cet apercu au centre du layout racine
@@ -121,4 +127,6 @@ public class MainAppFX extends Application {
         launch(args);
     }
     
+    
+    // 30 / 84
 }
