@@ -1,6 +1,7 @@
 package application;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Parent;
@@ -34,20 +35,23 @@ import application.viewer.OverviewController;
  * @author Neo_Ryu
  */
 public class MainAppFX extends Application {
+	
     private Stage primaryStage;
     private BorderPane rootLayout;
-    private static ObservableList<Machine> Data = FXCollections.observableArrayList(
-    		new Machine("1","localhost", "localhost", "01/01/2000", "0", "127.0.0.1", "root"),
-    		new Machine("2","lacolhost", "lacolhost", "21/12/2012", "0", "128.0.0.1", "root")
-    		);
-
+    
+    private ObservableList<Machine> Data = FXCollections.observableArrayList();
 
  
     public MainAppFX() {
-    	
-    	// ICI : Récupération des données SGBD pour affichage
-    	// A titre d'exemple : Ajout de plusieurs lignes test
-    	//Data.add(new Machine("1","localhost", "localhost", null, "0", "127.0.0.1", "root", null));
+    	   	
+    	Platform.runLater(new Runnable() {
+    		@Override public void run() {
+    			  // TODO : JEU D'ESSAI / Récupération des données SGBD pour affichage    			  
+    			  Data.add(new Machine("1","localhost", "localhost", "01/01/2000", "0", "127.0.0.1", "root"));
+    			  Data.add(new Machine("2","lacolhost", "lacolhost", "21/12/2012", "0", "128.0.0.1", "root"));
+    			  //Data.add(new Machine("1","localhost", "localhost", null, "0", "127.0.0.1", "root", null));
+    		}
+    	}); 
     	
     }
     
@@ -90,19 +94,16 @@ public class MainAppFX extends Application {
         	System.out.println("showOverview");
         	
             // charger l'apercu (overview) fxml
-        	FXMLLoader loader = new FXMLLoader();//(getClass().getResource("viewer/Overview.fxml"));
+        	FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainAppFX.class.getResource("viewer/Overview.fxml")); 
             AnchorPane overview = (AnchorPane) loader.load();
 
             // charger cet apercu au centre du layout racine
             rootLayout.setCenter(overview);
                         
-            
+            // ajouts des données dans le tableview controller
             OverviewController controller = loader.getController();
-            controller.mainAppFX = this;
-            // TODO ERROR : controller.setMainApp();  
-            
-            controller.setMainAppFX();
+            controller.setMainAppFX(this);
         
         } catch (IOException e) {
             e.printStackTrace();

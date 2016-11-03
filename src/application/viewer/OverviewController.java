@@ -19,13 +19,15 @@ import javafx.fxml.FXMLLoader;
 
 public class OverviewController {
 		
+		// Référence pour le tableview et les colonnes
 		@FXML
-		private static TableView<Machine> tableFX; 
+		private TableView<Machine> tableFX;
 		@FXML
 		private TableColumn<Machine, String> colone;
 		@FXML
 		private TableColumn<Machine, String> coltwo;
 		 
+		// Référence pour les labels
 		@FXML
 		private Label label1;
 		@FXML
@@ -43,20 +45,7 @@ public class OverviewController {
 
 		// Référence à l'application principale
 		public static MainAppFX mainAppFX;
-		public static ObservableList<Machine> liste; 
 
-		/*
-		public OverviewController() throws IOException {
-			super();
-			
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("Overview.fxml")); //= new FXMLLoadergetClass().getResource("Overview.fxml");
-			loader.setController(new OverviewController());
-			Pane mainPane = FXMLLoader.load(getClass().getResource("/Overview.fxml"));
-			
-		}
-
-		*/
-		
 
 	/**
 	 * Initialises la classe controller. 
@@ -66,7 +55,9 @@ public class OverviewController {
 	 private void initialize() {
 		// Initialise la tableFX avec deux colonnes
 		 colone.setCellValueFactory(cellData -> cellData.getValue().idAfpaProperty()); 
-		 coltwo.setCellValueFactory(cellData -> cellData.getValue().adresseIPProperty());		 
+		 coltwo.setCellValueFactory(cellData -> cellData.getValue().adresseIPProperty());
+		 
+		 
 	}
 	 
 	 /**
@@ -74,13 +65,14 @@ public class OverviewController {
 	 *
 	 * @param mainApp
 	 */
-	 public static void setMainAppFX() {
+	 public void setMainAppFX(MainAppFX mainAppFX) {		
+		this.mainAppFX = mainAppFX;
 		 
-		 // Ajout de la liste des données observables dans la tableFX	 
-		 System.out.println(mainAppFX.getData().get(0).getAdresseIP());
-		// TODO : les données marchent mais n'arrivent pas a etre inserees dans le tableview
-		
-		 tableFX.setItems(mainAppFX.getData()); //TODO gros probleme
+		// Affichage des données en mode console : fonctionnel	
+		System.out.println(mainAppFX.getData().get(0).getAdresseIP());
+		 
+		// Ajout de la liste des données observables dans le tableview " tableFX "
+		tableFX.setItems(mainAppFX.getData()); //TODO : les données sont dispo, mais l'insertion dans le tableview merde...
 		
 	 }
 	

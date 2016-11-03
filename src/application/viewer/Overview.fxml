@@ -28,8 +28,8 @@
                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                   </columnResizePolicy>
                   <columns>
-                    <TableColumn fx:id="colone" prefWidth="75.0" text="col1" />
-                    <TableColumn fx:id="coltwo" prefWidth="75.0" text="col2" />
+                    <TableColumn fx:id="colone" prefWidth="75.0" text="data 1" />
+                    <TableColumn fx:id="coltwo" prefWidth="75.0" text="data 2" />
                   </columns>
                 </TableView>
               </children>
