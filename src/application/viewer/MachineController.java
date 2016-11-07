@@ -2,6 +2,8 @@ package application.viewer;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -94,9 +96,20 @@ public class MachineController {
 	 
 	 // Methode appelée lorsque l'utilisateur clique sur le boutton de suppression
 	 @FXML
-	 private void handleDeletePerson() {
-	  int selectedIndex = tableFX.getSelectionModel().getSelectedIndex();
-	  tableFX.getItems().remove(selectedIndex);
+	 private void handleDelete() {
+		  int selectedIndex = tableFX.getSelectionModel().getSelectedIndex();
+		  if (selectedIndex >= 0) {
+			  // Une ligne a été séléctionnée
+			  tableFX.getItems().remove(selectedIndex);
+		  } else {
+			  // Aucune selection à supprimer...
+			  Alert alert = new Alert(AlertType.WARNING);
+			  alert.initOwner(mainAppFX.getPrimaryStage());
+			  alert.setTitle("Erreur 404");
+			  alert.setHeaderText("Aucune données à supprimer");
+			  alert.setContentText("Veuillez selectionner une ligne dans le tableau !");
+			  alert.showAndWait();
+		  }
 	 }
 
 
@@ -110,7 +123,7 @@ public class MachineController {
 		this.mainAppFX = mainAppFX;
 		 
 		// Affichage des données en mode console : fonctionnel	
-		System.out.println(mainAppFX.getDataMachine().get(0).getAdresseIP());
+		//System.out.println(mainAppFX.getDataMachine().get(0).getAdresseIP());
 		 
 		// Ajout de la liste des données observables dans le tableview " tableFX "
 		tableFX.setItems(mainAppFX.getDataMachine()); //TODO : les données sont dispo, mais l'insertion dans le tableview merde...
