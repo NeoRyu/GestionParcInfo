@@ -91,8 +91,8 @@ public class MainAppFX extends Application {
         initRootLayout();
         
         // Methode permettant d'appeler le layout d'intro
-        //String choixLayout = "viewer/Overview.fxml";
-        String choixLayout = "viewer/Machine.fxml";
+        String  choixLayout = "viewer/Overview.fxml";
+        		choixLayout = "viewer/Machine.fxml";
         	// Le choix de l'affichage des autres layout se fera par le menubar        	
         showOverview(choixLayout);
         
