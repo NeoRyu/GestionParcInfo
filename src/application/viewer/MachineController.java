@@ -73,13 +73,13 @@ public class MachineController {
 	 private void showDetails(Machine machine) {
 		 if (machine != null) {
 		 // Remplissage des labels avec les données Machine de l'item selectionné dans le tableview
-			 label1.setText(machine.getId());
-			 label2.setText(machine.getIdAfpa());
-			 label3.setText(machine.getIdUnique());
-			 label4.setText(machine.getDateAchat());
-			 label5.setText(machine.getDureeGarantie());
-			 label6.setText(machine.getAdresseIP());
-			 label7.setText(machine.getType());
+			 label1.setText(machine.getIdSP());
+			 label2.setText(machine.getIdAfpaSP());
+			 label3.setText(machine.getIdUniqueSP());
+			 label4.setText(machine.getDateAchatSP());
+			 label5.setText(machine.getDureeGarantieSP());
+			 label6.setText(machine.getAdresseIPSP());
+			 label7.setText(machine.getTypeSP());
 		 } else {
 		 // Machine est null, on retire tout le texte
 			 label1.setText("");
