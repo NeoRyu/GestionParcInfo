@@ -16,7 +16,10 @@ import application.DAO.objets.Machine;
 
 import javafx.fxml.FXMLLoader;
 
-
+/**
+*
+* @author Neo_Ryu
+*/
 public class MachineController {
 		
 		// Référence pour le tableview et les colonnes
@@ -57,8 +60,46 @@ public class MachineController {
 		 colone.setCellValueFactory(cellData -> cellData.getValue().idAfpaProperty()); 
 		 coltwo.setCellValueFactory(cellData -> cellData.getValue().adresseIPProperty());
 		 
+		// Nettoyage des details
+		 showDetails(null);
 		 
+		 // Ajout d'un listener pour ecouter les changements :
+		 // Nous obtenons la selectedItemProperty de la table de machines et lui ajoutons un listener. 
+		 // Chaque fois que l'utilisateur sélectionne une machine dans la table, notre expression lambda est exécutée.
+		 // Nous prenons la machine nouvellement sélectionnée pour la transmettre à la méthode showDetails(...).
+		 tableFX.getSelectionModel().selectedItemProperty().addListener((observable, oldValeur, newValeur) -> showDetails(newValeur));
 	}
+	 
+	 private void showDetails(Machine machine) {
+		 if (machine != null) {
+		 // Remplissage des labels avec les données Machine de l'item selectionné dans le tableview
+			 label1.setText(machine.getId());
+			 label2.setText(machine.getIdAfpa());
+			 label3.setText(machine.getIdUnique());
+			 label4.setText(machine.getDateAchat());
+			 label5.setText(machine.getDureeGarantie());
+			 label6.setText(machine.getAdresseIP());
+			 label7.setText(machine.getType());
+		 } else {
+		 // Machine est null, on retire tout le texte
+			 label1.setText("");
+			 label2.setText("");
+			 label3.setText("");
+			 label4.setText("");
+			 label5.setText("");
+			 label6.setText("");
+			 label7.setText("");
+		 }
+	}
+	 
+	 // Methode appelée lorsque l'utilisateur clique sur le boutton de suppression
+	 @FXML
+	 private void handleDeletePerson() {
+	  int selectedIndex = tableFX.getSelectionModel().getSelectedIndex();
+	  tableFX.getItems().remove(selectedIndex);
+	 }
+
+
 	 
 	 /**
 	 * Appellé par l'application principale pour avoir une référence de retour sur elle-même
@@ -69,7 +110,7 @@ public class MachineController {
 		this.mainAppFX = mainAppFX;
 		 
 		// Affichage des données en mode console : fonctionnel	
-		//System.out.println(mainAppFX.getData().get(0).getAdresseIP());
+		System.out.println(mainAppFX.getData().get(0).getAdresseIP());
 		 
 		// Ajout de la liste des données observables dans le tableview " tableFX "
 		tableFX.setItems(mainAppFX.getData()); //TODO : les données sont dispo, mais l'insertion dans le tableview merde...

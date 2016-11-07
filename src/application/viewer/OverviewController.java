@@ -4,7 +4,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import application.MainAppFX;
 
-
+/**
+*
+* @author Neo_Ryu
+*/
 public class OverviewController {
 		
 		 

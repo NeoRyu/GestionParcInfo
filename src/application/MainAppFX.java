@@ -30,13 +30,14 @@ import java.util.Date;
 
 import application.DAO.objets.*;
 import application.viewer.OverviewController;
+import application.viewer.MachineController;
 
 /**
  *
  * @author Neo_Ryu
  */
 public class MainAppFX extends Application {
-	
+	 
     private Stage primaryStage;
     private BorderPane rootLayout;
     
@@ -71,8 +72,8 @@ public class MainAppFX extends Application {
         initRootLayout();
         
         // Methode permettant d'appeler le layout d'intro
-        String choixLayout = "viewer/Overview.fxml";
-        	// choixLayout = "viewer/Machine.fxml";
+        //String choixLayout = "viewer/Overview.fxml";
+        String choixLayout = "viewer/Machine.fxml";
         	// Le choix de l'affichage des autres layout se fera par le menubar        	
         showOverview(choixLayout);
         
@@ -108,8 +109,18 @@ public class MainAppFX extends Application {
             rootLayout.setCenter(overview);
                         
             // ajouts des données dans le tableview controller
-            OverviewController controller = loader.getController();
-            controller.setMainAppFX(this);
+            switch (choixLayout) {
+            	case "viewer/Machine.fxml" : 
+            		MachineController MachineCtrl = loader.getController();
+            		MachineCtrl.setMainAppFX(this);
+            		break;
+            	case "viewer/Overview.fxml" :
+            	default :
+            		OverviewController OverviewCtrl = loader.getController();
+            		OverviewCtrl.setMainAppFX(this);
+            		break;  
+            }            
+            
         
         } catch (IOException e) {
             e.printStackTrace();
