@@ -110,10 +110,10 @@ public class MachineController {
 		this.mainAppFX = mainAppFX;
 		 
 		// Affichage des données en mode console : fonctionnel	
-		System.out.println(mainAppFX.getData().get(0).getAdresseIP());
+		System.out.println(mainAppFX.getDataMachine().get(0).getAdresseIP());
 		 
 		// Ajout de la liste des données observables dans le tableview " tableFX "
-		tableFX.setItems(mainAppFX.getData()); //TODO : les données sont dispo, mais l'insertion dans le tableview merde...
+		tableFX.setItems(mainAppFX.getDataMachine()); //TODO : les données sont dispo, mais l'insertion dans le tableview merde...
 		
 	 }
 	
