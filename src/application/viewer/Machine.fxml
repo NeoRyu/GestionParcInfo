@@ -101,8 +101,8 @@
                 </GridPane>
                         <ButtonBar layoutX="18.0" layoutY="324.0" prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
                           <buttons>
-                      <Button mnemonicParsing="false" text="Ajouter..." />
-                      <Button mnemonicParsing="false" text="Editer..." />
+                      <Button mnemonicParsing="false" onAction="#handleNew" text="Ajouter..." />
+                      <Button mnemonicParsing="false" onAction="#handleEdit" text="Editer..." />
                       <Button mnemonicParsing="false" onAction="#handleDelete" text="Supprimer" />
                           </buttons>
                         </ButtonBar>

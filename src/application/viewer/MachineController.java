@@ -94,7 +94,37 @@ public class MachineController {
 		 }
 	}
 	 
-	 // Methode appelée lorsque l'utilisateur clique sur le boutton de suppression
+	 // AJOUTER : Methode appelée lorsque l'utilisateur clique sur le boutton d'ajout
+	 @FXML
+	 private void handleNew() {
+		  Machine tempMachine = new Machine();
+		  boolean okClic = mainAppFX.showMachineEditDialog(tempMachine);
+		  if (okClic) {
+			  mainAppFX.getDataMachine().add(tempMachine);
+		  }
+	 }
+	 
+	 //  MODIFIER : Methode appelée lorsque l'utilisateur clique sur le boutton de modification
+	 @FXML
+	 private void handleEdit() {
+		 Machine selection = tableFX.getSelectionModel().getSelectedItem();
+		 if (selection != null) {
+			  boolean okClicked = mainAppFX.showMachineEditDialog(selection);
+			  if (okClicked) {
+				  showDetails(selection);
+			  }
+		 } else {
+			  // Si rien n'est séléctionné
+			  Alert alert = new Alert(AlertType.WARNING);
+			  alert.initOwner(mainAppFX.getPrimaryStage());
+			  alert.setTitle("Aucune selection");
+			  alert.setHeaderText("Aucune donnée selectionnée");
+			  alert.setContentText("Selectionnez une ligne dans la table");
+			  alert.showAndWait();
+		 }
+	 }
+
+	 // SUPPRIMER : Methode appelée lorsque l'utilisateur clique sur le boutton de suppression
 	 @FXML
 	 private void handleDelete() {
 		  int selectedIndex = tableFX.getSelectionModel().getSelectedIndex();

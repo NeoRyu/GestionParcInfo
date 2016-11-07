@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -31,6 +32,7 @@ import java.util.Date;
 import application.DAO.objets.*;
 import application.viewer.OverviewController;
 import application.viewer.MachineController;
+import application.viewer.MachineEditDialogController;
 
 /**
  *
@@ -145,6 +147,38 @@ public class MainAppFX extends Application {
             e.printStackTrace();
         }
     }
+    
+    
+    public boolean showMachineEditDialog(Machine machine) {
+    	 try {
+    		 // Charge le fichier FXML et creation d'un nouveau stage dans une popup
+	    	 FXMLLoader loader = new FXMLLoader();
+	    	 loader.setLocation(MainAppFX.class.getResource("viewer/MachineEditDialog.fxml"));
+	    	 AnchorPane page = (AnchorPane) loader.load();
+	    	 
+	    	 // Creation du Stage
+	    	 Stage dialogStage = new Stage();
+	    	 dialogStage.setTitle("ITpark Manager Editor");
+	    	 dialogStage.getIcons().add(new Image("@../../res/config.png"));
+	    	 dialogStage.initModality(Modality.WINDOW_MODAL);
+	    	 dialogStage.initOwner(primaryStage);
+	    	 Scene scene = new Scene(page);
+	    	 dialogStage.setScene(scene);
+	    	 
+	    	 // Configure l'objet (machine) dans un controlleur
+	    	 MachineEditDialogController MachineEDC = loader.getController();
+	    	 MachineEDC.setDialogStage(dialogStage);
+	    	 MachineEDC.setMachine(machine);
+	    	 
+	    	 // Montre la popup tant qu'elle n'est pas fermée
+	    	 dialogStage.showAndWait();
+	    	 return MachineEDC.isOkClicked();
+    	 } catch (IOException e) {
+	    	 e.printStackTrace();
+	    	 return false;
+    	 }
+    }
+
 
     public Stage getPrimaryStage() {
         return primaryStage;
