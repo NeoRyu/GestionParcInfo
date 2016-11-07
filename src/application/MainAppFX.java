@@ -41,7 +41,7 @@ public class MainAppFX extends Application {
     private Stage primaryStage;
     private BorderPane rootLayout;
     
-    private ObservableList<Machine> Data = FXCollections.observableArrayList();
+    private ObservableList<Machine> DataMachine = FXCollections.observableArrayList();
 
  
     public MainAppFX() {
@@ -49,16 +49,35 @@ public class MainAppFX extends Application {
     	Platform.runLater(new Runnable() {
     		@Override public void run() {
     			  // TODO : JEU D'ESSAI / Récupération des données SGBD pour affichage    			  
-    			  Data.add(new Machine("1","localhost", "localhost", "01/01/2000", "0", "127.0.0.1", "root"));
-    			  Data.add(new Machine("2","lacolhost", "lacolhost", "21/12/2012", "0", "128.0.0.1", "root"));
-    			  //Data.add(new Machine("1","localhost", "localhost", null, "0", "127.0.0.1", "root", null));
+    			  DataMachine.add(new Machine("1","localhost", "localhost", "01/01/2000", "0", "127.0.0.1", "root"));
+    			  DataMachine.add(new Machine("2","lacolhost", "lacolhost", "21/12/2012", "0", "128.0.0.1", "root"));
+    			  //DataMachine.add(new Machine("1","localhost", "localhost", null, "0", "127.0.0.1", "root", null));
     		}
     	}); 
     	
     }
     
-    public ObservableList<Machine> getData() {
-    	 return Data;
+    public void getDataMachineDAO() {
+    	
+   	 	//TODO
+    	
+    	//Récupération données de la BDD
+    	
+    	// Stockage dans l'objet Machine.java    
+    	DataMachine.add(new Machine("2","lacolhost", "lacolhost", "21/12/2012", "0", "128.0.0.1", "root"));
+    	/*
+	    	//STRING - TODO : types variables a revoir
+		   private String id;
+		   private String idAfpa;
+		   private String idUnique;
+		   private String dateAchat;
+		   private String dureeGarantie;
+		   private String adresseIP;
+		   private String type;
+    	 */
+   }
+    public ObservableList<Machine> getDataMachine() {
+    	 return DataMachine;
     }
     
     
