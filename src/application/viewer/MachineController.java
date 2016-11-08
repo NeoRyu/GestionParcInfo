@@ -52,7 +52,7 @@ public class MachineController {
 		public MainAppFX mainAppFX;
 		
 		@FXML
-		private Button button1, button2, button3;
+		private Button START, SELECT, CANCEL;
 		@FXML
 		private Label labDet, Label1, Label2, Label3, Label4, Label5, Label6, Label7;
 
@@ -64,7 +64,7 @@ public class MachineController {
 	 @FXML
 	 private void initialize() {
 		// Initialise la tableFX avec deux colonnes
-		 colone.setCellValueFactory(cellData -> cellData.getValue().idAfpaProperty()); 
+		 colone.setCellValueFactory(cellData -> cellData.getValue().idProperty()); 
 		 coltwo.setCellValueFactory(cellData -> cellData.getValue().adresseIPProperty());
 		 
 		// Nettoyage des details
@@ -80,10 +80,11 @@ public class MachineController {
 	// AFFICHAGE DE DETAILS DANS LE GRIDVIEW
 	private void showDetails(Machine machine) {
 		// CONFIGURATION DES BOUTTONS
-		 button1.setFont(MainAppFX.f);
-		 button2.setFont(MainAppFX.f);
-		 button3.setFont(MainAppFX.f);
+		 START.setFont(MainAppFX.f);
+		 SELECT.setFont(MainAppFX.f);
+		 CANCEL.setFont(MainAppFX.f);
 		 
+		 // Au premier appui touche sur le tableview, enclenche le changement de style
 		 Set<Node> cells = tableFX.lookupAll(".table-cell");
 	     cells.forEach( (c) -> {
 	        c.setStyle("-fx-font-weight:lighter;-fx-font-style:italic;");
@@ -128,7 +129,7 @@ public class MachineController {
 	 
 	 // AJOUTER : Methode appelée lorsque l'utilisateur clique sur le boutton d'ajout
 	 @FXML
-	 private void handleNew() {
+	 private void handleSTART() {
 		  Collection<Composant> lol = new ArrayList<Composant>();
 		  Machine newMachine = new Machine("","","","","","","",lol); // TODO - COMPOSANT
 		  boolean okClic = mainAppFX.showMachineEditDialog(newMachine);
@@ -139,7 +140,7 @@ public class MachineController {
 	 
 	 //  MODIFIER : Methode appelée lorsque l'utilisateur clique sur le boutton de modification
 	 @FXML
-	 private void handleEdit() {
+	 private void handleSELECT() {
 		 Machine selection = tableFX.getSelectionModel().getSelectedItem();
 		 if (selection != null) {
 			  boolean okClic = mainAppFX.showMachineEditDialog(selection);
@@ -159,7 +160,7 @@ public class MachineController {
 
 	 // SUPPRIMER : Methode appelée lorsque l'utilisateur clique sur le boutton de suppression
 	 @FXML
-	 private void handleDelete() {
+	 private void handleCANCEL() {
 		  int selectedIndex = tableFX.getSelectionModel().getSelectedIndex();
 		  if (selectedIndex >= 0) {
 			  // Une ligne a été séléctionnée
@@ -175,6 +176,20 @@ public class MachineController {
 		  }
 	 }
 
+	 // MOVE PAD
+	 @FXML
+	 private void handleUP() {
+		 // Permet de se deplacer vers le HAUT du TableView
+		 //tableFX.getFocusModel().focusPrevious();
+		 Machine focus = tableFX.getSelectionModel().getSelectedItem();
+		 tableFX.getSelectionModel().select(Integer.parseInt(focus.getId())-1);
+	 }	 
+	 @FXML
+	 private void handleDOWN() {
+		 // Permet de se deplacer vers le BAS du TableView
+		 Machine focus = tableFX.getSelectionModel().getSelectedItem();
+		 tableFX.getSelectionModel().select(Integer.parseInt(focus.getId())+1);
+	 }
 
 	 
 	 /**

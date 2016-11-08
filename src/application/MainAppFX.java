@@ -81,13 +81,11 @@ public class MainAppFX extends Application {
     @Override
     public void start(Stage primaryStage) {
     	
-    	 try { 
+    	try { 
     	      f = Font.loadFont(new FileInputStream(new File("src/application/8BIT.TTF")), 12);
-    	      System.out.println(f.getName().toString());
-    	      //Label1.setFont(f);
-    	    } catch (FileNotFoundException e) {
+    	} catch (FileNotFoundException e) {
     	      e.printStackTrace();
-    	    }
+    	}
     	 
     	// TITRE + ICONE
         this.primaryStage = primaryStage;
