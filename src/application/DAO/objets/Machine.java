@@ -240,20 +240,29 @@ public class Machine {
 		      this.adresseIPSP = new SimpleStringProperty(adresseIP);
 		      this.typeSP = new SimpleStringProperty(type);
 	   }
-	   /*
-	   public Machine(String id, String idAfpa, String idUnique, Date dateAchat, String dureeGarantie, String adresseIP, String type, Collection<Composant> composant) {
-		  // CONVERSION EN TYPE D'OBJETS OBSERVABLES
-	      this.id = new SimpleStringProperty(id);
-	      this.idAfpa = new SimpleStringProperty(idAfpa);
-	      this.idUnique = new SimpleStringProperty(idUnique);
-	      this.dateAchat = new SimpleObjectProperty<java.util.Date>(dateAchat);
-	      this.dureeGarantie = new SimpleStringProperty(dureeGarantie);
-	      this.adresseIP = new SimpleStringProperty(adresseIP);
-	      this.type = new SimpleStringProperty(type);
-	      // ET DE COMPOSANTS
-	      this.composant = composant;
+	   
+	   public Machine(String id, String idAfpa, String idUnique, String dateAchat, String dureeGarantie, String adresseIP, String type, Collection<Composant> composant) {
+		   	this.id = id;
+		      this.idAfpa = idAfpa;
+		      this.idUnique = idUnique;
+		      this.dateAchat = dateAchat;
+		      this.dureeGarantie = dureeGarantie;
+		      this.adresseIP = adresseIP;
+		      this.type = type;
+		      
+		      // CONVERSION EN TYPE D'OBJETS OBSERVABLES
+		      this.idSP= new SimpleStringProperty(id);
+		      this.idAfpaSP = new SimpleStringProperty(idAfpa);
+		      this.idUniqueSP = new SimpleStringProperty(idUnique);
+		      this.dateAchatSP = new SimpleStringProperty(dateAchat);
+		      this.dureeGarantieSP = new SimpleStringProperty(dureeGarantie);
+		      this.adresseIPSP = new SimpleStringProperty(adresseIP);
+		      this.typeSP = new SimpleStringProperty(type);
+		      
+		      // ET DE COMPOSANTS
+		      this.composant = composant;
 	   }
-	   */
+	   
 	
 	   
 	   /*

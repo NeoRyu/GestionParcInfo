@@ -6,15 +6,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.text.*;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Collection;
-import java.util.Date;
-
-import com.sun.media.jfxmedia.logging.Logger;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
@@ -44,8 +44,8 @@ public class MainAppFX extends Application {
     private BorderPane rootLayout;
     
     private ObservableList<Machine> DataMachine = FXCollections.observableArrayList();
-
- 
+    public static Font f;
+    
     public MainAppFX() {
     	   	
     	Platform.runLater(new Runnable() {
@@ -80,11 +80,22 @@ public class MainAppFX extends Application {
     
     @Override
     public void start(Stage primaryStage) {
-
+    	
+    	 try { 
+    	      f = Font.loadFont(new FileInputStream(new File("src/application/8BIT.TTF")), 12);
+    	      System.out.println(f.getName().toString());
+    	      //Label1.setFont(f);
+    	    } catch (FileNotFoundException e) {
+    	      e.printStackTrace();
+    	    }
+    	 
     	// TITRE + ICONE
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("ITpark Manager");
     	this.primaryStage.getIcons().add(new Image("@../../res/icon.png"));
+    	primaryStage.setResizable(false);
+    	primaryStage.setMaxHeight(545);
+    	primaryStage.setMaxWidth(575);
         initRootLayout();
         
         // Methode permettant d'appeler le layout d'intro
@@ -106,6 +117,7 @@ public class MainAppFX extends Application {
             
             // Montrer la scene contenant le layout racine
             Scene scene = new Scene(rootLayout);
+            scene.getStylesheets().addAll(this.getClass().getResource("viewer/theme_Overview.css").toExternalForm());
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException e) {

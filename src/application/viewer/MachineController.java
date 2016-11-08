@@ -1,12 +1,21 @@
 package application.viewer;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Set;
+
 import application.MainAppFX;
+import application.DAO.objets.Composant;
 import application.DAO.objets.Machine;
 
 /**
@@ -41,6 +50,11 @@ public class MachineController {
 
 		// Référence à l'application principale
 		public MainAppFX mainAppFX;
+		
+		@FXML
+		private Button button1, button2, button3;
+		@FXML
+		private Label labDet, Label1, Label2, Label3, Label4, Label5, Label6, Label7;
 
 
 	/**
@@ -65,6 +79,32 @@ public class MachineController {
 	 
 	// AFFICHAGE DE DETAILS DANS LE GRIDVIEW
 	private void showDetails(Machine machine) {
+		// CONFIGURATION DES BOUTTONS
+		 button1.setFont(MainAppFX.f);
+		 button2.setFont(MainAppFX.f);
+		 button3.setFont(MainAppFX.f);
+		 
+		 Set<Node> cells = tableFX.lookupAll(".table-cell");
+	     cells.forEach( (c) -> {
+	        c.setStyle("-fx-font-weight:lighter;-fx-font-style:italic;");
+	     });
+		 
+		 // CONFIGURATION DES LABELS
+		 label1.setFont(MainAppFX.f);
+		 label2.setFont(MainAppFX.f);
+		 label3.setFont(MainAppFX.f);
+		 label4.setFont(MainAppFX.f);
+		 label5.setFont(MainAppFX.f);
+		 label6.setFont(MainAppFX.f);
+		 label7.setFont(MainAppFX.f);
+		 labDet.setFont(MainAppFX.f);
+		 Label1.setFont(MainAppFX.f);
+		 Label2.setFont(MainAppFX.f);
+		 Label3.setFont(MainAppFX.f);
+		 Label4.setFont(MainAppFX.f);
+		 Label5.setFont(MainAppFX.f);
+		 Label6.setFont(MainAppFX.f);
+		 Label7.setFont(MainAppFX.f);
 		 if (machine != null) {
 		 // Remplissage des labels avec les données Machine de l'item selectionné dans le tableview
 			 label1.setText(machine.getIdSP());
@@ -89,7 +129,8 @@ public class MachineController {
 	 // AJOUTER : Methode appelée lorsque l'utilisateur clique sur le boutton d'ajout
 	 @FXML
 	 private void handleNew() {
-		  Machine newMachine = new Machine("","","","","","",""); // TODO - COMPOSANT
+		  Collection<Composant> lol = new ArrayList<Composant>();
+		  Machine newMachine = new Machine("","","","","","","",lol); // TODO - COMPOSANT
 		  boolean okClic = mainAppFX.showMachineEditDialog(newMachine);
 		  if (okClic) {
 			  mainAppFX.getDataMachine().add(newMachine);

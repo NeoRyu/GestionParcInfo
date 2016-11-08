@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?PowerDesigner AppLocale="UTF16" ID="{25BD5FEC-7F98-4DD1-BE7C-D6B765D2E4D4}" Label="" LastModificationDate="1476794013" Name="MCD" Objects="180" Symbols="62" Type="{1E597170-9350-11D1-AB3C-0020AF71E433}" signature="CDM_DATA_MODEL_XML" version="16.5.0.3982"?>
+<?PowerDesigner AppLocale="UTF16" ID="{25BD5FEC-7F98-4DD1-BE7C-D6B765D2E4D4}" Label="" LastModificationDate="1478593593" Name="MCD" Objects="182" Symbols="36" Type="{1E597170-9350-11D1-AB3C-0020AF71E433}" signature="CDM_DATA_MODEL_XML" version="16.5.0.3982"?>
 <!-- Veuillez ne pas modifier ce fichier -->
 
 <Model xmlns:a="attribute" xmlns:c="collection" xmlns:o="object">
@@ -12,7 +12,7 @@
 <a:Code>MCD</a:Code>
 <a:CreationDate>1476780788</a:CreationDate>
 <a:Creator>User</a:Creator>
-<a:ModificationDate>1476791693</a:ModificationDate>
+<a:ModificationDate>1478593482</a:ModificationDate>
 <a:Modifier>User</a:Modifier>
 <a:PackageOptionsText>[FolderOptions]
 
@@ -828,7 +828,7 @@ Shadow=0</a:DisplayPreferences>
 <o:AssociationLinkSymbol Id="o4">
 <a:CreationDate>1476781070</a:CreationDate>
 <a:ModificationDate>1476789613</a:ModificationDate>
-<a:Rect>((-15737,-26989), (-13537,-22395))</a:Rect>
+<a:Rect>((-15737,-26989), (-13575,-22395))</a:Rect>
 <a:ListOfPoints>((-15337,-22795),(-15337,-26589))</a:ListOfPoints>
 <a:CornerStyle>2</a:CornerStyle>
 <a:ArrowStyle>0</a:ArrowStyle>
@@ -918,8 +918,8 @@ SOURCE 0 Arial,8,N</a:FontList>
 <a:CreationDate>1476786586</a:CreationDate>
 <a:ModificationDate>1476791939</a:ModificationDate>
 <a:SourceTextOffset>(-1200, 485)</a:SourceTextOffset>
-<a:Rect>((11919,-18579), (14419,-10411))</a:Rect>
-<a:ListOfPoints>((14019,-10811),(14019,-18179))</a:ListOfPoints>
+<a:Rect>((11941,-18338), (14445,-10411))</a:Rect>
+<a:ListOfPoints>((14044,-10811),(14045,-17938))</a:ListOfPoints>
 <a:CornerStyle>2</a:CornerStyle>
 <a:ArrowStyle>0</a:ArrowStyle>
 <a:LineColor>16744576</a:LineColor>
@@ -941,8 +941,8 @@ SOURCE 0 Arial,8,N</a:FontList>
 <a:CreationDate>1476786586</a:CreationDate>
 <a:ModificationDate>1476789613</a:ModificationDate>
 <a:SourceTextOffset>(150, 811)</a:SourceTextOffset>
-<a:Rect>((1814,-19336), (14003,-17639))</a:Rect>
-<a:ListOfPoints>((2214,-18936),(13603,-18936))</a:ListOfPoints>
+<a:Rect>((1814,-19281), (13904,-17628))</a:Rect>
+<a:ListOfPoints>((2214,-18881),(13504,-18881))</a:ListOfPoints>
 <a:CornerStyle>2</a:CornerStyle>
 <a:ArrowStyle>0</a:ArrowStyle>
 <a:LineColor>16744576</a:LineColor>
@@ -1356,7 +1356,7 @@ LABL 0 Arial,8,N</a:FontList>
 <a:CreationDate>1476786586</a:CreationDate>
 <a:ModificationDate>1476787365</a:ModificationDate>
 <a:IconMode>-1</a:IconMode>
-<a:Rect>((8878,-21075), (18874,-18076))</a:Rect>
+<a:Rect>((7059,-21337), (20693,-17817))</a:Rect>
 <a:LineColor>16744576</a:LineColor>
 <a:FillColor>16765136</a:FillColor>
 <a:ShadowColor>12632256</a:ShadowColor>
@@ -2573,6 +2573,16 @@ EntityPrimaryAttribute 0 Arial,8,U</a:FontList>
 <a:DataType>VA100</a:DataType>
 <a:Length>100</a:Length>
 </o:DataItem>
+<o:DataItem Id="o153">
+<a:ObjectID>6A86C7F4-8004-432A-82D2-8B007C5BB462</a:ObjectID>
+<a:Name>Local_Origin</a:Name>
+<a:Code>LOCAL_ORIGIN</a:Code>
+<a:CreationDate>1478593443</a:CreationDate>
+<a:Creator>User</a:Creator>
+<a:ModificationDate>1478593482</a:ModificationDate>
+<a:Modifier>User</a:Modifier>
+<a:DataType>I</a:DataType>
+</o:DataItem>
 </c:DataItems>
 <c:Associations>
 <o:Association Id="o60">
@@ -2584,7 +2594,7 @@ EntityPrimaryAttribute 0 Arial,8,U</a:FontList>
 <a:ModificationDate>1476787891</a:ModificationDate>
 <a:Modifier>User</a:Modifier>
 <c:Attributes>
-<o:AssociationAttribute Id="o153">
+<o:AssociationAttribute Id="o154">
 <a:ObjectID>C77E11B6-324E-426C-A484-FFABE4AFE8BE</a:ObjectID>
 <a:CreationDate>1476783104</a:CreationDate>
 <a:Creator>User</a:Creator>
@@ -2612,10 +2622,15 @@ EntityPrimaryAttribute 0 Arial,8,U</a:FontList>
 <a:Code>STOCKER</a:Code>
 <a:CreationDate>1476786586</a:CreationDate>
 <a:Creator>User</a:Creator>
-<a:ModificationDate>1476792230</a:ModificationDate>
+<a:ModificationDate>1478593593</a:ModificationDate>
 <a:Modifier>User</a:Modifier>
+<a:Description>{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1036{\fonttbl{\f0\fnil\fcharset0 Times New Roman;}}
+{\*\generator Riched20 10.0.14393}\viewkind4\uc1 
+\pard\f0\fs20 Le Local_Origin doit correspondre \&#39;e0 un Local_id valide et diff\&#39;e9rent du Local_id de la relation\par
+}
+</a:Description>
 <c:Attributes>
-<o:AssociationAttribute Id="o154">
+<o:AssociationAttribute Id="o155">
 <a:ObjectID>4E919B37-77EF-4F27-85C4-830FD9013E6B</a:ObjectID>
 <a:CreationDate>1476786748</a:CreationDate>
 <a:Creator>User</a:Creator>
@@ -2624,6 +2639,16 @@ EntityPrimaryAttribute 0 Arial,8,U</a:FontList>
 <a:BaseAttribute.Mandatory>1</a:BaseAttribute.Mandatory>
 <c:DataItem>
 <o:DataItem Ref="o151"/>
+</c:DataItem>
+</o:AssociationAttribute>
+<o:AssociationAttribute Id="o156">
+<a:ObjectID>7FCE01E4-8A34-4BAC-8C4B-B229C75607C5</a:ObjectID>
+<a:CreationDate>1478593443</a:CreationDate>
+<a:Creator>User</a:Creator>
+<a:ModificationDate>1478593482</a:ModificationDate>
+<a:Modifier>User</a:Modifier>
+<c:DataItem>
+<o:DataItem Ref="o153"/>
 </c:DataItem>
 </o:AssociationAttribute>
 </c:Attributes>

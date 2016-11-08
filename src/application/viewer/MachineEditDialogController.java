@@ -4,10 +4,13 @@ import javafx.fxml.FXML;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.util.logging.Logger;
 
+import application.MainAppFX;
 import application.DAO.objets.Machine;
 
 /**
@@ -34,11 +37,17 @@ public class MachineEditDialogController {
 	 private Stage dialogStage;
 	 private Machine machine;
 	 private boolean okClic = false;
-	
+	 
+	 @FXML
+	 private Label Label1, Label2, Label3, Label4, Label5, Label6, Label7;
+	 
+	 @FXML
+	 private Button button1, button2;
+
+
 	 
 	 @FXML
 	 private void initialize() {
-		 
 	 }
 	 
 	 // STAGE
@@ -48,14 +57,35 @@ public class MachineEditDialogController {
 	 
 	 // DEFINIR TEXTE DES TEXTFIELDS
 	 public void setMachine(Machine machine) {
+		 // CONFIGURATION DES BOUTTONS
+		 button1.setFont(MainAppFX.f);
+		 button2.setFont(MainAppFX.f);
+		 
+		 // CONFIGURATION DES LABELS
+		 Label1.setFont(MainAppFX.f);
+		 Label2.setFont(MainAppFX.f);
+		 Label3.setFont(MainAppFX.f);
+		 Label4.setFont(MainAppFX.f);
+		 Label5.setFont(MainAppFX.f);
+		 Label6.setFont(MainAppFX.f);
+		 Label7.setFont(MainAppFX.f);
+		 
+		 // CONFIGURATION DES TEXTFIELD
 		 this.machine = machine;
 		 txtfld1.setText(machine.getId());
+		 txtfld1.setFont(MainAppFX.f);
 		 txtfld2.setText(machine.getIdAfpa());
+		 txtfld2.setFont(MainAppFX.f);
 		 txtfld3.setText(machine.getIdUnique());
+		 txtfld3.setFont(MainAppFX.f);
 		 txtfld4.setText(machine.getDateAchat());
+		 txtfld4.setFont(MainAppFX.f);
 		 txtfld5.setText(machine.getDureeGarantie());
+		 txtfld5.setFont(MainAppFX.f);
 		 txtfld6.setText(machine.getAdresseIP());
+		 txtfld6.setFont(MainAppFX.f);
 		 txtfld7.setText(machine.getType());
+		 txtfld7.setFont(MainAppFX.f);
 	 }	 
 	 
 	 // BOUTON OK : MainAppFX
