@@ -1,22 +1,13 @@
 package application.viewer;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.Pane;
-
-import java.io.IOException;
-
-import com.sun.media.jfxmedia.logging.Logger;
-
 import application.MainAppFX;
 import application.DAO.objets.Machine;
-
-import javafx.fxml.FXMLLoader;
 
 /**
 *
@@ -49,7 +40,7 @@ public class MachineController {
 		private Label label7;
 
 		// Référence à l'application principale
-		public static MainAppFX mainAppFX;
+		public MainAppFX mainAppFX;
 
 
 	/**
@@ -72,7 +63,8 @@ public class MachineController {
 		 tableFX.getSelectionModel().selectedItemProperty().addListener((observable, oldValeur, newValeur) -> showDetails(newValeur));
 	}
 	 
-	 private void showDetails(Machine machine) {
+	// AFFICHAGE DE DETAILS DANS LE GRIDVIEW
+	private void showDetails(Machine machine) {
 		 if (machine != null) {
 		 // Remplissage des labels avec les données Machine de l'item selectionné dans le tableview
 			 label1.setText(machine.getIdSP());
@@ -97,10 +89,10 @@ public class MachineController {
 	 // AJOUTER : Methode appelée lorsque l'utilisateur clique sur le boutton d'ajout
 	 @FXML
 	 private void handleNew() {
-		  Machine tempMachine = new Machine();
-		  boolean okClic = mainAppFX.showMachineEditDialog(tempMachine);
+		  Machine newMachine = new Machine("","","","","","",""); // TODO - COMPOSANT
+		  boolean okClic = mainAppFX.showMachineEditDialog(newMachine);
 		  if (okClic) {
-			  mainAppFX.getDataMachine().add(tempMachine);
+			  mainAppFX.getDataMachine().add(newMachine);
 		  }
 	 }
 	 
@@ -109,8 +101,8 @@ public class MachineController {
 	 private void handleEdit() {
 		 Machine selection = tableFX.getSelectionModel().getSelectedItem();
 		 if (selection != null) {
-			  boolean okClicked = mainAppFX.showMachineEditDialog(selection);
-			  if (okClicked) {
+			  boolean okClic = mainAppFX.showMachineEditDialog(selection);
+			  if (okClic) {
 				  showDetails(selection);
 			  }
 		 } else {
@@ -150,14 +142,9 @@ public class MachineController {
 	 * @param mainApp
 	 */
 	 public void setMainAppFX(MainAppFX mainAppFX) {		
-		this.mainAppFX = mainAppFX;
-		 
-		// Affichage des données en mode console : fonctionnel	
-		//System.out.println(mainAppFX.getDataMachine().get(0).getAdresseIP());
-		 
+		this.mainAppFX = mainAppFX; 
 		// Ajout de la liste des données observables dans le tableview " tableFX "
-		tableFX.setItems(mainAppFX.getDataMachine()); //TODO : les données sont dispo, mais l'insertion dans le tableview merde...
-		
+		tableFX.setItems(mainAppFX.getDataMachine());		
 	 }
 	
 }

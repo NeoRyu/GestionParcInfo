@@ -203,7 +203,25 @@ public class Machine {
 	   /* 
 	    * CONSTRUCTEURS
 	    */
-	   public Machine() {}
+	   public Machine() {
+		   /*
+		  this.id = "";
+	      this.idAfpa = "";
+	      this.idUnique = "";
+	      this.dateAchat = "";
+	      this.dureeGarantie = "";
+	      this.adresseIP = "";
+	      this.type = "";
+	      this.idSP= new SimpleStringProperty("");
+	      this.idAfpaSP = new SimpleStringProperty("");
+	      this.idUniqueSP = new SimpleStringProperty("");
+	      this.dateAchatSP = new SimpleStringProperty("");
+	      this.dureeGarantieSP = new SimpleStringProperty("");
+	      this.adresseIPSP = new SimpleStringProperty("");
+	      this.typeSP = new SimpleStringProperty("");
+	      */
+	   }
+	   
 	   public Machine(String id, String idAfpa, String idUnique, String dateAchat, String dureeGarantie, String adresseIP, String type) {	   
 		      this.id = id;
 		      this.idAfpa = idAfpa;

@@ -6,6 +6,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 
+import java.util.logging.Logger;
+
 import application.DAO.objets.Machine;
 
 /**
@@ -36,6 +38,7 @@ public class MachineEditDialogController {
 	 
 	 @FXML
 	 private void initialize() {
+		 
 	 }
 	 
 	 // STAGE
@@ -55,15 +58,16 @@ public class MachineEditDialogController {
 		 txtfld7.setText(machine.getType());
 	 }	 
 	 
-	 // BOUTON OK
-	 public boolean isOkClicked() {
+	 // BOUTON OK : MainAppFX
+	 public boolean isOkClic() {
 		 return okClic;
 	 }
 
 	 // VALIDATION ENVOI
 	 @FXML
 	 private void handleOk() {
-		 if (isInputValid()) {
+		 // Verification avant stockage
+		 if (isInputValid()) {	
 			 machine.setIdSP(txtfld1.getText());
 			 machine.setIdAfpaSP(txtfld2.getText());
 			 machine.setIdUniqueSP(txtfld3.getText());
@@ -72,8 +76,7 @@ public class MachineEditDialogController {
 			 machine.setAdresseIPSP(txtfld6.getText());
 			 machine.setTypeSP(txtfld7.getText());
 			 
-			 okClic = true;
-		 
+			 okClic = true;		 
 			 dialogStage.close();
 		 }
 	 }
@@ -81,9 +84,10 @@ public class MachineEditDialogController {
 	 // ANNULATION ENVOI
 	 @FXML
 	 private void handleCancel() {
-	 dialogStage.close();
+		 dialogStage.close();
 	 }
 
+	 // VERIFICATION
 	 private boolean isInputValid() {
 		 String errorMessage = "";
 		 if (txtfld1.getText() == null || txtfld1.getText().length() == 0) {
@@ -118,6 +122,9 @@ public class MachineEditDialogController {
 			 }		 
 		 }
 		 */
+		 if (txtfld7.getText() == null || txtfld7.getText().length() == 0) {
+			 errorMessage += "Donnée correcte nécessaire !\n";
+		 }
 		 
 		// Affichage d'un message d'erreur si la taille de la chaine est superieur a 0
 		 if (errorMessage.length() == 0) {

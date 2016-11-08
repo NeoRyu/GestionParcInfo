@@ -50,34 +50,29 @@ public class MainAppFX extends Application {
     	   	
     	Platform.runLater(new Runnable() {
     		@Override public void run() {
-    			  // TODO : JEU D'ESSAI / Récupération des données SGBD pour affichage    			  
-    			  DataMachine.add(new Machine("1","localhost", "localhost", "01/01/2000", "0", "127.0.0.1", "root"));
-    			  DataMachine.add(new Machine("2","lacolhost", "lacolhost", "21/12/2012", "0", "128.0.0.1", "root"));
-    			  //DataMachine.add(new Machine("1","localhost", "localhost", null, "0", "127.0.0.1", "root", null));
+    			// TODO - JEU D'ESSAI
+    			DataMachine.add(new Machine("0","localhost", "localhost", "01/01/2000", "0", "127.0.0.1", "root"));
+    			DataMachine.add(new Machine("1","AN2K", "AN2K", "31/12/1999", "0", "2.0.0.0", "Bug"));
+    			DataMachine.add(new Machine("2","MAYA", "MAYA", "21/12/2012", "0", "21.12.20.12", "Calendrier"));
+    			DataMachine.add(new Machine("3","MIR", "MIR", "11/08/1999", "2", "48.86.2.33", "Station Spatiale"));
+    			
+    			// TODO - JEU D'ESSAI AVEC COMPOSANTS
+    			//DataMachine.add(new Machine("0","localhost", "localhost", "01/01/2000", "0", "127.0.0.1", "root", null));
+    			
+    			// On récupère d'abord les données a partir du SGBD pour permettre l'affichage
+    			getDataMachineDAO();
     		}
     	}); 
     	
     }
     
-    public void getDataMachineDAO() {
-    	
-   	 	//TODO
-    	
-    	//Récupération données de la BDD
-    	
-    	// Stockage dans l'objet Machine.java    
-    	DataMachine.add(new Machine("2","lacolhost", "lacolhost", "21/12/2012", "0", "128.0.0.1", "root"));
-    	/*
-	    	//STRING - TODO : types variables a revoir
-		   private String id;
-		   private String idAfpa;
-		   private String idUnique;
-		   private String dateAchat;
-		   private String dureeGarantie;
-		   private String adresseIP;
-		   private String type;
-    	 */
-   }
+    // Intérrogation du SGBD pour récup les données de type Machine
+    public void getDataMachineDAO() {    	
+   	 	// TODO - A FAIRE
+    }
+    
+    
+    // Récupération des données dans une liste d'objets observables de type Machine
     public ObservableList<Machine> getDataMachine() {
     	 return DataMachine;
     }
@@ -132,13 +127,13 @@ public class MainAppFX extends Application {
             // ajouts des données dans le tableview controller
             switch (choixLayout) {
             	case "viewer/Machine.fxml" : 
-            		MachineController MachineCtrl = loader.getController();
-            		MachineCtrl.setMainAppFX(this);
+            		MachineController machineCtrl = loader.getController();
+            		machineCtrl.setMainAppFX(this);
             		break;
             	case "viewer/Overview.fxml" :
             	default :
-            		OverviewController OverviewCtrl = loader.getController();
-            		OverviewCtrl.setMainAppFX(this);
+            		OverviewController overviewCtrl = loader.getController();
+            		overviewCtrl.setMainAppFX(this);
             		break;  
             }            
             
@@ -172,7 +167,7 @@ public class MainAppFX extends Application {
 	    	 
 	    	 // Montre la popup tant qu'elle n'est pas fermée
 	    	 dialogStage.showAndWait();
-	    	 return MachineEDC.isOkClicked();
+	    	 return MachineEDC.isOkClic();
     	 } catch (IOException e) {
 	    	 e.printStackTrace();
 	    	 return false;
@@ -192,5 +187,5 @@ public class MainAppFX extends Application {
     }
     
     
-    // 30 / 84
+    // 47 / 84
 }
