@@ -156,7 +156,7 @@
             </BorderPane>
       </children>
     </AnchorPane>
-      <ButtonBar layoutX="122.0" layoutY="392.0" prefHeight="42.0" prefWidth="279.0" AnchorPane.leftAnchor="122.0" AnchorPane.rightAnchor="49.0" AnchorPane.topAnchor="394.0">
+      <ButtonBar fx:id="btnBar" layoutX="122.0" layoutY="392.0" prefHeight="42.0" prefWidth="279.0" AnchorPane.leftAnchor="122.0" AnchorPane.rightAnchor="49.0" AnchorPane.topAnchor="394.0">
         <buttons>
     <Button fx:id="START" alignment="CENTER" mnemonicParsing="false" onAction="#handleSTART" text="START" />
     <Button fx:id="SELECT" alignment="CENTER" mnemonicParsing="false" onAction="#handleSELECT" text="SELECT" />
@@ -171,7 +171,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="LEFT" layoutX="51.0" layoutY="374.0" mnemonicParsing="false" style="-fx-background-color: black; -fx-border-radius: 10px; -fx-border-color: grey;" text="◀ " textFill="WHITE">
+      <Button fx:id="LEFT" layoutX="51.0" layoutY="374.0" mnemonicParsing="false" onAction="#handleLEFT" style="-fx-background-color: black; -fx-border-radius: 10px; -fx-border-color: grey;" text="◀ " textFill="WHITE">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
@@ -182,7 +182,7 @@
             <Font size="13.0" />
          </font>
       </Button>
-      <Button fx:id="RIGHT" layoutX="115.0" layoutY="374.0" mnemonicParsing="false" style="-fx-background-color: black; -fx-border-radius: 10px; -fx-border-color: grey;" text=" ▶" textFill="WHITE">
+      <Button fx:id="RIGHT" layoutX="115.0" layoutY="374.0" mnemonicParsing="false" onAction="#handleRIGHT" style="-fx-background-color: black; -fx-border-radius: 10px; -fx-border-color: grey;" text=" ▶" textFill="WHITE">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>

@@ -90,7 +90,7 @@ public class MainAppFX extends Application {
     	// TITRE + ICONE
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("ITpark Manager");
-    	this.primaryStage.getIcons().add(new Image("@../../res/icon.png"));
+    	this.primaryStage.getIcons().add(new Image("@../../res/itmp.png"));
     	primaryStage.setResizable(false);
     	primaryStage.setMaxHeight(545);
     	primaryStage.setMaxWidth(575);
@@ -164,7 +164,7 @@ public class MainAppFX extends Application {
 	    	 // Creation du Stage
 	    	 Stage dialogStage = new Stage();
 	    	 dialogStage.setTitle("ITpark Manager Editor");
-	    	 dialogStage.getIcons().add(new Image("@../../res/config.png"));
+	    	 dialogStage.getIcons().add(new Image("@../../res/itmp.png"));
 	    	 dialogStage.initModality(Modality.WINDOW_MODAL);
 	    	 dialogStage.initOwner(primaryStage);
 	    	 Scene scene = new Scene(page);

@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -13,10 +14,16 @@ import javafx.scene.control.TableView;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import application.MainAppFX;
 import application.DAO.objets.Composant;
 import application.DAO.objets.Machine;
+
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 
 /**
 *
@@ -53,6 +60,9 @@ public class MachineController {
 		
 		@FXML
 		private Button START, SELECT, CANCEL;
+		private String btnSelected = "";	// Permet de determiner le boutton selectionner pour switchcase
+		@FXML
+		private ButtonBar btnBar;
 		@FXML
 		private Label labDet, Label1, Label2, Label3, Label4, Label5, Label6, Label7;
 
@@ -175,8 +185,10 @@ public class MachineController {
 			  alert.showAndWait();
 		  }
 	 }
+	 
+	 
 
-	 // MOVE PAD
+	 // GAMEPAD
 	 @FXML
 	 private void handleUP() {
 		 // Permet de se deplacer vers le HAUT du TableView
@@ -190,7 +202,50 @@ public class MachineController {
 		 Machine focus = tableFX.getSelectionModel().getSelectedItem();
 		 tableFX.getSelectionModel().select(Integer.parseInt(focus.getId())+1);
 	 }
+	 @FXML
+	 private void handleLEFT() {
+		 // TODO - Permet de se deplacer vers la GAUCHE du ButtonBar	
+		 switch (btnSelected) {
+		 case "START" :
+			 CANCEL.requestFocus();
+			 btnSelected = "CANCEL";
+			 break;
+		 case "SELECT" :
+			 START.requestFocus();
+			 btnSelected = "START";
+			 break;
+		 case "CANCEL" :
+			 SELECT.requestFocus();
+			 btnSelected = "SELECT";
+			 break;
+		 default :
+			 START.requestFocus();
+				btnSelected = "START";
+		 }	 
+	 }
+	 @FXML
+	 private void handleRIGHT() {
+		 // TODO - Permet de se deplacer vers la DROITE du ButtonBar
+		 switch (btnSelected) {
+			 case "START" :
+				 SELECT.requestFocus();
+				 btnSelected = "SELECT";
+				 break;
+			 case "SELECT" :
+				 CANCEL.requestFocus();
+				 btnSelected = "CANCEL";
+				 break;
+			 case "CANCEL" :
+				 START.requestFocus();
+				 btnSelected = "START";
+				 break;
+			 default :
+				 START.requestFocus();
+					btnSelected = "START";
+		 }		 
+	 }
 
+	 // TODO MOVE LEFT RIGHT !
 	 
 	 /**
 	 * Appellé par l'application principale pour avoir une référence de retour sur elle-même
@@ -200,7 +255,14 @@ public class MachineController {
 	 public void setMainAppFX(MainAppFX mainAppFX) {		
 		this.mainAppFX = mainAppFX; 
 		// Ajout de la liste des données observables dans le tableview " tableFX "
-		tableFX.setItems(mainAppFX.getDataMachine());		
+		tableFX.setItems(mainAppFX.getDataMachine());
+		// selection du premier element
+		try {
+			tableFX.getSelectionModel().select(0);
+		} catch (NullPointerException e) {
+			//e.printStackTrace();
+			Logger.getLogger(MachineController.class.getName()).log(Level.SEVERE, null, e);
+		}
 	 }
 	
 }
