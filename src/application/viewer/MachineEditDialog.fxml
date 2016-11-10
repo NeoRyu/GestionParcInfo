@@ -118,20 +118,13 @@
                         <Insets left="10.0" />
                      </padding></Label>
                   
-                                    <TextField fx:id="txtfld1" GridPane.columnIndex="1">
+                                    <TextField fx:id="txtfld1" disable="true" GridPane.columnIndex="1">
                      <font>
                         <Font name="Stencil" size="12.0" />
                      </font>
                      <GridPane.margin>
                         <Insets right="10.0" />
-                     </GridPane.margin></TextField>
-                  <TextField fx:id="txtfld7" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                     <font>
-                        <Font name="Stencil" size="12.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets right="10.0" />
-                     </GridPane.margin></TextField>
+                     </GridPane.margin></TextField>                  
                   <TextField fx:id="txtfld2" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
                         <Font name="Stencil" size="12.0" />
@@ -161,6 +154,13 @@
                         <Insets right="10.0" />
                      </GridPane.margin></TextField>
                   <TextField fx:id="txtfld6" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="Stencil" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets right="10.0" />
+                     </GridPane.margin></TextField>
+                  <TextField fx:id="txtfld7" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <font>
                         <Font name="Stencil" size="12.0" />
                      </font>

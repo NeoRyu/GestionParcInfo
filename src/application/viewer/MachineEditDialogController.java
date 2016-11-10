@@ -72,7 +72,8 @@ public class MachineEditDialogController {
 		 
 		 // CONFIGURATION DES TEXTFIELD
 		 this.machine = machine;
-		 txtfld1.setText(machine.getId());
+		 if (MachineController.btnSelected == "SELECT")
+			 txtfld1.setText(machine.getId());
 		 txtfld1.setFont(MainAppFX.f);
 		 txtfld2.setText(machine.getIdAfpa());
 		 txtfld2.setFont(MainAppFX.f);
@@ -80,7 +81,8 @@ public class MachineEditDialogController {
 		 txtfld3.setFont(MainAppFX.f);
 		 txtfld4.setText(machine.getDateAchat());
 		 txtfld4.setFont(MainAppFX.f);
-		 txtfld5.setText(machine.getDureeGarantie());
+		 if (MachineController.btnSelected == "SELECT")
+			 txtfld5.setText(machine.getDureeGarantie());
 		 txtfld5.setFont(MainAppFX.f);
 		 txtfld6.setText(machine.getAdresseIP());
 		 txtfld6.setFont(MainAppFX.f);
@@ -121,28 +123,32 @@ public class MachineEditDialogController {
 	 private boolean isInputValid() {
 		 String errorMessage = "";
 		 if (txtfld1.getText() == null || txtfld1.getText().length() == 0) {
-			 errorMessage += "ID Necéssaire !\n";
+			 errorMessage += Label1.getText().toUpperCase().toString()+" nécéssaire !\n";
 		 }
 		 
 		 if (txtfld2.getText() == null || txtfld2.getText().length() == 0) {
-			 errorMessage += "Donnée correcte nécessaire !\n";
+			 errorMessage += Label2.getText().toUpperCase().toString()+" nécéssaire !\n";
 		 }
 		 
 		 if (txtfld3.getText() == null || txtfld3.getText().length() == 0) {
-			 errorMessage += "Donnée correcte nécessaire !\n";
+			 errorMessage += Label3.getText().toUpperCase().toString()+" nécéssaire !\n";
 		 }
 		 
 		 if (txtfld4.getText() == null || txtfld4.getText().length() == 0) {
-			 errorMessage += "Donnée correcte nécessaire !\n";
+			 errorMessage += Label4.getText().toUpperCase().toString()+" nécéssaire !\n";
 		 }
 		 
 		 if (txtfld5.getText() == null || txtfld5.getText().length() == 0) {
-			 errorMessage += "Donnée correcte nécessaire !\n";
+			 errorMessage += Label5.getText().toUpperCase().toString()+" nécéssaire !\n";
 		 }
 		 
 		 if (txtfld6.getText() == null || txtfld6.getText().length() == 0) {
-			 errorMessage += "Donnée correcte nécessaire !\n";
-		 }  /*
+			 errorMessage += Label6.getText().toUpperCase().toString()+" nécéssaire !\n";
+		 }  
+		 
+		 if (txtfld7.getText() == null || txtfld7.getText().length() == 0) {
+			 errorMessage += Label7.getText().toUpperCase().toString()+" nécéssaire !\n";
+		 }/*
 		 else {
 		 // tenter de cast en int par exemple
 			 try {
@@ -152,9 +158,6 @@ public class MachineEditDialogController {
 			 }		 
 		 }
 		 */
-		 if (txtfld7.getText() == null || txtfld7.getText().length() == 0) {
-			 errorMessage += "Donnée correcte nécessaire !\n";
-		 }
 		 
 		// Affichage d'un message d'erreur si la taille de la chaine est superieur a 0
 		 if (errorMessage.length() == 0) {
@@ -162,7 +165,7 @@ public class MachineEditDialogController {
 		 } else {			 
 			 Alert alert = new Alert(AlertType.ERROR);
 			 alert.initOwner(dialogStage);
-			 alert.setTitle("Champs incorrects");
+			 alert.setTitle("Champs manquants ou incorrects");
 			 alert.setHeaderText("Veuillez remplir correctement les champs...");
 			 alert.setContentText(errorMessage);
 			 alert.showAndWait();

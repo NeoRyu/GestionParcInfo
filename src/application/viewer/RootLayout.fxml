@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.layout.BorderPane?>
 
 <BorderPane prefHeight="514.0" prefWidth="573.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
@@ -13,16 +14,23 @@
       <menus>
         <Menu mnemonicParsing="false" text="Fichier">
           <items>
+          	<MenuItem mnemonicParsing="false" text="Importer XML" />
+          	<MenuItem mnemonicParsing="false" text="Exporter XML" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+          	<MenuItem fx:id="IntroLayout" mnemonicParsing="false" text="Accueil" />
             <MenuItem fx:id="MachineLayout" mnemonicParsing="false" text="Machine" />
           </items>
         </Menu>
-        <Menu mnemonicParsing="false" text="Edition">
+        <Menu mnemonicParsing="false" text="Configuration">
           <items>
-            <MenuItem mnemonicParsing="false" text="Supprimer" />
+            <MenuItem mnemonicParsing="false" text="Base de Données" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Changer le Skin" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Aide">
           <items>
+          	<MenuItem mnemonicParsing="false" text="How to use it" />
             <MenuItem mnemonicParsing="false" text="A propos..." />
           </items>
         </Menu>
@@ -31,5 +39,5 @@
         <Insets />
       </BorderPane.margin>
     </MenuBar>
-  </top>
+  </top>  
 </BorderPane>

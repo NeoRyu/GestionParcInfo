@@ -1,6 +1,9 @@
 package application.viewer;
 
-import javafx.collections.ObservableList;
+import application.MainAppFX;
+import application.DAO.objets.Machine;
+import application.DAO.objets.Composant;
+
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
@@ -10,20 +13,17 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 
+import java.util.Set;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Set;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import application.MainAppFX;
-import application.DAO.objets.Composant;
-import application.DAO.objets.Machine;
-
-import java.awt.AWTException;
-import java.awt.Robot;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 /**
 *
@@ -60,7 +60,7 @@ public class MachineController {
 		
 		@FXML
 		private Button START, SELECT, CANCEL;
-		private String btnSelected = "";	// Permet de determiner le boutton selectionner pour switchcase
+		public static String btnSelected = "";	// Permet de determiner le boutton selectionner pour switchcase
 		@FXML
 		private ButtonBar btnBar;
 		@FXML
@@ -116,6 +116,8 @@ public class MachineController {
 		 Label5.setFont(MainAppFX.f);
 		 Label6.setFont(MainAppFX.f);
 		 Label7.setFont(MainAppFX.f);
+		 
+		 // ATTRIBUTION DES DONNEES
 		 if (machine != null) {
 		 // Remplissage des labels avec les données Machine de l'item selectionné dans le tableview
 			 label1.setText(machine.getIdSP());
@@ -140,6 +142,7 @@ public class MachineController {
 	 // AJOUTER : Methode appelée lorsque l'utilisateur clique sur le boutton d'ajout
 	 @FXML
 	 private void handleSTART() {
+		  btnSelected = "START";
 		  Collection<Composant> lol = new ArrayList<Composant>();
 		  Machine newMachine = new Machine("","","","","","","",lol); // TODO - COMPOSANT
 		  boolean okClic = mainAppFX.showMachineEditDialog(newMachine);
@@ -151,6 +154,7 @@ public class MachineController {
 	 //  MODIFIER : Methode appelée lorsque l'utilisateur clique sur le boutton de modification
 	 @FXML
 	 private void handleSELECT() {
+		 btnSelected = "SELECT";
 		 Machine selection = tableFX.getSelectionModel().getSelectedItem();
 		 if (selection != null) {
 			  boolean okClic = mainAppFX.showMachineEditDialog(selection);
@@ -244,18 +248,27 @@ public class MachineController {
 					btnSelected = "START";
 		 }		 
 	 }
-
-	 // TODO MOVE LEFT RIGHT !
+	 
+	 private KeyEvent keyEvent;
+	 @FXML
+	 private void handlekeyPressed() {
+		 // Si la touche ENTREE est appuyée, on verifie si un bouton 
+		 // est selectionné et on lance alors la methode adequate
+		 //System.out.println(""+e);	
+	 }
 	 
 	 /**
 	 * Appellé par l'application principale pour avoir une référence de retour sur elle-même
 	 *
 	 * @param mainApp
 	 */
+     
 	 public void setMainAppFX(MainAppFX mainAppFX) {		
 		this.mainAppFX = mainAppFX; 
+		
 		// Ajout de la liste des données observables dans le tableview " tableFX "
 		tableFX.setItems(mainAppFX.getDataMachine());
+		
 		// selection du premier element
 		try {
 			tableFX.getSelectionModel().select(0);
@@ -263,6 +276,25 @@ public class MachineController {
 			//e.printStackTrace();
 			Logger.getLogger(MachineController.class.getName()).log(Level.SEVERE, null, e);
 		}
-	 }
-	
+		
+		/*
+		START.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+            	 if (keyEvent.getKeyCode() == 20) { // TODO : trouver le code pour touche entrée
+	       			 if (START.isFocused()) {
+	       				 handleSTART();
+	       			 }
+	       			 if (SELECT.isFocused()) {
+	       				 handleSELECT();
+	       			 }
+	       			 if (CANCEL.isFocused()) {
+	       				 handleCANCEL();
+	       			 }
+            	 }
+            }
+		});
+		*/
+		
+	 }	
 }

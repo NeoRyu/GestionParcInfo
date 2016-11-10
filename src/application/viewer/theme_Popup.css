@@ -1,7 +1,0 @@
-.background {
- -fx-background-image : url("@../../../../res/bg_popup.png");
-}
-
-.button {
-	-fx-background-radius : 10px;
-}

@@ -44,7 +44,7 @@ public class MainAppFX extends Application {
     private BorderPane rootLayout;
     
     private ObservableList<Machine> DataMachine = FXCollections.observableArrayList();
-    public static Font f;
+    public static Font f;	// Police d'ecriture
     
     public MainAppFX() {
     	   	
@@ -81,8 +81,10 @@ public class MainAppFX extends Application {
     @Override
     public void start(Stage primaryStage) {
     	
+    	// GESTION DE LA POLICE D'ECRITURE
     	try { 
     	      f = Font.loadFont(new FileInputStream(new File("src/application/8BIT.TTF")), 12);
+    	      System.out.println(f.getFamily());
     	} catch (FileNotFoundException e) {
     	      e.printStackTrace();
     	}
@@ -115,7 +117,7 @@ public class MainAppFX extends Application {
             
             // Montrer la scene contenant le layout racine
             Scene scene = new Scene(rootLayout);
-            scene.getStylesheets().addAll(this.getClass().getResource("viewer/theme_Overview.css").toExternalForm());
+            scene.getStylesheets().addAll(this.getClass().getResource("viewer/theme_RootLayout.css").toExternalForm());
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException e) {
