@@ -201,6 +201,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Button fx:id="ENTER" defaultButton="true" layoutX="86.0" layoutY="376.0" mnemonicParsing="false" onAction="#handleENTER" opacity="0.0" text="o" />
   </children>
   <stylesheets>
     <URL value="@theme_Overview.css" />

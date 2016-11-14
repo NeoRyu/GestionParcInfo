@@ -112,6 +112,6 @@
     <AnchorPane prefHeight="3.0" prefWidth="600.0" />
   </children>
   <stylesheets>
-    <URL value="@fxmloverview.css" />
+    <URL value="@theme_Overview.css" />
   </stylesheets>
 </AnchorPane>

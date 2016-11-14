@@ -4,7 +4,6 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.text.*;
 import javafx.scene.image.Image;
@@ -15,22 +14,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
-/*
-import javafx.scene.layout.StackPane;
-import javafx.scene.control.Button;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import java.util.Collection;
-import java.util.Date;
-*/
-
 import application.DAO.objets.*;
 import application.viewer.OverviewController;
+import application.viewer.RootLayoutController;
 import application.viewer.MachineController;
 import application.viewer.MachineEditDialogController;
 
@@ -41,7 +31,7 @@ import application.viewer.MachineEditDialogController;
 public class MainAppFX extends Application {
 	 
     private Stage primaryStage;
-    private BorderPane rootLayout;
+    public BorderPane rootLayout;
     
     private ObservableList<Machine> DataMachine = FXCollections.observableArrayList();
     public static Font f;	// Police d'ecriture
@@ -63,6 +53,16 @@ public class MainAppFX extends Application {
     			getDataMachineDAO();
     		}
     	}); 
+    	/*
+    	MachineController.ENTER.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+            	 if (keyEvent.getKeyCode() == 20) { // TODO : trouver le code pour touche entrée
+	       			 
+            	 }
+            }
+		});
+		*/
     	
     }
     
@@ -84,7 +84,7 @@ public class MainAppFX extends Application {
     	// GESTION DE LA POLICE D'ECRITURE
     	try { 
     	      f = Font.loadFont(new FileInputStream(new File("src/application/8BIT.TTF")), 12);
-    	      System.out.println(f.getFamily());
+    	      //System.out.println(f.getFamily());
     	} catch (FileNotFoundException e) {
     	      e.printStackTrace();
     	}
@@ -96,15 +96,16 @@ public class MainAppFX extends Application {
     	primaryStage.setResizable(false);
     	primaryStage.setMaxHeight(545);
     	primaryStage.setMaxWidth(575);
-        initRootLayout();
+        
+    	initRootLayout();
         
         // Methode permettant d'appeler le layout d'intro
         String  choixLayout = "viewer/Overview.fxml";
         		choixLayout = "viewer/Machine.fxml";
         	// Le choix de l'affichage des autres layout se fera par le menubar        	
-        showOverview(choixLayout);
-        
+        showOverview(choixLayout);        
     }
+    
     
     public void initRootLayout() {
         try {
@@ -119,15 +120,22 @@ public class MainAppFX extends Application {
             Scene scene = new Scene(rootLayout);
             scene.getStylesheets().addAll(this.getClass().getResource("viewer/theme_RootLayout.css").toExternalForm());
             primaryStage.setScene(scene);
+            
+            // Accorder au controller un acces a MainAppFX
+            //RootLayoutController controller = loader.getController();
+            //controller.setMainApp(this);
+            RootLayoutController.setMainApp(this);
+            
+            // Affichage de la scene dans le stage          
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
     
+    
     public void showOverview(String choixLayout) {
         try {
-        	
             // charger l'apercu (overview) fxml
         	FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainAppFX.class.getResource(choixLayout)); 
@@ -147,9 +155,7 @@ public class MainAppFX extends Application {
             		OverviewController overviewCtrl = loader.getController();
             		overviewCtrl.setMainAppFX(this);
             		break;  
-            }            
-            
-        
+            }  
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -185,11 +191,13 @@ public class MainAppFX extends Application {
 	    	 return false;
     	 }
     }
-
+    
+	
 
     public Stage getPrimaryStage() {
         return primaryStage;
     }
+    
     
     /**
      * @param args the command line arguments
@@ -197,7 +205,11 @@ public class MainAppFX extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+  
     
     
-    // 47 / 84
+    // 56 > 62
+    // STRING STOCK XML
+    // ACCELERATOR MENU
+    // MENUBAR > CLIQUABLE
 }

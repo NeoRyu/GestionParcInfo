@@ -7,7 +7,7 @@
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="514.0" prefWidth="573.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="514.0" prefWidth="573.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.viewer.RootLayoutController">
   <!-- TODO Add Nodes -->
   <top>
     <MenuBar>
@@ -17,8 +17,8 @@
           	<MenuItem mnemonicParsing="false" text="Importer XML" />
           	<MenuItem mnemonicParsing="false" text="Exporter XML" />
             <SeparatorMenuItem mnemonicParsing="false" />
-          	<MenuItem fx:id="IntroLayout" mnemonicParsing="false" text="Accueil" />
-            <MenuItem fx:id="MachineLayout" mnemonicParsing="false" text="Machine" />
+          	<MenuItem fx:id="IntroLayout" mnemonicParsing="false" onAction="#handleAccueil" text="Accueil" />
+            <MenuItem fx:id="MachineLayout" mnemonicParsing="false" onAction="#handleMachine" text="Machine" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Configuration">
@@ -31,7 +31,7 @@
         <Menu mnemonicParsing="false" text="Aide">
           <items>
           	<MenuItem mnemonicParsing="false" text="How to use it" />
-            <MenuItem mnemonicParsing="false" text="A propos..." />
+            <MenuItem mnemonicParsing="false" onAction="#handleAbout" text="A propos..." />
           </items>
         </Menu>
       </menus>

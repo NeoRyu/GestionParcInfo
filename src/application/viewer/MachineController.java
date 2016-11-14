@@ -60,6 +60,8 @@ public class MachineController {
 		
 		@FXML
 		private Button START, SELECT, CANCEL;
+		@FXML
+		public static Button ENTER;
 		public static String btnSelected = "";	// Permet de determiner le boutton selectionner pour switchcase
 		@FXML
 		private ButtonBar btnBar;
@@ -194,6 +196,28 @@ public class MachineController {
 
 	 // GAMEPAD
 	 @FXML
+	 private void handleENTER() {
+		 // Simule un clic sur l'un des boutons selectionné sur la droite du PAD
+		 if (btnSelected != "") {
+			 switch (btnSelected.toUpperCase()) {
+			 	case "START" :
+			 		handleSTART();
+			 		break;
+			 	case "SELECT" :
+			 		handleSELECT();
+			 		break;
+			 	case "CANCEL" :
+			 		handleCANCEL();
+			 		break;
+			 	default:			 		
+					break;
+			 }
+		 } else {
+			START.requestFocus();
+			btnSelected = "START";
+		 }
+	 }
+	 @FXML
 	 private void handleUP() {
 		 // Permet de se deplacer vers le HAUT du TableView
 		 //tableFX.getFocusModel().focusPrevious();
@@ -210,21 +234,22 @@ public class MachineController {
 	 private void handleLEFT() {
 		 // TODO - Permet de se deplacer vers la GAUCHE du ButtonBar	
 		 switch (btnSelected) {
-		 case "START" :
-			 CANCEL.requestFocus();
-			 btnSelected = "CANCEL";
-			 break;
-		 case "SELECT" :
-			 START.requestFocus();
-			 btnSelected = "START";
-			 break;
-		 case "CANCEL" :
-			 SELECT.requestFocus();
-			 btnSelected = "SELECT";
-			 break;
-		 default :
-			 START.requestFocus();
+			 case "START" :
+				 CANCEL.requestFocus();
+				 btnSelected = "CANCEL";
+				 break;
+			 case "SELECT" :
+				 START.requestFocus();
+				 btnSelected = "START";
+				 break;
+			 case "CANCEL" :
+				 SELECT.requestFocus();
+				 btnSelected = "SELECT";
+				 break;
+			 default :
+				START.requestFocus();
 				btnSelected = "START";
+				break;
 		 }	 
 	 }
 	 @FXML
@@ -244,8 +269,9 @@ public class MachineController {
 				 btnSelected = "START";
 				 break;
 			 default :
-				 START.requestFocus();
-					btnSelected = "START";
+				START.requestFocus();
+				btnSelected = "START";
+				break;
 		 }		 
 	 }
 	 
@@ -255,6 +281,7 @@ public class MachineController {
 		 // Si la touche ENTREE est appuyée, on verifie si un bouton 
 		 // est selectionné et on lance alors la methode adequate
 		 //System.out.println(""+e);	
+		 //TODO
 	 }
 	 
 	 /**
@@ -275,26 +302,7 @@ public class MachineController {
 		} catch (NullPointerException e) {
 			//e.printStackTrace();
 			Logger.getLogger(MachineController.class.getName()).log(Level.SEVERE, null, e);
-		}
-		
-		/*
-		START.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent keyEvent) {
-            	 if (keyEvent.getKeyCode() == 20) { // TODO : trouver le code pour touche entrée
-	       			 if (START.isFocused()) {
-	       				 handleSTART();
-	       			 }
-	       			 if (SELECT.isFocused()) {
-	       				 handleSELECT();
-	       			 }
-	       			 if (CANCEL.isFocused()) {
-	       				 handleCANCEL();
-	       			 }
-            	 }
-            }
-		});
-		*/
+		}	
 		
 	 }	
 }
