@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.text.*;
 import javafx.scene.image.Image;
@@ -14,11 +15,15 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
 import application.DAO.objets.*;
+import application.modeler.Language;
 import application.viewer.OverviewController;
 import application.viewer.RootLayoutController;
 import application.viewer.MachineController;
@@ -32,12 +37,11 @@ public class MainAppFX extends Application {
 	 
     private Stage primaryStage;
     public BorderPane rootLayout;
-    
     private ObservableList<Machine> DataMachine = FXCollections.observableArrayList();
     public static Font f;	// Police d'ecriture
+   
     
-    public MainAppFX() {
-    	   	
+    public MainAppFX() {   	
     	Platform.runLater(new Runnable() {
     		@Override public void run() {
     			// TODO - JEU D'ESSAI
@@ -81,6 +85,12 @@ public class MainAppFX extends Application {
     @Override
     public void start(Stage primaryStage) {
     	
+    	// GESTION DE LA LANGUE
+    	ResourceBundle language = ResourceBundle.getBundle("application.resources.Lang");
+    	Language.setLang(new Locale(language.getString("lang"), language.getString("pays")));
+    	System.out.println("(MainAppFX) Langue définie sur : "+Language.getLang().toString());	
+    	Language.setRsc(ResourceBundle.getBundle("application.resources.UIResources", Language.getLang()));
+    	
     	// GESTION DE LA POLICE D'ECRITURE
     	try { 
     	      f = Font.loadFont(new FileInputStream(new File("src/application/8BIT.TTF")), 12);
@@ -97,20 +107,24 @@ public class MainAppFX extends Application {
     	primaryStage.setMaxHeight(545);
     	primaryStage.setMaxWidth(575);
         
-    	initRootLayout();
-        
         // Methode permettant d'appeler le layout d'intro
         String  choixLayout = "viewer/Overview.fxml";
         		choixLayout = "viewer/Machine.fxml";
-        	// Le choix de l'affichage des autres layout se fera par le menubar        	
+        
+        // On affiche les layouts
+        initRootLayout(choixLayout);
         showOverview(choixLayout);        
     }
     
     
-    public void initRootLayout() {
+    public void initRootLayout(String choixLayout) {
         try {
             // Chargement du layout racine Ã  partir du fichier fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("viewer/RootLayout.fxml"));
+        	//ResourceBundle bundle = ResourceBundle.getBundle("/resources/UIResources");
+        	
+        	
+        	ResourceBundle bundle = Language.getsetRsc(ResourceBundle.getBundle("application.resources.UIResources", Language.getLang()));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("viewer/RootLayout.fxml"), bundle);
             loader.setLocation(MainAppFX.class.getResource("viewer/RootLayout.fxml"));
             rootLayout = (BorderPane) loader.load();
             loader.setController(this);
@@ -124,7 +138,7 @@ public class MainAppFX extends Application {
             // Accorder au controller un acces a MainAppFX
             //RootLayoutController controller = loader.getController();
             //controller.setMainApp(this);
-            RootLayoutController.setMainApp(this);
+            RootLayoutController.setMainApp(this, choixLayout);
             
             // Affichage de la scene dans le stage          
             primaryStage.show();
@@ -133,11 +147,37 @@ public class MainAppFX extends Application {
         }
     }
     
+    public void refreshRootLayout(String LayoutActuel) {
+        try {
+            // Chargement du layout racine à partir du fichier fxml
+
+        	Language.setRsc(ResourceBundle.getBundle("application.resources.UIResources", Language.getLang()));
+        	FXMLLoader loader = new FXMLLoader(getClass().getResource("viewer/RootLayout.fxml"), Language.getRsc());
+            loader.setLocation(MainAppFX.class.getResource("viewer/RootLayout.fxml"));
+            rootLayout = (BorderPane) loader.load();            
+            loader.setController(this);
+           
+            // Montrer la scene contenant le layout racine
+            
+            Scene scene = new Scene(rootLayout);
+            scene.getStylesheets().addAll(this.getClass().getResource("viewer/theme_RootLayout.css").toExternalForm());
+            primaryStage.setScene(scene);
+            
+            
+            // Accorder au controller un acces a MainAppFX          
+            RootLayoutController.setMainApp(this, LayoutActuel);
+            showOverview(LayoutActuel);
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }    
     
     public void showOverview(String choixLayout) {
         try {
-            // charger l'apercu (overview) fxml
-        	FXMLLoader loader = new FXMLLoader();
+            // charger l'apercu (overview) fxml 
+        	Language.setRsc(ResourceBundle.getBundle("application.resources.UIResources", Language.getLang()));
+        	FXMLLoader loader = new FXMLLoader(getClass().getResource(choixLayout), Language.getRsc());
             loader.setLocation(MainAppFX.class.getResource(choixLayout)); 
             AnchorPane overview = (AnchorPane) loader.load();
 

@@ -12,26 +12,27 @@
   <top>
     <MenuBar>
       <menus>
-        <Menu mnemonicParsing="false" text="Fichier">
+        <Menu mnemonicParsing="false" text="%root_file">
           <items>
           	<MenuItem mnemonicParsing="false" text="Importer XML" />
           	<MenuItem mnemonicParsing="false" text="Exporter XML" />
             <SeparatorMenuItem mnemonicParsing="false" />
-          	<MenuItem fx:id="IntroLayout" mnemonicParsing="false" onAction="#handleAccueil" text="Accueil" />
-            <MenuItem fx:id="MachineLayout" mnemonicParsing="false" onAction="#handleMachine" text="Machine" />
+          	<MenuItem fx:id="IntroLayout" mnemonicParsing="false" onAction="#handleAccueil" text="%root_file_main" />
+            <MenuItem fx:id="MachineLayout" mnemonicParsing="false" onAction="#handleMachine" text="%root_file_machine" />
           </items>
         </Menu>
-        <Menu mnemonicParsing="false" text="Configuration">
+        <Menu mnemonicParsing="false" text="%root_config">
           <items>
-            <MenuItem mnemonicParsing="false" text="Base de Données" />
+            <MenuItem mnemonicParsing="false" text="%root_config_db" />
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Changer le Skin" />
+            <MenuItem mnemonicParsing="false" text="%root_config_skin" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleLangue" text="%root_config_lang" />
           </items>
         </Menu>
-        <Menu mnemonicParsing="false" text="Aide">
+        <Menu mnemonicParsing="false" text="%root_help">
           <items>
-          	<MenuItem mnemonicParsing="false" text="How to use it" />
-            <MenuItem mnemonicParsing="false" onAction="#handleAbout" text="A propos..." />
+          	<MenuItem mnemonicParsing="false" text="%root_help_use" />
+            <MenuItem mnemonicParsing="false" onAction="#handleAbout" text="%root_help_about" />
           </items>
         </Menu>
       </menus>
