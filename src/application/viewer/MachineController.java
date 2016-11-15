@@ -4,9 +4,12 @@ import application.MainAppFX;
 import application.beans.Machine;
 import application.tools.Sound;
 import application.beans.Composant;
-
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -14,8 +17,10 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.Stage;
 
 import java.util.Set;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.ResourceBundle;
@@ -58,7 +63,7 @@ public class MachineController {
 		public static ResourceBundle player = ResourceBundle.getBundle("application.Config");
 
 		@FXML
-		private Button START, SELECT, CANCEL;
+		private Button START, SELECT, CANCEL, SWITCH;
 		@FXML
 		public static Button ENTER;
 		public static String btnSelected = "";	// Permet de determiner le bouton selectionneé pour switchcase
@@ -310,6 +315,25 @@ public class MachineController {
 		 Machine focus = tableFX.getSelectionModel().getSelectedItem();
 		 tableFX.getSelectionModel().select(Integer.parseInt(String.valueOf(focus.getId()))+1);
 	 }
+	 
+	 @FXML
+	 private void handleSWITCH(ActionEvent event) throws IOException{
+	     Stage stage; 
+	     Parent root;
+	     if(event.getSource()==SWITCH){
+		        // Obtention de la référence du bouton du stage
+		        stage=(Stage) SWITCH.getScene().getWindow();
+		        // Chargement de l'autre FXML
+		        root = FXMLLoader.load(getClass().getResource("Composant.fxml"));
+	      } else{
+		       stage=(Stage) SWITCH.getScene().getWindow();
+		       root = FXMLLoader.load(getClass().getResource("Machine.fxml"));
+	      }
+	      // Création d'une nouvelle Scene avec Root et assignation du stage
+	      Scene scene = new Scene(root);
+	      stage.setScene(scene);
+	      stage.show();
+	    }
 	 
 	 
 	 /**

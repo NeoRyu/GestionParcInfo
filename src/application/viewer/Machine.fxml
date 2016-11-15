@@ -204,6 +204,7 @@
          </cursor>
       </Button>
       <Button fx:id="ENTER" defaultButton="true" layoutX="86.0" layoutY="376.0" mnemonicParsing="false" onAction="#handleENTER" opacity="0.0" text="o" />
+      <Button fx:id="SWITCH" defaultButton="true" disable="true" layoutX="248.0" layoutY="318.0" mnemonicParsing="false" onAction="#handleSWITCH" text="Accès à la liste des composants pour cette machine" />
   </children>
   <stylesheets>
     <URL value="@theme_Overview.css" />

@@ -28,7 +28,7 @@ public class Sound {
 	}	
 	public void setMusic(String musicURL) {		
 		this.music = getClass().getResource(musicURL);
-		System.out.println("SON : "+this.music.getPath().toString());
+		//System.out.println("SON : "+this.music.getPath().toString());
 	}
 	
 	
