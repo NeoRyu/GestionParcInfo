@@ -4,7 +4,10 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 import application.MainAppFX;
+import application.DAO.objets.Machine;
 import application.modeler.Language;
+import application.resources.Sound;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -14,6 +17,8 @@ public class RootLayoutController {
 	 private static Locale lang;
 	 private static ResourceBundle rsc;
 	 private static String LayoutActuel;
+	 private Sound sound = new Sound();
+	 public static ResourceBundle player = ResourceBundle.getBundle("application.Config");
 	
 	 public static void setMainApp(MainAppFX mainApp, String choixLayout) {
 		 mainAppFX = mainApp;
@@ -24,7 +29,11 @@ public class RootLayoutController {
 	 
 	 @FXML
 	 public void handleLangue() {
-		 ResourceBundle language = ResourceBundle.getBundle("application.resources.Lang");
+		 if (player.getString("sound").equals("ON")) {
+			 sound = new Sound(mainAppFX, "../../res/bitLANG.wav");
+			 sound.Play();
+		 }
+		 ResourceBundle language = ResourceBundle.getBundle("application.Config");
 		 if (lang.toString().equals("fr_FR")) {			 
 			 lang = Language.getsetLang(new Locale("en", "EN"));
 		 } else {
@@ -36,27 +45,61 @@ public class RootLayoutController {
 	 
 	 @FXML
 	 public void handleAccueil() {
-		 String  choixLayout = "viewer/Overview.fxml";
-		 mainAppFX.showOverview(choixLayout);
+		 if (player.getString("sound").equals("ON")) {
+			 sound = new Sound(mainAppFX, "../../res/bitMENU.wav");
+			 sound.Play();
+		 }
+		 LayoutActuel = "viewer/Overview.fxml";
+		 mainAppFX.showOverview(LayoutActuel);
 	 }
 	 
 	 @FXML
 	 public void handleMachine() {
-		 String  choixLayout = "viewer/Machine.fxml";
-		 mainAppFX.showOverview(choixLayout);		 
+		 if (player.getString("sound").equals("ON")) {
+			 sound = new Sound(mainAppFX, "../../res/bitMENU.wav");
+			 sound.Play();
+		 }
+		 LayoutActuel = "viewer/Machine.fxml";
+		 mainAppFX.showOverview(LayoutActuel);		 
 	 }
 	 
 	 @FXML
 	 private void handleAbout() {
+		 if (player.getString("sound").equals("ON")) {
+			 sound = new Sound(mainAppFX, "../../res/bitABOUT.wav");
+			 sound.Play();
+		 }
 		 Alert alert = new Alert(AlertType.INFORMATION);
 		 alert.setTitle(rsc.getString("titre"));
 		 alert.setHeaderText("Logiciel de Gestion de Parcs informatique");
 		 alert.setContentText("Auteurs : COUPEZ Frédéric, Boris MOTZ, Renaud METZ");
+		 while(alert.isShowing()) {
+			 // TODO STOPPER MUSIQUE		 
+		 }
 		 alert.showAndWait();
+		 
 	 }
-	
+	 
 	 @FXML
 	 private void handleExit() {
-		 System.exit(0);
+		if (player.getString("sound").equals("ON")) {
+		    sound = new Sound(mainAppFX, "../../res/bitEXIT.wav");	    		
+			new Thread(new Runnable() {
+		           @Override
+		           public void run() {
+						try {
+							Thread.sleep(5200);
+							System.out.println("EXIT");
+							System.exit(0);	
+						} catch (InterruptedException e) {
+							e.printStackTrace(); // TODO
+						}
+		           }
+			}).start();	
+			sound.Play();
+		} else {
+			System.out.println("EXIT");
+			System.exit(0);	
+		}
 	 }
 }

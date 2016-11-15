@@ -24,6 +24,7 @@ import javafx.scene.layout.BorderPane;
 
 import application.DAO.objets.*;
 import application.modeler.Language;
+import application.resources.Sound;
 import application.viewer.OverviewController;
 import application.viewer.RootLayoutController;
 import application.viewer.MachineController;
@@ -39,6 +40,7 @@ public class MainAppFX extends Application {
     public BorderPane rootLayout;
     private ObservableList<Machine> DataMachine = FXCollections.observableArrayList();
     public static Font f;	// Police d'ecriture
+    private Sound sound = new Sound();
    
     
     public MainAppFX() {   	
@@ -86,10 +88,16 @@ public class MainAppFX extends Application {
     public void start(Stage primaryStage) {
     	
     	// GESTION DE LA LANGUE
-    	ResourceBundle language = ResourceBundle.getBundle("application.resources.Lang");
+    	ResourceBundle language = ResourceBundle.getBundle("application.Config");
     	Language.setLang(new Locale(language.getString("lang"), language.getString("pays")));
     	System.out.println("(MainAppFX) Langue définie sur : "+Language.getLang().toString());	
     	Language.setRsc(ResourceBundle.getBundle("application.resources.UIResources", Language.getLang()));
+    	
+    	System.out.println("SON SUR :"+language.getString("sound"));
+    	if (language.getString("sound").equals("ON")) {
+    		sound = new Sound(this, "../../res/bitINTRO.wav");
+    		sound.Play();
+    	}
     	
     	// GESTION DE LA POLICE D'ECRITURE
     	try { 

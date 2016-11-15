@@ -2,114 +2,205 @@
 
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
 <!--  TODO : reference controller -->
 
-<AnchorPane id="AnchorPane" prefHeight="300.0" prefWidth="573.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.viewer.OverviewController">
+<AnchorPane id="AnchorPane" prefHeight="483.0" prefWidth="559.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.viewer.OverviewController">
   <children>
-    <AnchorPane prefHeight="300.0" prefWidth="600.0">
+    <AnchorPane layoutX="-1.0" prefHeight="300.0" prefWidth="571.0">
       <children>
-        <SplitPane dividerPositions="0.3896321070234114" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-          <items>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="298.0" prefWidth="219.0">
-                     <children>
-                        <ImageView fitHeight="130.0" fitWidth="204.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../res/camembert.png" />
-                           </image></ImageView>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="16.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../res/cheese.gif" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="20.0" layoutY="115.0" text="Un camenbert representant les stats" />
-                     </children>
-            </AnchorPane>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-              <children>
-                <Label layoutY="6.0" text="Statistiques" textAlignment="LEFT" underline="true">
-                           <padding>
-                              <Insets left="5.0" />
-                           </padding></Label>
-                <GridPane layoutY="23.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="23.0">
-                  <children>
-                    <Label text="Nombre de sites">
-                      <GridPane.margin>
-                        <Insets left="10.0" />
-                      </GridPane.margin>
-                    </Label>
-                    <Label text="Nombre de batiments" GridPane.rowIndex="1">
-                      <GridPane.margin>
-                        <Insets left="10.0" />
-                      </GridPane.margin>
-                    </Label>
-                    <Label text="Nombre de formations" GridPane.rowIndex="2">
-                      <GridPane.margin>
-                        <Insets left="10.0" />
-                      </GridPane.margin>
-                    </Label>
-                    <Label text="Nombre d'utilisateur" GridPane.rowIndex="3">
-                      <GridPane.margin>
-                        <Insets left="10.0" />
-                      </GridPane.margin>
-                    </Label>
-                    <Label text="Nombre d'ordinateurs" GridPane.rowIndex="4">
-                      <GridPane.margin>
-                        <Insets left="10.0" />
-                      </GridPane.margin>
-                    </Label>
-                    <Label text="Nombre de composants" GridPane.rowIndex="5">
-                      <GridPane.margin>
-                        <Insets left="10.0" />
-                      </GridPane.margin>
-                    </Label>
-                    <Label text="Nombre de formateurs" GridPane.rowIndex="6">
-                      <GridPane.margin>
-                        <Insets left="10.0" />
-                      </GridPane.margin>
-                    </Label>
-                              <Label fx:id="label1" text=" " GridPane.columnIndex="1" />
-                              <Label fx:id="label2" text=" On ne critique pas !" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Label fx:id="label3" text=" " GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <Label fx:id="label4" text=" " GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <Label fx:id="label5" text=" " GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                              <Label fx:id="label6" text=" " GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                              <Label fx:id="label7" text=" " GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <BorderPane prefHeight="200.0" prefWidth="200.0">
+               <top>
+                  <ImageView fitHeight="90.0" fitWidth="573.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                     <image>
+                        <Image url="@../../res/bg_header.png" />
+                     </image>
+                  </ImageView>
+               </top>
+               <right>
+                  <ImageView fitHeight="269.0" fitWidth="23.0" layoutY="500.0" pickOnBounds="true" BorderPane.alignment="TOP_LEFT">
+                     <image>
+                        <Image url="@../../res/bg_right_repeat.png" />
+                     </image>
+                     <BorderPane.margin>
+                        <Insets left="1.0" top="-1.0" />
+                     </BorderPane.margin>
+                  </ImageView>
+               </right>
+               <left>
+                  <ImageView fitHeight="269.0" fitWidth="23.0" pickOnBounds="true" BorderPane.alignment="TOP_LEFT">
+                     <image>
+                        <Image url="@../../res/bg_left_repeat.png" />
+                     </image>
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
+                     <BorderPane.margin>
+                        <Insets right="1.0" top="-1.0" />
+                     </BorderPane.margin>
+                  </ImageView>
+               </left>
+               <bottom>
+                  <ImageView fitHeight="281.0" fitWidth="573.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                     <image>
+                        <Image url="@../../res/bg_footer.png" />
+                     </image>
+                     <BorderPane.margin>
+                        <Insets left="-1.0" />
+                     </BorderPane.margin>
+                  </ImageView>
+               </bottom>
+               <center>
+              <SplitPane dividerPositions="0.4028021015761821" prefHeight="268.0" prefWidth="526.0" BorderPane.alignment="CENTER">
+                <items>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="266.0" prefWidth="66.0">
+                           <children>
+                              <ImageView fitHeight="271.0" fitWidth="208.0" layoutX="4.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <image>
-                                    <Image url="@../../res/money.gif" />
+                                    <Image url="@../../res/camembert.png" />
                                  </image>
                               </ImageView>
-                  </children>
-                  <columnConstraints>
-                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  </columnConstraints>
-                  <rowConstraints>
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  </rowConstraints>
-                </GridPane>
-              </children>
-            </AnchorPane>
-          </items>
-        </SplitPane>
+                              <ImageView fitHeight="271.0" fitWidth="208.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true" rotate="180.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                 <image>
+                                    <Image url="@../../res/camembert.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                  </AnchorPane>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="266.0" prefWidth="340.0">
+                    <children>
+                      <Label fx:id="labDet" layoutY="6.0" text="%lab_details" textAlignment="LEFT" underline="true">
+                                 <padding>
+                                    <Insets left="5.0" />
+                                 </padding>
+                              </Label>
+                      <GridPane layoutY="20.0" prefHeight="245.0" prefWidth="307.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="20.0">
+                        <children>
+                          <Label fx:id="Label1" text="Stat1">
+                            <GridPane.margin>
+                              <Insets left="10.0" />
+                            </GridPane.margin>
+                          </Label>
+                          <Label fx:id="Label2" text="Stat2" GridPane.rowIndex="1">
+                            <GridPane.margin>
+                              <Insets left="10.0" />
+                            </GridPane.margin>
+                          </Label>
+                          <Label fx:id="Label3" text="Stat3" GridPane.rowIndex="2">
+                            <GridPane.margin>
+                              <Insets left="10.0" />
+                            </GridPane.margin>
+                          </Label>
+                          <Label fx:id="Label4" text="Stat4" GridPane.rowIndex="3">
+                            <GridPane.margin>
+                              <Insets left="10.0" />
+                            </GridPane.margin>
+                          </Label>
+                          <Label fx:id="Label5" text="Stat5" GridPane.rowIndex="4">
+                            <GridPane.margin>
+                              <Insets left="10.0" />
+                            </GridPane.margin>
+                          </Label>
+                          <Label fx:id="Label6" text="Stat6" GridPane.rowIndex="5">
+                            <GridPane.margin>
+                              <Insets left="10.0" />
+                            </GridPane.margin>
+                          </Label>
+                          <Label fx:id="Label7" text="Stat7" GridPane.rowIndex="6">
+                            <GridPane.margin>
+                              <Insets left="10.0" />
+                            </GridPane.margin>
+                          </Label>
+                                    <Label fx:id="label1" text=" " GridPane.columnIndex="1" />
+                                    <Label fx:id="label2" text=" " GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Label fx:id="label3" text=" " GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label fx:id="label4" text=" " GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <Label fx:id="label5" text=" " GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <Label fx:id="label6" text=" " GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <Label fx:id="label7" text=" " GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        </children>
+                        <columnConstraints>
+                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        </columnConstraints>
+                        <rowConstraints>
+                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        </rowConstraints>
+                      </GridPane>
+                    </children>
+                  </AnchorPane>
+                </items>
+              </SplitPane>
+               </center>
+            </BorderPane>
       </children>
     </AnchorPane>
-    <AnchorPane prefHeight="3.0" prefWidth="600.0" />
+      <ButtonBar fx:id="btnBar" layoutX="122.0" layoutY="392.0" prefHeight="42.0" prefWidth="279.0" AnchorPane.leftAnchor="122.0" AnchorPane.rightAnchor="49.0" AnchorPane.topAnchor="394.0">
+        <buttons>
+    <Button fx:id="START" alignment="CENTER" mnemonicParsing="false" onAction="#handleSTART" text="START" />
+    <Button fx:id="SELECT" alignment="CENTER" mnemonicParsing="false" onAction="#handleSELECT" text="SELECT" />
+    <Button fx:id="CANCEL" alignment="CENTER" mnemonicParsing="false" onAction="#handleCANCEL" prefHeight="25.0" prefWidth="101.0" text="CANCEL" />
+        </buttons>
+      </ButtonBar>
+      <Button fx:id="UP" layoutX="84.0" layoutY="343.0" mnemonicParsing="false" onAction="#handleUP" style="-fx-background-color: black; -fx-border-radius: 10px; -fx-border-color: grey;" text="▲" textFill="WHITE">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="LEFT" layoutX="51.0" layoutY="374.0" mnemonicParsing="false" onAction="#handleLEFT" style="-fx-background-color: black; -fx-border-radius: 10px; -fx-border-color: grey;" text="◀ " textFill="WHITE">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="RIGHT" layoutX="115.0" layoutY="374.0" mnemonicParsing="false" onAction="#handleRIGHT" style="-fx-background-color: black; -fx-border-radius: 10px; -fx-border-color: grey;" text=" ▶" textFill="WHITE">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="DOWN" layoutX="84.0" layoutY="409.0" mnemonicParsing="false" onAction="#handleDOWN" style="-fx-background-color: black; -fx-border-radius: 10px; -fx-border-color: grey;" text="▼" textFill="WHITE">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="ENTER" defaultButton="true" layoutX="86.0" layoutY="376.0" mnemonicParsing="false" onAction="#handleENTER" opacity="0.0" text="o" />
   </children>
   <stylesheets>
     <URL value="@theme_Overview.css" />
