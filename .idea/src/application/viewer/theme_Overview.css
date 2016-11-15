@@ -1,0 +1,7 @@
+#AnchorPane {
+    -fx-effect: dropshadow(three-pass-box, black, 3, 0.5, 0, 0); 
+}
+
+.button {
+	-fx-background-radius: 10px;
+}

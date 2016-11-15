@@ -4,14 +4,18 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 import application.MainAppFX;
-import application.DAO.objets.Machine;
-import application.modeler.Language;
-import application.resources.Sound;
+import application.beans.Machine;
+import application.tools.Language;
+import application.tools.Sound;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
+/**
+*
+* @author Neo_Ryu
+*/
 public class RootLayoutController {
 	 private static MainAppFX mainAppFX;
 	 private static Locale lang;
@@ -33,14 +37,13 @@ public class RootLayoutController {
 			 sound = new Sound(mainAppFX, "../../res/bitLANG.wav");
 			 sound.Play();
 		 }
-		 ResourceBundle language = ResourceBundle.getBundle("application.Config");
 		 if (lang.toString().equals("fr_FR")) {			 
 			 lang = Language.getsetLang(new Locale("en", "EN"));
 		 } else {
 			 lang = Language.getsetLang(new Locale("fr", "FR"));			 
 		 }
 		 mainAppFX.refreshRootLayout(LayoutActuel);
-		 System.out.println("(RootLayoutController) Langue définie sur : "+lang.toString());
+		 System.out.println("(RootLayoutController) Langue dï¿½finie sur : "+lang.toString());
 	 }
 	 
 	 @FXML
@@ -72,7 +75,7 @@ public class RootLayoutController {
 		 Alert alert = new Alert(AlertType.INFORMATION);
 		 alert.setTitle(rsc.getString("titre"));
 		 alert.setHeaderText("Logiciel de Gestion de Parcs informatique");
-		 alert.setContentText("Auteurs : COUPEZ Frédéric, Boris MOTZ, Renaud METZ");
+		 alert.setContentText("Auteurs : COUPEZ FrÃ©dÃ©ric, Boris MOTZ, Renaud METZ");
 		 while(alert.isShowing()) {
 			 // TODO STOPPER MUSIQUE		 
 		 }

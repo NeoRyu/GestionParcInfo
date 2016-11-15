@@ -3,7 +3,7 @@ package application.viewer;
 import java.util.ResourceBundle;
 
 import application.MainAppFX;
-import application.resources.Sound;
+import application.tools.Sound;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,7 +15,7 @@ import javafx.scene.control.Label;
 */
 public class OverviewController {
 		
-		// Référence pour les labels
+		// RÃ©fÃ©rence pour les labels
 		@FXML
 		private Label label1;
 		@FXML
@@ -37,7 +37,7 @@ public class OverviewController {
 		public static Button ENTER;
 		public static String btnSelected = "";
 
-		// Référence à l'application principale
+		// RÃ©fÃ©rence Ã  l'application principale
 		public static MainAppFX mainAppFX;
 		public static Sound sound = new Sound();
 		public static ResourceBundle player = ResourceBundle.getBundle("application.Config");
@@ -45,7 +45,7 @@ public class OverviewController {
 
 	/**
 	 * Initialises la classe controller. 
-	 * Cette methode est automaticament appelée après le chargement du fichier FXML.
+	 * Cette methode est automaticament appelÃ©e aprÃ¨s le chargement du fichier FXML.
 	 */
 	 @FXML
 	 private void initialize() {
@@ -57,7 +57,7 @@ public class OverviewController {
 	 
 	 
 // GAMEPAD
- 	 // Methode appelée lorsque l'utilisateur clique sur le bouton START
+ 	 // Methode appelÃ©e lorsque l'utilisateur clique sur le bouton START
 	 @FXML
 	 private void handleSTART() {
 		  btnSelected = "START";
@@ -67,7 +67,7 @@ public class OverviewController {
 		  }
 	 }
 	 
-	 //   Methode appelée lorsque l'utilisateur clique sur le bouton SELECT
+	 //   Methode appelÃ©e lorsque l'utilisateur clique sur le bouton SELECT
 	 @FXML
 	 private void handleSELECT() {
 		 btnSelected = "SELECT";
@@ -77,7 +77,7 @@ public class OverviewController {
 		 }
 	 }
 
-	 // Methode appelée lorsque l'utilisateur clique sur le bouton CANCEL
+	 // Methode appelÃ©e lorsque l'utilisateur clique sur le bouton CANCEL
 	 @FXML
 	 private void handleCANCEL() {
 		 btnSelected = "CANCEL";
@@ -87,7 +87,7 @@ public class OverviewController {
 		 }
 	 } 
 	 
-	// Simule un clic sur l'un des boutons selectionné sur la droite du PAD
+	// Simule un clic sur l'un des boutons selectionnÃ©s sur la droite du PAD
 	 @FXML
 	 private void handleENTER() {
 		 if (player.getString("sound").equals("ON")) {
@@ -191,7 +191,7 @@ public class OverviewController {
 		 
 		 
 	 /**
-	 * Appellé par l'application principale pour avoir une référence de retour sur elle-même
+	 * AppellÃ© par l'application principale pour avoir une rÃ©fÃ©rence de retour sur elle-mÃªme
 	 *
 	 * @param mainApp
 	 */

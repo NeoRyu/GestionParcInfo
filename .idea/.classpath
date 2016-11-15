@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/User/Downloads/hibernate jars/classmate-1.3.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Downloads/hibernate jars/commons-dbutils-1.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Downloads/hibernate jars/hibernate-jpa-2.1-api-1.0.0.Final.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Downloads/hibernate jars/hibernate-validator-5.3.0.Final.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Downloads/hibernate jars/hibernate-validator-annotation-processor-5.3.0.Final.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Downloads/hibernate jars/hibernate-validator-cdi-5.3.0.Final.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Downloads/hibernate jars/javax.el-2.2.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Downloads/hibernate jars/javax.el-api-2.2.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Downloads/hibernate jars/jboss-logging-3.3.0.Final.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Downloads/hibernate jars/joda-time-2.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Downloads/hibernate jars/jsoup-1.8.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Downloads/hibernate jars/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Downloads/hibernate jars/mysql-connector-java-3.1.14-bin.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Downloads/hibernate jars/paranamer-2.8.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Downloads/hibernate jars/validation-api-1.1.0.Final.jar"/>
+	<classpathentry kind="lib" path="C:/eclipse/plugins/org.junit_4.12.0.v201504281640/junit.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
