@@ -20,13 +20,13 @@ public class RootLayoutController {
 	 private static MainAppFX mainAppFX;
 	 private static Locale lang;
 	 private static ResourceBundle rsc;
-	 private static String LayoutActuel;
+	 private static String layoutActuel;
 	 private Sound sound = new Sound();
 	 public static ResourceBundle player = ResourceBundle.getBundle("application.Config");
 	
 	 public static void setMainApp(MainAppFX mainApp, String choixLayout) {
 		 mainAppFX = mainApp;
-		 LayoutActuel = choixLayout;
+		 layoutActuel = choixLayout;
 		 lang = Language.getLang();
 		 rsc = Language.getsetRsc(ResourceBundle.getBundle("application.resources.UIResources", lang));
 	 }	 
@@ -42,7 +42,7 @@ public class RootLayoutController {
 		 } else {
 			 lang = Language.getsetLang(new Locale("fr", "FR"));			 
 		 }
-		 mainAppFX.refreshRootLayout(LayoutActuel);
+		 mainAppFX.refreshRootLayout(layoutActuel);
 		 System.out.println("(RootLayoutController) Langue d�finie sur : "+lang.toString());
 	 }
 	 
@@ -52,8 +52,8 @@ public class RootLayoutController {
 			 sound = new Sound(mainAppFX, "../../res/bitMENU.wav");
 			 sound.Play();
 		 }
-		 LayoutActuel = "viewer/Overview.fxml";
-		 mainAppFX.showOverview(LayoutActuel);
+		 layoutActuel = "viewer/Overview.fxml";
+		 mainAppFX.showOverview(layoutActuel);
 	 }
 	 
 	 @FXML
@@ -62,8 +62,8 @@ public class RootLayoutController {
 			 sound = new Sound(mainAppFX, "../../res/bitMENU.wav");
 			 sound.Play();
 		 }
-		 LayoutActuel = "viewer/Machine.fxml";
-		 mainAppFX.showOverview(LayoutActuel);		 
+		 layoutActuel = "viewer/Machine.fxml";
+		 mainAppFX.showOverview(layoutActuel);		 
 	 }
 	 
 	 @FXML
@@ -95,7 +95,7 @@ public class RootLayoutController {
 							System.out.println("EXIT");
 							System.exit(0);	
 						} catch (InterruptedException e) {
-							e.printStackTrace(); // TODO
+							e.printStackTrace(); // TODO LOGGER
 						}
 		           }
 			}).start();	

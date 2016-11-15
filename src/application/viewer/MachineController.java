@@ -14,13 +14,13 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+
 import java.util.Set;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.awt.event.KeyEvent;
 
 /**
 *
@@ -237,6 +237,56 @@ public class MachineController {
 			btnSelected = "START";
 		 }
 	 }
+	 	 
+	 @FXML
+	 private void handleLEFT() {
+		 if (player.getString("sound").equals("ON")) {
+			 sound = new Sound(mainAppFX, "../../res/bitMOVE.wav");
+			 sound.Play();
+		 }
+		 // Permet de se deplacer vers la GAUCHE du ButtonBar	
+		 switch (btnSelected) {
+			 case "START" :
+				 CANCEL.requestFocus();
+				 btnSelected = "CANCEL";
+				 break;			 
+			 case "CANCEL" :
+				 SELECT.requestFocus();
+				 btnSelected = "SELECT";
+				 break;
+			 case "SELECT" :
+			 default :
+				START.requestFocus();
+				btnSelected = "START";
+				break;
+		 }	 
+	 }
+	 
+	 @FXML
+	 private void handleRIGHT() {
+		 if (player.getString("sound").equals("ON")) {
+			 sound = new Sound(mainAppFX, "../../res/bitMOVE.wav");
+			 sound.Play();
+		 }
+		 // Permet de se deplacer vers la DROITE du ButtonBar
+		 switch (btnSelected) {
+			 case "START" :
+				 SELECT.requestFocus();
+				 btnSelected = "SELECT";
+				 break;
+			 case "SELECT" :
+				 CANCEL.requestFocus();
+				 btnSelected = "CANCEL";
+				 break;
+			 case "CANCEL" :
+			 default :
+				 START.requestFocus();
+				 btnSelected = "START";
+				 break;
+		 }		 
+	 }
+	 
+	 // TODO - Bug avec les données issues de la database...
 	 @FXML
 	 private void handleUP() {
 		 if (player.getString("sound").equals("ON")) {
@@ -247,7 +297,9 @@ public class MachineController {
 		 //tableFX.getFocusModel().focusPrevious();
 		 Machine focus = tableFX.getSelectionModel().getSelectedItem();
 		 tableFX.getSelectionModel().select(Integer.parseInt(String.valueOf(focus.getId()))-1);
-	 }	 
+	 }	
+	 
+	 // TODO - Bug avec les données issues de la database...
 	 @FXML
 	 private void handleDOWN() {
 		 if (player.getString("sound").equals("ON")) {
@@ -258,74 +310,13 @@ public class MachineController {
 		 Machine focus = tableFX.getSelectionModel().getSelectedItem();
 		 tableFX.getSelectionModel().select(Integer.parseInt(String.valueOf(focus.getId()))+1);
 	 }
-	 @FXML
-	 private void handleLEFT() {
-		 if (player.getString("sound").equals("ON")) {
-			 sound = new Sound(mainAppFX, "../../res/bitMOVE.wav");
-			 sound.Play();
-		 }
-		 // TODO - Permet de se deplacer vers la GAUCHE du ButtonBar	
-		 switch (btnSelected) {
-			 case "START" :
-				 CANCEL.requestFocus();
-				 btnSelected = "CANCEL";
-				 break;
-			 case "SELECT" :
-				 START.requestFocus();
-				 btnSelected = "START";
-				 break;
-			 case "CANCEL" :
-				 SELECT.requestFocus();
-				 btnSelected = "SELECT";
-				 break;
-			 default :
-				START.requestFocus();
-				btnSelected = "START";
-				break;
-		 }	 
-	 }
-	 @FXML
-	 private void handleRIGHT() {
-		 if (player.getString("sound").equals("ON")) {
-			 sound = new Sound(mainAppFX, "../../res/bitMOVE.wav");
-			 sound.Play();
-		 }
-		 // TODO - Permet de se deplacer vers la DROITE du ButtonBar
-		 switch (btnSelected) {
-			 case "START" :
-				 SELECT.requestFocus();
-				 btnSelected = "SELECT";
-				 break;
-			 case "SELECT" :
-				 CANCEL.requestFocus();
-				 btnSelected = "CANCEL";
-				 break;
-			 case "CANCEL" :
-				 START.requestFocus();
-				 btnSelected = "START";
-				 break;
-			 default :
-				START.requestFocus();
-				btnSelected = "START";
-				break;
-		 }		 
-	 }
 	 
-	 private KeyEvent keyEvent;
-	 @FXML
-	 private void handlekeyPressed() {
-		 // Si la touche ENTREE est appuyée, on verifie si un bouton 
-		 // est selectionné et on lance alors la methode adequate
-		 //System.out.println(""+e);	
-		 //TODO
-	 }
 	 
 	 /**
 	 * Appellé par l'application principale pour avoir une référence de retour sur elle-même
 	 *
 	 * @param mainApp
-	 */
-     
+	 */     
 	 public void setMainAppFX(MainAppFX mainAppFX) {		
 		this.mainAppFX = mainAppFX; 
 		
@@ -336,7 +327,6 @@ public class MachineController {
 		try {
 			tableFX.getSelectionModel().select(0);
 		} catch (NullPointerException e) {
-			//e.printStackTrace();
 			Logger.getLogger(MachineController.class.getName()).log(Level.SEVERE, null, e);
 		}	
 		

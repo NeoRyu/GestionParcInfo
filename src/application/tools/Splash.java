@@ -6,6 +6,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.control.ProgressBar;
 import javafx.application.Preloader;
 
+/**
+ * 
+ * @author Neo_Ryu
+ */
 public class Splash extends Preloader { 
 	  
     private ProgressBar bar; 

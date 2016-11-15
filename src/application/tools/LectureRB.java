@@ -9,7 +9,7 @@ import java.util.ResourceBundle;
 public class LectureRB {
     public static String lireRB(String rb, String key){
         Locale locale = new Locale("fr", "FR");
-        ResourceBundle resourceBundle = ResourceBundle.getBundle("application.tools." + rb, locale);
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("application.resources." + rb, locale);
         return resourceBundle.getString(key);
     }
 }

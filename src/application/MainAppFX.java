@@ -2,7 +2,6 @@ package application;
 
 import application.beans.Composant;
 import application.beans.Machine;
-import application.dao.DAOConnection;
 import application.dao.DAOMachine;
 import application.tools.LectureRB;
 import application.viewer.RootLayoutController;
@@ -10,7 +9,6 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.text.*;
 import javafx.scene.image.Image;

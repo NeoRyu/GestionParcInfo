@@ -9,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.util.ResourceBundle;
-import java.util.logging.Logger;
 
 import application.MainAppFX;
 import application.beans.Machine;
@@ -159,18 +158,9 @@ public class MachineEditDialogController {
 		 
 		 if (txtfld7.getText() == null || txtfld7.getText().length() == 0) {
 			 errorMessage += Label7.getText().toUpperCase().toString()+" nécéssaire !\n";
-		 }/*
-		 else {
-		 // tenter de cast en int par exemple
-			 try {
-				 Integer.parseInt(txtfld6.getText());
-			 } catch (NumberFormatException e) {
-				 errorMessage += "txtfld6 !\n";
-			 }		 
 		 }
-		 */
 		 
-		// Affichage d'un message d'erreur si la taille de la chaine est superieur a 0
+		 // Affichage d'un message d'erreur si la taille de la chaine est superieur a 0
 		 if (errorMessage.length() == 0) {
 			 if (player.getString("sound").equals("ON")) {
 				 sound = new Sound("../../res/bitSTART.wav");

@@ -16,12 +16,13 @@
       <menus>
         <Menu mnemonicParsing="false" text="%root_file">
           <items>
-          	<MenuItem mnemonicParsing="false" text="Importer XML" />
+          	<!--<MenuItem mnemonicParsing="false" text="Importer XML" />
           	<MenuItem mnemonicParsing="false" text="Exporter XML" />
-            <SeparatorMenuItem mnemonicParsing="false" />
+            <SeparatorMenuItem mnemonicParsing="false" />-->
           	<MenuItem fx:id="IntroLayout" mnemonicParsing="false" onAction="#handleAccueil" text="%root_file_main" />
             <MenuItem fx:id="MachineLayout" mnemonicParsing="false" onAction="#handleMachine" text="%root_file_machine" />
-                  <MenuItem fx:id="EXIT" mnemonicParsing="false" onAction="#handleExit" text="%root_file_exit" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem fx:id="ExitAppFX" mnemonicParsing="false" onAction="#handleExit" text="%root_file_exit" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="%root_config">

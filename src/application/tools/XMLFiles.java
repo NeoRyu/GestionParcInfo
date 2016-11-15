@@ -14,11 +14,11 @@ public class XMLFiles {
     public void loadPersonDataFromFile(File file) {
         try {
             JAXBContext context = JAXBContext
-                    .newInstance(MachineWrapper.class);
+                    .newInstance(MachineListWrapper.class);
             Unmarshaller um = context.createUnmarshaller();
 
             // Reading XML from the file and unmarshalling.
-            MachineWrapper wrapper = (MachineWrapper) um.unmarshal(file);
+            MachineListWrapper wrapper = (MachineListWrapper) um.unmarshal(file);
 
 
 
@@ -43,7 +43,7 @@ public class XMLFiles {
     public void savePersonDataToFile(File file) {
         try {
             JAXBContext context = JAXBContext
-                    .newInstance(MachineWrapper.class);
+                    .newInstance(MachineListWrapper.class);
             Marshaller m = context.createMarshaller();
             m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 

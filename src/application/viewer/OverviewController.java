@@ -126,15 +126,12 @@ public class OverviewController {
 			 case "START" :
 				 CANCEL.requestFocus();
 				 btnSelected = "CANCEL";
-				 break;
-			 case "SELECT" :
-				 START.requestFocus();
-				 btnSelected = "START";
-				 break;
+				 break;			 
 			 case "CANCEL" :
 				 SELECT.requestFocus();
 				 btnSelected = "SELECT";
 				 break;
+			 case "SELECT" :
 			 default :
 				START.requestFocus();
 				btnSelected = "START";
@@ -159,9 +156,6 @@ public class OverviewController {
 				 btnSelected = "CANCEL";
 				 break;
 			 case "CANCEL" :
-				 START.requestFocus();
-				 btnSelected = "START";
-				 break;
 			 default :
 				START.requestFocus();
 				btnSelected = "START";
@@ -169,7 +163,7 @@ public class OverviewController {
 		 }		 
 	 }
 	 
-	 // TODO
+	 // UP = RIGHT
 	 @FXML
 	 private void handleUP() {
 		 if (player.getString("sound").equals("ON")) {
@@ -179,7 +173,7 @@ public class OverviewController {
 		 handleRIGHT();		 
 	 }	 
 	 
-	 // TODO
+	 // DOWN = LEFT
 	 @FXML
 	 private void handleDOWN() {
 		 if (player.getString("sound").equals("ON")) {

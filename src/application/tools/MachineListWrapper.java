@@ -6,6 +6,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import application.beans.Machine;
 
+/**
+ * 
+ * @author Neo_Ryu
+ */
+
 @XmlRootElement(name = "machines")
 public class MachineListWrapper {
 	 private List<Machine> machines;
