@@ -1,30 +1,39 @@
-package application.DAO; /***********************************************************************
- * Module:  application.DAO.DAOBatiment.java
+package application.dao; /***********************************************************************
+ * Module:  application.dao.DAOBatiment.java
  * Author:  RENAUD
- * Purpose: Defines the Class application.DAO.DAOBatiment
+ * Purpose: Defines the Class application.dao.DAOBatiment
  ***********************************************************************/
 
-import application.DAO.interfaces.IDAOHandler;
+import application.interfaces.IDAOHandler;
+
+import java.util.List;
 
 /** @pdOid 5deba7bc-222a-4be2-aa5d-20689d4fd332 */
 public class DAOBatiment implements IDAOHandler {
+
     @Override
-    public boolean ajouter() {
+    public <T> boolean ajouter(T objet, String query) {
         return false;
     }
 
     @Override
-    public boolean supprimer() {
+    public boolean supprimer(String query, String id) {
         return false;
     }
 
     @Override
-    public boolean modifier() {
+    public <T> boolean modifier(T objet, String query, String id) {
         return false;
     }
 
     @Override
-    public Object lecture() {
+    public <T> T lecture(String query, String id) {
         return null;
     }
+
+    @Override
+    public <T> List<T> lecture(String query) {
+        return null;
+    }
+
 }
