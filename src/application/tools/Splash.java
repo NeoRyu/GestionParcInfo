@@ -1,40 +1,68 @@
 package application.tools;
 
+import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.util.Duration;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.ImageView;
+
+import java.awt.Label;
+
+import javafx.animation.FadeTransition;
+import javafx.application.Application;
 import javafx.application.Preloader;
+import javafx.beans.property.ReadOnlyObjectProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
+import javafx.concurrent.Worker;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
 
 /**
- * 
+ * TODO : A FAIRE SPLASH SCREEN
  * @author Neo_Ryu
  */
-public class Splash extends Preloader { 
+public class Splash extends Application { 
 	  
-    private ProgressBar bar; 
-    private Stage stage; 
-  
-    @Override 
-    public void handleStateChangeNotification(StateChangeNotification stateChangeNotification) { 
-        if (stateChangeNotification.getType() == StateChangeNotification.Type.BEFORE_START) { 
-            stage.hide(); 
-        } 
-    } 
-  
-    @Override 
-    public void handleProgressNotification(ProgressNotification progressNotification) { 
-        bar.setProgress(progressNotification.getProgress()); 
+	private Pane splashLayout;
+    private ProgressBar loadProgress;
+    private Label progressText;
+    private Stage mainStage;
+    private static final int SPLASH_WIDTH = 600;
+    private static final int SPLASH_HEIGHT = 300;
+
+    public static void main(String[] args) throws Exception
+    {
+        launch(args);
     }
 
-	@Override
-	public void start(Stage stage) throws Exception {
-		this.stage = stage; 
-        bar = new ProgressBar(); 
-        final BorderPane root = new BorderPane(); 
-        root.setCenter(bar); 
-        final Scene scene = new Scene(root, 300, 150); 
-        stage.setScene(scene); 
-        stage.show(); 		
-	} 
+    @Override
+    public void init()
+    {
+        
+    }
+
+    @Override
+    public void start(final Stage initStage) throws Exception
+    {
+        
+    }
+
+
+    private void showSplash(final Stage initStage, Task task)
+    {
+        initStage.show();
+    }
 }

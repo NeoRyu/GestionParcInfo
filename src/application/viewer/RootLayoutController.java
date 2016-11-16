@@ -43,7 +43,7 @@ public class RootLayoutController {
 			 lang = Language.getsetLang(new Locale("fr", "FR"));			 
 		 }
 		 mainAppFX.refreshRootLayout(layoutActuel);
-		 System.out.println("(RootLayoutController) Langue d�finie sur : "+lang.toString());
+		 System.out.println("(RootLayoutController) Langue définie sur : "+lang.toString());
 	 }
 	 
 	 @FXML
@@ -87,7 +87,8 @@ public class RootLayoutController {
 		 alert.setHeaderText("Logiciel de Gestion de Parcs informatique");
 		 alert.setContentText("Auteurs : COUPEZ Frédéric, Boris MOTZ, Renaud METZ");
 		 while(alert.isShowing()) {
-			 // TODO STOPPER MUSIQUE		 
+			 // TODO STOPPER MUSIQUE	
+			 sound.mediaPlayer.stop();
 		 }
 		 alert.showAndWait();
 		 

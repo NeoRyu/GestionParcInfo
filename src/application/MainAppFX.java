@@ -4,13 +4,16 @@ import application.beans.Composant;
 import application.beans.Machine;
 import application.dao.DAOMachine;
 import application.tools.LectureRB;
+import application.tools.Video;
 import application.viewer.RootLayoutController;
+import application.viewer.SplashController;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.text.*;
+import javafx.scene.web.WebView;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -25,15 +28,14 @@ import java.util.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-
-
-
+import javafx.scene.media.MediaView;
 import application.viewer.OverviewController;
 import application.viewer.ComposantController;
 import application.viewer.MachineController;
 import application.viewer.MachineEditDialogController;
 
 /**
+ * 
  * @author Neo_Ryu
  */
 public class MainAppFX extends Application {
@@ -90,7 +92,6 @@ public class MainAppFX extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-
         // GESTION DE LA LANGUE
         ResourceBundle language = ResourceBundle.getBundle("application.resources.Lang");
         Language.setLang(new Locale(language.getString("lang"), language.getString("pays")));
@@ -116,12 +117,53 @@ public class MainAppFX extends Application {
         // Methode permettant d'appeler le layout d'intro
         String  choixLayout = "viewer/Overview.fxml";
         choixLayout = "viewer/Machine.fxml";
+        choixLayout = "viewer/Splash.fxml"; 
 
         // On affiche les layouts
         initRootLayout(choixLayout);
+        //SplashScreen(choixLayout);
         showOverview(choixLayout);
+        
+        // CUSTOM SPLASH SCREEN
+        //Video SEGA = new Video();
+    	//SEGA.Splash(this);
+        
+        
     }
 
+    public void SplashScreen(String choixLayout) {
+        /*
+    	try {
+        	
+            // Charger le Splash Screen au centre du layout racine à partir du fichier fxml
+            ResourceBundle bundle = Language.getsetRsc(ResourceBundle.getBundle("application.resources.UIResources", Language.getLang()));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(choixLayout), bundle);
+            loader.setLocation(MainAppFX.class.getResource(choixLayout));
+            AnchorPane overview = (AnchorPane) loader.load();
+            //rootLayout = (BorderPane) loader.load();
+            rootLayout.setCenter(overview);
+            //loader.setController(this);
+            
+            //SplashController SplashCtrl = loader.getController();
+            //SplashCtrl.setMainAppFX(this);	
+            
+            //SplashController.setMainAppFX(this);
+
+            // Montrer la scene contenant le layout racine
+            Scene scene = new Scene(SplashController.paneVideo, 350, 300);             
+            scene.getStylesheets().addAll(this.getClass().getResource("viewer/theme_RootLayout.css").toExternalForm());
+            primaryStage.setScene(scene);
+            // Accorder au controller un acces a MainAppFX
+            //SplashController.setMainAppFX(this);
+            // Affichage de la scene dans le stage
+            primaryStage.show();
+            //Lecture
+            SplashController.mediaView.getMediaPlayer().play();	
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        } */
+    }
 
     public void initRootLayout(String choixLayout) {
         try {
@@ -169,7 +211,7 @@ public class MainAppFX extends Application {
             e.printStackTrace();
         }
     }
-
+    
     public void showOverview(String choixLayout) {
         try {
             // charger l'apercu (overview) fxml
@@ -183,6 +225,10 @@ public class MainAppFX extends Application {
 
             // TODO - ajouts des données dans le tableview controller
             switch (choixLayout) {
+	            case "viewer/Splash.fxml" :
+	                SplashController SplashCtrl = loader.getController();
+	                SplashCtrl.setMainAppFX(this);	                
+	                break;
                 case "viewer/Machine.fxml" :
                     MachineController machineCtrl = loader.getController();
                     machineCtrl.setMainAppFX(this);
