@@ -114,55 +114,21 @@ public class MainAppFX extends Application {
         primaryStage.setMaxHeight(545);
         primaryStage.setMaxWidth(575);
 
+        
         // Methode permettant d'appeler le layout d'intro
-        String  choixLayout = "viewer/Overview.fxml";
-        choixLayout = "viewer/Machine.fxml";
-        choixLayout = "viewer/Splash.fxml"; 
+        String  choixLayout = "viewer/Overview.fxml";        
+        if (ResourceBundle.getBundle("application.Config").getString("sound").equals("ON")) {
+        	// Mettre dans Config.properties : Sound = ON
+        	choixLayout = "viewer/Splash.fxml";
+        } else {
+        	// TODO : Page que l'on souhaite voir s'ouvrir au démarrage ici 
+        	choixLayout = "viewer/Machine.fxml";
+        }
 
+        
         // On affiche les layouts
         initRootLayout(choixLayout);
-        //SplashScreen(choixLayout);
         showOverview(choixLayout);
-        
-        // CUSTOM SPLASH SCREEN
-        //Video SEGA = new Video();
-    	//SEGA.Splash(this);
-        
-        
-    }
-
-    public void SplashScreen(String choixLayout) {
-        /*
-    	try {
-        	
-            // Charger le Splash Screen au centre du layout racine à partir du fichier fxml
-            ResourceBundle bundle = Language.getsetRsc(ResourceBundle.getBundle("application.resources.UIResources", Language.getLang()));
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(choixLayout), bundle);
-            loader.setLocation(MainAppFX.class.getResource(choixLayout));
-            AnchorPane overview = (AnchorPane) loader.load();
-            //rootLayout = (BorderPane) loader.load();
-            rootLayout.setCenter(overview);
-            //loader.setController(this);
-            
-            //SplashController SplashCtrl = loader.getController();
-            //SplashCtrl.setMainAppFX(this);	
-            
-            //SplashController.setMainAppFX(this);
-
-            // Montrer la scene contenant le layout racine
-            Scene scene = new Scene(SplashController.paneVideo, 350, 300);             
-            scene.getStylesheets().addAll(this.getClass().getResource("viewer/theme_RootLayout.css").toExternalForm());
-            primaryStage.setScene(scene);
-            // Accorder au controller un acces a MainAppFX
-            //SplashController.setMainAppFX(this);
-            // Affichage de la scene dans le stage
-            primaryStage.show();
-            //Lecture
-            SplashController.mediaView.getMediaPlayer().play();	
-            
-        } catch (IOException e) {
-            e.printStackTrace();
-        } */
     }
 
     public void initRootLayout(String choixLayout) {
