@@ -34,7 +34,7 @@ import java.util.logging.Logger;
 *
 * @author Neo_Ryu
 */
-public class MachineController {
+public class ComposantController {
 		
 		// Référence pour le tableview et les colonnes
 		@FXML
@@ -85,7 +85,7 @@ public class MachineController {
 			 sound = new Sound(mainAppFX, "../../res/bitVALID.wav");
 			 sound.Play();
 		 }
-		 
+		 /*
 		 // Initialise la tableFX avec deux colonnes
 		 colone.setCellValueFactory(cellData -> cellData.getValue().idProperty()); 
 		 coltwo.setCellValueFactory(cellData -> cellData.getValue().adresseIPProperty());
@@ -98,6 +98,7 @@ public class MachineController {
 		 // Chaque fois que l'utilisateur sélectionne une machine dans la table, notre expression lambda est exécutée.
 		 // Nous prenons la machine nouvellement sélectionnée pour la transmettre à la méthode showDetails(...).
 		 tableFX.getSelectionModel().selectedItemProperty().addListener((observable, oldValeur, newValeur) -> showDetails(newValeur));
+		 */
 	}
 	 
 	// AFFICHAGE DE DETAILS DANS LE GRIDVIEW
@@ -160,12 +161,14 @@ public class MachineController {
 			  sound.Play();
 		  }
 		  btnSelected = "SELECT";
+		  /*
 		  Collection<Composant> lol = new ArrayList<Composant>();
 		 Machine newMachine = new Machine(0, 0, "", "", "", 0, "", "", false, 0, lol);
 		  boolean okClic = mainAppFX.showMachineEditDialog(newMachine);
 		  if (okClic) {
 			  mainAppFX.getData().add(newMachine);
 		  }
+		  */
 	 }
 	 
 	 //  MODIFIER : Methode appelée lorsque l'utilisateur clique sur le bouton de modification
@@ -176,6 +179,7 @@ public class MachineController {
 			 sound.Play();
 		 }
 		 btnSelected = "SELECT";
+		 /*
 		 Machine selection = tableFX.getSelectionModel().getSelectedItem();
 		 if (selection != null) {
 			  boolean okClic = mainAppFX.showMachineEditDialog(selection);
@@ -191,6 +195,7 @@ public class MachineController {
 			  alert.setContentText("Selectionnez une ligne dans la table");
 			  alert.showAndWait();
 		 }
+		 */
 	 }
 
 	 // SUPPRIMER : Methode appelée lorsque l'utilisateur clique sur le bouton de suppression
@@ -200,7 +205,7 @@ public class MachineController {
 			 sound = new Sound(mainAppFX, "../../res/bitENTER.wav");
 			 sound.Play();
 		  }
-		  //btnSelected = "CANCEL";
+		  /*
 		  int selectedIndex = tableFX.getSelectionModel().getSelectedIndex();
 		  if (selectedIndex >= 0) {
 			  // Une ligne a été séléctionnée
@@ -235,6 +240,7 @@ public class MachineController {
 			  alert.setContentText("Veuillez selectionner une ligne dans le tableau !");
 			  alert.showAndWait();
 		  }
+		  */
 	 }
 	 
 	 
@@ -324,8 +330,10 @@ public class MachineController {
 		 }
 		 // Permet de se deplacer vers le HAUT du TableView
 		 //tableFX.getFocusModel().focusPrevious();
+		 /*
 		 Machine focus = tableFX.getSelectionModel().getSelectedItem();
 		 tableFX.getSelectionModel().select(Integer.parseInt(String.valueOf(focus.getId()))-1);
+		 */
 	 }	
 	 
 	 // TODO - Bug avec les données issues de la database...
@@ -336,18 +344,20 @@ public class MachineController {
 			 sound.Play();
 		 }
 		 // Permet de se deplacer vers le BAS du TableView
+		 /*
 		 Machine focus = tableFX.getSelectionModel().getSelectedItem();
 		 tableFX.getSelectionModel().select(Integer.parseInt(String.valueOf(focus.getId()))+1);
+		 */
 	 }
 	 
 	 // TODO - Revoir le systeme de switch tranquillou au calme... =)
 	 @FXML
-	 private void handleSWITCH(ActionEvent event) throws IOException{
+	 private void handleSWITCH() {
 		 if (player.getString("sound").equals("ON")) {
 			 sound = new Sound(mainAppFX, "../../res/bitMENU.wav");
 			 sound.Play();
 		 }
-		 mainAppFX.showOverview("viewer/Composant.fxml");
+		 mainAppFX.showOverview("viewer/Machine.fxml");
 	 }
 	 
 	 
@@ -360,7 +370,7 @@ public class MachineController {
 		this.mainAppFX = mainAppFX; 
 		
 		// Ajout de la liste des données observables dans le tableview " tableFX "
-		tableFX.setItems(mainAppFX.getData());
+		/*tableFX.setItems(mainAppFX.getData());
 		
 		// selection du premier element
 		try {
@@ -368,6 +378,7 @@ public class MachineController {
 		} catch (NullPointerException e) {
 			Logger.getLogger(MachineController.class.getName()).log(Level.SEVERE, null, e);
 		}	
+		*/
 		
 	 }	
 }

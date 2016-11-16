@@ -67,6 +67,16 @@ public class RootLayoutController {
 	 }
 	 
 	 @FXML
+	 public void handleComposant() {
+		 if (player.getString("sound").equals("ON")) {
+			 sound = new Sound(mainAppFX, "../../res/bitMENU.wav");
+			 sound.Play();
+		 }
+		 layoutActuel = "viewer/Composant.fxml";
+		 mainAppFX.showOverview(layoutActuel);		 
+	 }
+	 
+	 @FXML
 	 private void handleAbout() {
 		 if (player.getString("sound").equals("ON")) {
 			 sound = new Sound(mainAppFX, "../../res/bitABOUT.wav");

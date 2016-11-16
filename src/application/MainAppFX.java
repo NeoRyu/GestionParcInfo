@@ -29,6 +29,7 @@ import javafx.scene.layout.BorderPane;
 
 
 import application.viewer.OverviewController;
+import application.viewer.ComposantController;
 import application.viewer.MachineController;
 import application.viewer.MachineEditDialogController;
 
@@ -180,11 +181,15 @@ public class MainAppFX extends Application {
             // charger cet apercu au centre du layout racine
             rootLayout.setCenter(overview);
 
-            // ajouts des données dans le tableview controller
+            // TODO - ajouts des données dans le tableview controller
             switch (choixLayout) {
                 case "viewer/Machine.fxml" :
                     MachineController machineCtrl = loader.getController();
                     machineCtrl.setMainAppFX(this);
+                    break;
+                case "viewer/Composant.fxml" :
+                    ComposantController composantCtrl = loader.getController();
+                    composantCtrl.setMainAppFX(this);
                     break;
                 case "viewer/Overview.fxml" :
                 default :
