@@ -14,6 +14,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -23,6 +25,7 @@ import java.util.Set;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -194,14 +197,35 @@ public class MachineController {
 	 @FXML
 	 private void handleCANCEL() {
 		  if (player.getString("sound").equals("ON")) {
-			  sound = new Sound(mainAppFX, "../../res/bitDELETE.wav");
-			  sound.Play();
+			 sound = new Sound(mainAppFX, "../../res/bitENTER.wav");
+			 sound.Play();
 		  }
 		  //btnSelected = "CANCEL";
 		  int selectedIndex = tableFX.getSelectionModel().getSelectedIndex();
 		  if (selectedIndex >= 0) {
 			  // Une ligne a été séléctionnée
-			  tableFX.getItems().remove(selectedIndex);
+			  Alert alert = new Alert(AlertType.CONFIRMATION);
+			  alert.initOwner(mainAppFX.getPrimaryStage());
+			  alert.setTitle("Confirmation de suppression");
+			  alert.setHeaderText("Êtes-vous sûr de vouloir supprimer cette donnée ?");
+			  alert.setContentText("Une suppression est définitive, confirmer ?");
+			  ButtonType buttonTypeConfirm = new ButtonType("CONFIRMER");
+			  ButtonType buttonTypeCancel = new ButtonType("ANNULER", ButtonData.CANCEL_CLOSE);
+			  alert.getButtonTypes().setAll(buttonTypeConfirm, buttonTypeCancel);
+			  Optional<ButtonType> result = alert.showAndWait();
+			  if (result.get() == buttonTypeConfirm){	// Bouton CONFIRMER
+				  if (player.getString("sound").equals("ON")) {
+					  sound = new Sound(mainAppFX, "../../res/bitDELETE.wav");
+					  sound.Play();
+				  }
+				  tableFX.getItems().remove(selectedIndex);
+				  // TODO : SQL DELETE
+			  } else { 			// Bouton CANCEL ou fermeture de la fenetre
+				  if (player.getString("sound").equals("ON")) {
+					  sound = new Sound(mainAppFX, "../../res/bitCANCEL.wav");
+					  sound.Play();
+				  }
+			  }	
 		  } else {
 			  // Aucune selection à supprimer...
 			  Alert alert = new Alert(AlertType.WARNING);
@@ -316,6 +340,7 @@ public class MachineController {
 		 tableFX.getSelectionModel().select(Integer.parseInt(String.valueOf(focus.getId()))+1);
 	 }
 	 
+	 // TODO - Revoir le systeme de switch tranquillou au calme... =)
 	 @FXML
 	 private void handleSWITCH(ActionEvent event) throws IOException{
 	     Stage stage; 
@@ -333,7 +358,7 @@ public class MachineController {
 	      Scene scene = new Scene(root);
 	      stage.setScene(scene);
 	      stage.show();
-	    }
+	 }
 	 
 	 
 	 /**
