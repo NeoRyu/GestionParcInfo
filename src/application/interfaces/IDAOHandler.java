@@ -4,9 +4,9 @@ package application.interfaces; /***********************************************
  * Purpose: Defines the Interface application.interfaces.IDAOHandler
  ***********************************************************************/
 
-import application.dao.DAOConnection;
-
 import java.util.List;
+
+import application.dao.DAOConnection;
 
 public interface IDAOHandler {
     DAOConnection conn = new DAOConnection();

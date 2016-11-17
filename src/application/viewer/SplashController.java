@@ -5,6 +5,8 @@ import application.tools.Sound;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
+
+import java.io.File;
 import java.util.ResourceBundle;
 import javax.swing.*;
 import javafx.scene.media.*;
@@ -24,8 +26,8 @@ public class SplashController extends JFrame {
 		public static ResourceBundle player = ResourceBundle.getBundle("application.Config");
 
 		// VIDEO D'INTRODUCTION
-		private String VID_URL = //"@../../../res/SEGA.mp4";
-				"https://api.telecharger-videos-youtube.com/file/20161116080220-1a140a6ab337496b870d5f630a1d97c6.mp4/sega-logo.mp4";
+		private File file = new File("src/res/Oracle.flv");	
+		private String VID_URL = file.toURI().toString();
 		public String getVID_URL() {
 			return VID_URL;
 		}
@@ -57,6 +59,37 @@ public class SplashController extends JFrame {
 		 SELECT.setFont(MainAppFX.f);
 		 CANCEL.setFont(MainAppFX.f);
 		 
+		 // Chemin d'accès pour la vidéo d'introduction
+		 if (player.getString("intro").isEmpty()) {
+			 setVID_URL(file.toURI().toString());
+		 } else {
+			 if ((player.getString("intro").length() >= 4) && (player.getString("intro").substring(0,4).equals("www."))) {
+				 System.out.println("Video via URL : "+player.getString("intro").toString());
+				 try {
+					 setVID_URL("http://"+player.getString("intro").toString());
+				 } catch (IllegalArgumentException e) {
+					 setVID_URL(file.toURI().toString());
+				 }
+			 } else if ( ((player.getString("intro").length() >= 7) && (player.getString("intro").substring(0,7).equals("http://")))
+			   || ((player.getString("intro").length() >= 8) &&(player.getString("intro").substring(0,8).equals("https://"))) ) {
+				 System.out.println("Video via URL : "+player.getString("intro").toString());
+				 try {
+					 setVID_URL(player.getString("intro").toString());
+				 } catch (IllegalArgumentException e) {
+					 setVID_URL(file.toURI().toString());
+				 }
+			 } else {
+				 try {
+					 System.out.println("Video via chemin local : "+player.getString("intro").toString());
+					 File fichier = new File(player.getString("intro").toString());	
+					 setVID_URL(fichier.toURI().toString());				 
+				 } catch (IllegalArgumentException e) {
+					 setVID_URL(file.toURI().toString());
+				 }
+
+			 }
+		 }
+		 
 		 // INITFX
 		 initFX();
 	 }
@@ -84,7 +117,27 @@ public class SplashController extends JFrame {
 	    		  mediaView.getMediaPlayer().play();	 
 	    		  
 			  }
-	      }); 		  
+	      }); 
+		  
+		  mediaPlayer.setOnPlaying(new Runnable() {
+			  @Override public void run() {	   
+				  if (btnSelected.equals("SELECT")) {
+					  // TODO  : Ne fonctionne pas
+					  //src/res/SEGA.mp4
+					  System.out.println("STOP");
+					  mediaPlayer.stop();
+					  mainAppFX.showOverview("viewer/Overview.fxml");
+				  }
+			  }
+	      }); 
+		  
+		  mediaPlayer.setOnError(new Runnable() {    
+			    @Override
+			    public void run() {
+			        String message = mediaPlayer.errorProperty().get().getMessage();
+			        System.out.println(message);
+			    }
+			});
 		  
 		  mediaPlayer.setOnEndOfMedia(new Runnable() {
 			  @Override public void run() {
@@ -112,6 +165,7 @@ public class SplashController extends JFrame {
 			 sound.Play();
 		 }
 		 btnSelected = "SELECT";
+		 //System.out.println(btnSelected);
 	 }
 
 	 // SUPPRIMER : Methode appelée lorsque l'utilisateur clique sur le bouton de suppression
@@ -120,7 +174,7 @@ public class SplashController extends JFrame {
 		  if (player.getString("sound").equals("ON")) {
 			 sound = new Sound(mainAppFX, "../../res/bitENTER.wav");
 			 sound.Play();
-		  }
+		  }		 
 	 } 
 	 
 
