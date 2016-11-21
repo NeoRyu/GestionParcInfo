@@ -7,12 +7,17 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
+import javafx.scene.effect.Effect;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 
 import java.awt.Label;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.swing.*;
 import javafx.scene.media.*;
@@ -67,8 +72,9 @@ public class SplashController extends JFrame {
 		@FXML public static Button ENTER;
 		public static String btnSelected = "";	// Permet de determiner le bouton selectionneé pour switchcase
 	    
-	    
-
+		// EASTER EGG	    
+		protected List<String> Combo = new ArrayList<String>();
+		@FXML public ImageView imgAnim;
 
 	/**
 	 * Initialises la classe controller. 
@@ -121,111 +127,130 @@ public class SplashController extends JFrame {
 	 }
 	 
 
-	 
+	 boolean TEST = false;
 	 // AFFICHAGE VIDEO
       public void initFX() {    	    	  
     	  if (VID_URL.equals(null))	{
     		  return;
     	  }
     	  
-    	  final Media media = new Media(getVID_URL()); 
-          final MediaPlayer mediaPlayer = new MediaPlayer(media); 
-          mediaPlayer.setAutoPlay(true);  
-    	  
-    	  paneVideo.getChildren().setAll(mediaView);
-		  mediaView.setMediaPlayer(mediaPlayer);  
-          
-		  mediaPlayer.setOnReady(new Runnable() {
-			  @Override public void run() {	            			  
-	    		  mediaView.fitWidthProperty().bind(paneVideo.widthProperty());
-	    		  mediaView.fitHeightProperty().bind(paneVideo.heightProperty());
-	    		  mediaView.getMediaPlayer().seek(Duration.ZERO);
-	    		  mediaView.getMediaPlayer().play();	 
-	    		  
-			  }
-	      }); 
-		  
-		  mediaPlayer.setOnPlaying(new Runnable() {
-			  @Override public void run() {	 
-				  // LISTENERS GERANT LA LECTURE/PAUSE/STOP	  
-				  START.setOnAction(new EventHandler<ActionEvent>() {
-					    public void handle(ActionEvent e) {
-					        Status status = mediaPlayer.getStatus();					   	 
-					        if (status == Status.UNKNOWN  || status == Status.HALTED)
-					        {
-					           // ne rien faire
-					           return;
-					        }
-					 
-					          if ( status == Status.PAUSED
-					             || status == Status.READY
-					             || status == Status.STOPPED)
-					          {
-					             // Rembobiner
-					             if (rembobiner) {
-					            	 mediaPlayer.seek(mediaPlayer.getStartTime());
-					            	 rembobiner = false;
-					             }
-					             mediaPlayer.play();
-					          } 
-					          START.setDisable(true);
-					          SELECT.setDisable(false);
-					          CANCEL.setDisable(false);
-				         }
-				   });
-				  
-				  SELECT.setOnAction(new EventHandler<ActionEvent>() {
-					    public void handle(ActionEvent e) {
-					        Status status = mediaPlayer.getStatus();					   	 
-					        if (status == Status.UNKNOWN  || status == Status.HALTED)
-					        {
-					           // ne rien faire
-					           return;
-					        }
-					 
-					          if ( status != Status.PAUSED
-					             && status != Status.READY
-					             && status != Status.STOPPED)
-					          {					             
-					            	 mediaPlayer.pause();
-					          }
-					          START.setDisable(false);
-					          SELECT.setDisable(true);
-					          CANCEL.setDisable(false);
-				         }
-				   });
-				  
-				  CANCEL.setOnAction(new EventHandler<ActionEvent>() {
-					    public void handle(ActionEvent e) {
-					        Status status = mediaPlayer.getStatus();
-					        if (status == Status.UNKNOWN  || status == Status.HALTED)
-					        {
-					           // ne rien faire
-					           return;
-					        } else {
-					        	mediaPlayer.stop();	
-					        }
-					        START.setDisable(false);
-					        SELECT.setDisable(true);
-					        CANCEL.setDisable(true);
-				         }
-				   });
-			  }
-	      }); 
-		  
-		  mediaPlayer.setOnError(new Runnable() {    
-			    @Override
-			    public void run() {
-			        String message = mediaPlayer.errorProperty().get().getMessage();
-			        System.out.println(message);
-			    }
-			});
-		  
-		  mediaPlayer.setOnEndOfMedia(new Runnable() {
-			  @Override public void run() {
-				  skipVideo();
-			  }
-		  });		  
+    	  //if (!TEST) {
+	    	  final Media media = new Media(getVID_URL()); 
+	          final MediaPlayer mediaPlayer = new MediaPlayer(media); 
+	          mediaPlayer.setAutoPlay(true);  
+	    	  
+	    	  paneVideo.getChildren().setAll(mediaView);
+			  mediaView.setMediaPlayer(mediaPlayer);  
+	          
+			  mediaPlayer.setOnReady(new Runnable() {
+				  @Override public void run() {	            			  
+		    		  mediaView.fitWidthProperty().bind(paneVideo.widthProperty());
+		    		  mediaView.fitHeightProperty().bind(paneVideo.heightProperty());
+		    		  mediaView.getMediaPlayer().seek(Duration.ZERO);
+		    		  mediaView.getMediaPlayer().play();	 
+		    		  
+				  }
+		      }); 
+			  
+			  mediaPlayer.setOnPlaying(new Runnable() {
+				  @Override public void run() {	 
+					  // LISTENERS GERANT LA LECTURE/PAUSE/STOP	  
+					  START.setOnAction(new EventHandler<ActionEvent>() {
+						    public void handle(ActionEvent e) {
+						        Status status = mediaPlayer.getStatus();					   	 
+						        if (status == Status.UNKNOWN  || status == Status.HALTED)
+						        {
+						           // ne rien faire
+						           return;
+						        }
+						 
+						          if ( status == Status.PAUSED
+						             || status == Status.READY
+						             || status == Status.STOPPED)
+						          {
+						             // Rembobiner
+						             if (rembobiner) {
+						            	 mediaPlayer.seek(mediaPlayer.getStartTime());
+						            	 rembobiner = false;
+						             }
+						             mediaPlayer.play();
+						          } 
+						          START.setDisable(true);
+						          SELECT.setDisable(false);
+						          CANCEL.setDisable(false);
+					         }
+					   });
+					  
+					  SELECT.setOnAction(new EventHandler<ActionEvent>() {
+						    public void handle(ActionEvent e) {
+						        Status status = mediaPlayer.getStatus();					   	 
+						        if (status == Status.UNKNOWN  || status == Status.HALTED)
+						        {
+						           // ne rien faire
+						           return;
+						        }
+						 
+						          if ( status != Status.PAUSED
+						             && status != Status.READY
+						             && status != Status.STOPPED)
+						          {					             
+						            	 mediaPlayer.pause();
+						          }
+						          START.setDisable(false);
+						          SELECT.setDisable(true);
+						          CANCEL.setDisable(false);
+					         }
+					   });
+					  
+					  CANCEL.setOnAction(new EventHandler<ActionEvent>() {
+						    public void handle(ActionEvent e) {
+						        Status status = mediaPlayer.getStatus();
+						        if (status == Status.UNKNOWN  || status == Status.HALTED)
+						        {
+						           // ne rien faire
+						           return;
+						        } else {
+						        	mediaPlayer.stop();	
+						        }
+						        START.setDisable(false);
+						        SELECT.setDisable(true);
+						        CANCEL.setDisable(true);
+					         }
+					   });
+				  }
+		      }); 
+			  
+			  mediaPlayer.setOnError(new Runnable() {    
+				    @Override
+				    public void run() {
+				        String message = mediaPlayer.errorProperty().get().getMessage();
+				        System.out.println(message);
+				    }
+				});
+			  
+			  mediaPlayer.setOnEndOfMedia(new Runnable() {
+				  @Override public void run() {
+					  skipVideo();
+				  }
+			  });	
+    	  /*} else {
+    		  Combo.add("RIGHT");
+    		  Combo.add("DOWN");
+    		  Combo.add("RIGHT");
+	    	  new Thread(new Runnable() {
+	   	           @Override
+	   	           public void run() {
+	   					try {
+	   						Thread.sleep(270);
+	   						hackCombo();
+	   					} catch (InterruptedException e) {
+	   						e.printStackTrace(); // TODO LOGGER
+	   					}
+	   	           }
+	   		 }).start();  
+    		 
+    	  }
+		  	 */ 
       }  
       
       private void skipVideo() {
@@ -253,7 +278,7 @@ public class SplashController extends JFrame {
 			  sound = new Sound(mainAppFX, "../../res/bitENTER.wav");
 			  sound.Play();
 		  }
-		  btnSelected = "SELECT";
+		  btnSelected = "START";
 	 }
 	 
 	 //  MODIFIER : Methode appelée lorsque l'utilisateur clique sur le bouton de modification
@@ -273,66 +298,134 @@ public class SplashController extends JFrame {
 		  if (player.getString("sound").equals("ON")) {
 			 sound = new Sound(mainAppFX, "../../res/bitENTER.wav");
 			 sound.Play();
-		  }		 
+		  }
+		  btnSelected = "CANCEL";
 	 } 
 	 
-
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
 	 // GAMEPAD
 	 @FXML
 	 private void handleENTER() {
-		 if (player.getString("sound").equals("ON")) {
-			 sound = new Sound(mainAppFX, "../../res/bitENTER.wav");
-			 sound.Play();
-		 }
-		 // Simule un clic sur l'un des boutons selectionné sur la droite du PAD
-		 if (btnSelected != "") {
-			 switch (btnSelected.toUpperCase()) {
-			 	case "START" :
-			 		handleSTART();
-			 		break;
-			 	case "SELECT" :
-			 		handleSELECT();
-			 		break;
-			 	case "CANCEL" :
-			 		handleCANCEL();
-			 		break;
-			 	case "SKIP" :
-			 		handleSKIP();
-			 		break;
-			 	default:
-			 		START.requestFocus();
-					break;
-			 }
-		 } else {
-			START.requestFocus();
-			btnSelected = "START";
-		 }
+		 hackCombo();
 	 }
 	 	 
+	 private void hackCombo() {
+		 if (!Combo.isEmpty()) {
+			// STREET FIGHTERS - Hadoken (Ryu)
+			 if ((Combo.get(0) == "DOWN") 
+			  && (Combo.get(1) == "RIGHT")) {
+				 hackComboSound("../../res/bitHadoken.wav",1300,"@../../res/Hadoken.gif"); 
+				 // TODO - IMAGE...
+			 } 
+			// STREET FIGHTERS - Shoryuken (Ryu)
+			 if ((Combo.get(0) == "RIGHT") 
+			  && (Combo.get(1) == "DOWN") 
+			  && (Combo.get(2) == "RIGHT")) {
+				 hackComboSound("../../res/bitShoryuken.wav",2500,""); 
+			 } 
+			// GALAGA - Challenge Completed
+			 else if (
+			     (Combo.get(0) == "UP") 
+			  && (Combo.get(1) == "DOWN") 
+			  && (Combo.get(2) == "UP")
+			  && (Combo.get(3) == "DOWN")) {
+				 hackComboSound("../../res/bitABOUT.wav",6300,"");
+			 } 
+			// On nettoie la liste Combo si on foire en appuyant sur ENTER
+			 else {
+				 Combo.clear();
+			 }
+		 }
+	 }	 
+		 
+	 private void hackComboSound(String son, int duree, String imgURL) {
+		 
+		 // TODO - Probleme affichage image
+		 if (!imgURL.isEmpty()) {
+			 mediaView.setVisible(false);
+			 imgAnim.toFront();
+			 imgAnim.setVisible(true);
+			 System.out.println("IMAGE VIEW");
+			 Image imgBG = new Image(imgURL, true);	
+			 imgAnim.setImage(imgBG);
+		 }
+		 
+		 SKIP.setDisable(true);
+		 START.setDisable(true);
+         SELECT.setDisable(true);
+         /*
+         CANCEL.setDisable(false);
+         CANCEL.requestFocus();
+         CANCEL.isPressed();
+         // TODO - mediaPlayer.stop();
+          
+         */
+         CANCEL.setDisable(true);
+         sound = new Sound(mainAppFX, son);
+         sound.Play();
+         new Thread(new Runnable() {
+	           @Override
+	           public void run() {
+					try {
+						Thread.sleep(duree);
+						START.setDisable(false);
+						SKIP.setDisable(false);
+						if (!imgURL.isEmpty()) {
+							imgAnim.setVisible(false);
+							mediaView.setVisible(true);
+						}
+						Combo.clear();
+					} catch (InterruptedException e) {
+						e.printStackTrace(); // TODO LOGGER
+					}
+	           }
+		 }).start();            
+	 }
+	 
+	 
+	 
 	 @FXML
 	 private void handleLEFT() {
 		 if (player.getString("sound").equals("ON")) {
 			 sound = new Sound(mainAppFX, "../../res/bitMOVE.wav");
 			 sound.Play();
 		 }
+		 Combo.add("LEFT");
 		 // Permet de se deplacer vers la GAUCHE du ButtonBar	
 		 switch (btnSelected) {
 			 case "START" :
-				 SKIP.requestFocus();
-				 btnSelected = "CANCEL";
+				 if (!SKIP.isDisable()) {
+					 SKIP.requestFocus();
+					 btnSelected = "CANCEL";
+				 }
 				 break;	
 			 case "SKIP" :
-				 CANCEL.requestFocus();
-				 btnSelected = "CANCEL";
+				 if (!CANCEL.isDisable()) {
+					 CANCEL.requestFocus();
+					 btnSelected = "CANCEL";
+				 }
 				 break;	
 			 case "CANCEL" :
-				 SELECT.requestFocus();
-				 btnSelected = "SELECT";
+				 if (!SELECT.isDisable()) {
+					 SELECT.requestFocus();
+					 btnSelected = "SELECT";
+				 }
 				 break;		
 			 case "SELECT" :
 			 default :
-				START.requestFocus();
-				btnSelected = "START";
+				if (!START.isDisable()) {
+					START.requestFocus();
+					btnSelected = "START";
+				}
 				break;
 		 }	 
 	 }	 
@@ -343,24 +436,33 @@ public class SplashController extends JFrame {
 			 sound = new Sound(mainAppFX, "../../res/bitMOVE.wav");
 			 sound.Play();
 		 }
+		 Combo.add("RIGHT");
 		 // Permet de se deplacer vers la DROITE du ButtonBar
 		 switch (btnSelected) {
 			 case "START" :
-				 SELECT.requestFocus();
-				 btnSelected = "SELECT";
+				 if (!SELECT.isDisable()) {
+					 SELECT.requestFocus();
+					 btnSelected = "SELECT";
+				 }
 				 break;
 			 case "SELECT" :
-				 CANCEL.requestFocus();
-				 btnSelected = "CANCEL";
+				 if (!CANCEL.isDisable()) {
+					 CANCEL.requestFocus();
+					 btnSelected = "CANCEL";
+				 }
 				 break;
 			 case "CANCEL" :
-				 SKIP.requestFocus();
-				 btnSelected = "CANCEL";
+				 if (!SKIP.isDisable()) {
+					 SKIP.requestFocus();
+					 btnSelected = "CANCEL";
+				 }
 				 break;
 			 case "SKIP" :
 			 default :
-				 START.requestFocus();
-				 btnSelected = "START";
+				 if (!START.isDisable()) {
+					 START.requestFocus();
+					 btnSelected = "START";
+				 }
 				 break;
 		 }		 
 	 }
@@ -371,6 +473,7 @@ public class SplashController extends JFrame {
 			 sound = new Sound(mainAppFX, "../../res/bitMOVE.wav");
 			 sound.Play();
 		 }
+		 Combo.add("UP");
 	 }		
 	 
 	 @FXML
@@ -379,6 +482,7 @@ public class SplashController extends JFrame {
 			 sound = new Sound(mainAppFX, "../../res/bitMOVE.wav");
 			 sound.Play();
 		 }
+		 Combo.add("DOWN");
 	 }   
 	 
 	 /**
