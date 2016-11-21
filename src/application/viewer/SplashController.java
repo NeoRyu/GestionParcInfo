@@ -142,7 +142,9 @@ public class SplashController extends JFrame {
 		  mediaPlayer.setOnEndOfMedia(new Runnable() {
 			  @Override public void run() {
 				  System.out.println("SEGA, C'EST PLUS FORT QUE TOI !");
-				  mainAppFX.showOverview("viewer/Overview.fxml");
+				  // PAGE QUI S'OUVRIRA A LA SUITE DE LA VIDEO
+				  //mainAppFX.showOverview("viewer/Overview.fxml");
+				  mainAppFX.showOverview("viewer/Machine.fxml");  
 			  }
 		  });		  
       }  

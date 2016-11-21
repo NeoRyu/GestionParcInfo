@@ -4,7 +4,10 @@ import application.MainAppFX;
 import application.beans.Machine;
 import application.tools.Sound;
 import application.beans.Composant;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -17,8 +20,11 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollBar;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.util.Set;
@@ -29,6 +35,9 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import com.sun.javafx.scene.control.skin.TableViewSkin;
+import com.sun.javafx.scene.control.skin.VirtualFlow;
 
 /**
 *
@@ -86,6 +95,9 @@ public class MachineController {
 			 sound.Play();
 		 }
 		 
+		 tableFX.getSelectionModel().setCellSelectionEnabled(true);
+	     tableFX.setEditable(true);
+	        
 		 // Initialise la tableFX avec deux colonnes
 		 colone.setCellValueFactory(cellData -> cellData.getValue().idProperty()); 
 		 coltwo.setCellValueFactory(cellData -> cellData.getValue().adresseIPProperty());
@@ -315,7 +327,6 @@ public class MachineController {
 		 }		 
 	 }
 	 
-	 // TODO - Bug avec les données issues de la database...
 	 @FXML
 	 private void handleUP() {
 		 if (player.getString("sound").equals("ON")) {
@@ -323,12 +334,9 @@ public class MachineController {
 			 sound.Play();
 		 }
 		 // Permet de se deplacer vers le HAUT du TableView
-		 //tableFX.getFocusModel().focusPrevious();
-		 Machine focus = tableFX.getSelectionModel().getSelectedItem();
-		 tableFX.getSelectionModel().select(Integer.parseInt(String.valueOf(focus.getId()))-1);
+		 scrollTableFX(true);
 	 }	
 	 
-	 // TODO - Bug avec les données issues de la database...
 	 @FXML
 	 private void handleDOWN() {
 		 if (player.getString("sound").equals("ON")) {
@@ -336,17 +344,33 @@ public class MachineController {
 			 sound.Play();
 		 }
 		 // Permet de se deplacer vers le BAS du TableView
-		 Machine focus = tableFX.getSelectionModel().getSelectedItem();
-		 tableFX.getSelectionModel().select(Integer.parseInt(String.valueOf(focus.getId()))+1);
+		 scrollTableFX(false);
 	 }
 	 
-	 // TODO - Revoir le systeme de switch tranquillou au calme... =)
+	 // METHODE PERMETTANT DE NAVIGUER DANS LE TABLEVIEW
+	 private void scrollTableFX(Boolean dir) {
+		 int taille = tableFX.getItems().size();	 
+		 int Index = tableFX.getSelectionModel().getSelectedIndex();
+		 if(Index <= taille) {
+			 if (dir) {	// TRUE = handleUP()
+				 Index--;
+			 } else {	// FALSE = handleDOWN()
+				 Index++;
+			 }
+             tableFX.scrollTo(Index);
+             tableFX.getFocusModel().focus(Index);
+             tableFX.getSelectionModel().select(Index);
+		 }
+	}
+
+
 	 @FXML
 	 private void handleSWITCH(ActionEvent event) throws IOException{
 		 if (player.getString("sound").equals("ON")) {
 			 sound = new Sound(mainAppFX, "../../res/bitMENU.wav");
 			 sound.Play();
 		 }
+		 // Permet de switcher entre les fenetres MACHINE et COMPOSANT
 		 mainAppFX.showOverview("viewer/Composant.fxml");
 	 }
 	 

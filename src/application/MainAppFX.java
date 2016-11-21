@@ -117,9 +117,6 @@ public class MainAppFX extends Application {
         if (ResourceBundle.getBundle("application.Config").getString("sound").equals("ON")) {
         	// Mettre dans Config.properties : Sound = ON
         	choixLayout = "viewer/Splash.fxml";
-        } else {
-        	// TODO : Page que l'on souhaite voir s'ouvrir au démarrage ici 
-        	choixLayout = "viewer/Machine.fxml";
         }
 
         
