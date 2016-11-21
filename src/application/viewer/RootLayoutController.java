@@ -47,6 +47,16 @@ public class RootLayoutController {
 	 }
 	 
 	 @FXML
+	 public void handleIntro() {
+		 if (player.getString("sound").equals("ON")) {
+			 sound = new Sound(mainAppFX, "../../res/bitMENU.wav");
+			 sound.Play();
+		 }
+		 layoutActuel = "viewer/Splash.fxml";
+		 mainAppFX.showOverview(layoutActuel);
+	 }
+	 
+	 @FXML
 	 public void handleAccueil() {
 		 if (player.getString("sound").equals("ON")) {
 			 sound = new Sound(mainAppFX, "../../res/bitMENU.wav");

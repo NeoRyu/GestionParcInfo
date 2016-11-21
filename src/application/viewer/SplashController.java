@@ -2,15 +2,29 @@ package application.viewer;
 
 import application.MainAppFX;
 import application.tools.Sound;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Slider;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 
+import java.awt.Label;
 import java.io.File;
 import java.util.ResourceBundle;
 import javax.swing.*;
 import javafx.scene.media.*;
+import javafx.scene.media.MediaPlayer.Status;
 import javafx.util.Duration;
+
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
+
 
 /**
 *
@@ -26,7 +40,7 @@ public class SplashController extends JFrame {
 		public static ResourceBundle player = ResourceBundle.getBundle("application.Config");
 
 		// VIDEO D'INTRODUCTION
-		private File file = new File("src/res/Oracle.flv");	
+		private File file = new File("src/res/Oracle.flv");	//src/res/SEGA.mp4
 		private String VID_URL = file.toURI().toString();
 		public String getVID_URL() {
 			return VID_URL;
@@ -38,14 +52,22 @@ public class SplashController extends JFrame {
 		 @FXML    	private Duration duration;
 		 @FXML		private MediaView mediaView;
 		 @FXML		private FlowPane paneVideo;
+		 @FXML		private HBox mediaBar;
+		 
+		 	private final boolean lectureBoucle = false;
+		    private boolean lectureStop = false;
+		    private boolean rembobiner = false;
+		    
+	    private Slider timeSlider;
+	    private Label playTime;
+	    private Slider volumeSlider;
 		
 		// Boutons
-		@FXML
-		private Button START, SELECT, CANCEL, SWITCH;
-		@FXML
-		public static Button ENTER;
+		@FXML private Button START, SELECT, CANCEL, SKIP;
+		@FXML public static Button ENTER;
 		public static String btnSelected = "";	// Permet de determiner le bouton selectionneé pour switchcase
-		
+	    
+	    
 
 
 	/**
@@ -54,10 +76,14 @@ public class SplashController extends JFrame {
 	 */
 	 @FXML
 	 private void initialize() {
-		// CONFIGURATION DES BOUTTONS
+		// CONFIGURATION DES BOUTTONS - TODO police ne possede pas caracteres play pause stop
+		 START.setText("⏵ PLAY");
 		 START.setFont(MainAppFX.f);
+		 SELECT.setText("⏸ PAUSE");
 		 SELECT.setFont(MainAppFX.f);
-		 CANCEL.setFont(MainAppFX.f);
+		 CANCEL.setText("⏹ STOP");
+		 CANCEL.setFont(MainAppFX.f);		 
+		 SKIP.setFont(MainAppFX.f);
 		 
 		 // Chemin d'accès pour la vidéo d'introduction
 		 if (player.getString("intro").isEmpty()) {
@@ -97,7 +123,7 @@ public class SplashController extends JFrame {
 
 	 
 	 // AFFICHAGE VIDEO
-      public void initFX() {    	  
+      public void initFX() {    	    	  
     	  if (VID_URL.equals(null))	{
     		  return;
     	  }
@@ -120,14 +146,70 @@ public class SplashController extends JFrame {
 	      }); 
 		  
 		  mediaPlayer.setOnPlaying(new Runnable() {
-			  @Override public void run() {	   
-				  if (btnSelected.equals("SELECT")) {
-					  // TODO  : Ne fonctionne pas
-					  //src/res/SEGA.mp4
-					  System.out.println("STOP");
-					  mediaPlayer.stop();
-					  mainAppFX.showOverview("viewer/Overview.fxml");
-				  }
+			  @Override public void run() {	 
+				  // LISTENERS GERANT LA LECTURE/PAUSE/STOP	  
+				  START.setOnAction(new EventHandler<ActionEvent>() {
+					    public void handle(ActionEvent e) {
+					        Status status = mediaPlayer.getStatus();					   	 
+					        if (status == Status.UNKNOWN  || status == Status.HALTED)
+					        {
+					           // ne rien faire
+					           return;
+					        }
+					 
+					          if ( status == Status.PAUSED
+					             || status == Status.READY
+					             || status == Status.STOPPED)
+					          {
+					             // Rembobiner
+					             if (rembobiner) {
+					            	 mediaPlayer.seek(mediaPlayer.getStartTime());
+					            	 rembobiner = false;
+					             }
+					             mediaPlayer.play();
+					          } 
+					          START.setDisable(true);
+					          SELECT.setDisable(false);
+					          CANCEL.setDisable(false);
+				         }
+				   });
+				  
+				  SELECT.setOnAction(new EventHandler<ActionEvent>() {
+					    public void handle(ActionEvent e) {
+					        Status status = mediaPlayer.getStatus();					   	 
+					        if (status == Status.UNKNOWN  || status == Status.HALTED)
+					        {
+					           // ne rien faire
+					           return;
+					        }
+					 
+					          if ( status != Status.PAUSED
+					             && status != Status.READY
+					             && status != Status.STOPPED)
+					          {					             
+					            	 mediaPlayer.pause();
+					          }
+					          START.setDisable(false);
+					          SELECT.setDisable(true);
+					          CANCEL.setDisable(false);
+				         }
+				   });
+				  
+				  CANCEL.setOnAction(new EventHandler<ActionEvent>() {
+					    public void handle(ActionEvent e) {
+					        Status status = mediaPlayer.getStatus();
+					        if (status == Status.UNKNOWN  || status == Status.HALTED)
+					        {
+					           // ne rien faire
+					           return;
+					        } else {
+					        	mediaPlayer.stop();	
+					        }
+					        START.setDisable(false);
+					        SELECT.setDisable(true);
+					        CANCEL.setDisable(true);
+				         }
+				   });
 			  }
 	      }); 
 		  
@@ -141,13 +223,28 @@ public class SplashController extends JFrame {
 		  
 		  mediaPlayer.setOnEndOfMedia(new Runnable() {
 			  @Override public void run() {
-				  System.out.println("SEGA, C'EST PLUS FORT QUE TOI !");
-				  // PAGE QUI S'OUVRIRA A LA SUITE DE LA VIDEO
-				  //mainAppFX.showOverview("viewer/Overview.fxml");
-				  mainAppFX.showOverview("viewer/Machine.fxml");  
+				  skipVideo();
 			  }
 		  });		  
       }  
+      
+      private void skipVideo() {
+    	  System.out.println("SEGA, C'EST PLUS FORT QUE TOI !");
+		  // PAGE QUI S'OUVRIRA A LA SUITE DE LA VIDEO		  
+		  mainAppFX.showOverview("viewer/Machine.fxml");
+		  //mainAppFX.showOverview("viewer/Overview.fxml");	//TODO
+      }
+      
+     // SKIP : Methode appelée lorsque l'utilisateur clique sur le boutton pour passer la video
+     @FXML
+ 	 private void handleSKIP() {
+ 		  if (player.getString("sound").equals("ON")) {
+ 			  sound = new Sound(mainAppFX, "../../res/bitENTER.wav");
+ 			  sound.Play();
+ 		  }
+ 		  btnSelected = "SKIP";
+ 		  skipVideo();
+ 	 }
 	 
 	 // AJOUTER : Methode appelée lorsque l'utilisateur clique sur le boutton d'ajout
 	 @FXML
@@ -199,7 +296,11 @@ public class SplashController extends JFrame {
 			 	case "CANCEL" :
 			 		handleCANCEL();
 			 		break;
-			 	default:			 		
+			 	case "SKIP" :
+			 		handleSKIP();
+			 		break;
+			 	default:
+			 		START.requestFocus();
 					break;
 			 }
 		 } else {
@@ -217,13 +318,17 @@ public class SplashController extends JFrame {
 		 // Permet de se deplacer vers la GAUCHE du ButtonBar	
 		 switch (btnSelected) {
 			 case "START" :
+				 SKIP.requestFocus();
+				 btnSelected = "CANCEL";
+				 break;	
+			 case "SKIP" :
 				 CANCEL.requestFocus();
 				 btnSelected = "CANCEL";
-				 break;			 
+				 break;	
 			 case "CANCEL" :
 				 SELECT.requestFocus();
 				 btnSelected = "SELECT";
-				 break;
+				 break;		
 			 case "SELECT" :
 			 default :
 				START.requestFocus();
@@ -249,6 +354,10 @@ public class SplashController extends JFrame {
 				 btnSelected = "CANCEL";
 				 break;
 			 case "CANCEL" :
+				 SKIP.requestFocus();
+				 btnSelected = "CANCEL";
+				 break;
+			 case "SKIP" :
 			 default :
 				 START.requestFocus();
 				 btnSelected = "START";

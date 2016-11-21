@@ -349,9 +349,8 @@ public class MachineController {
 	 
 	 // METHODE PERMETTANT DE NAVIGUER DANS LE TABLEVIEW
 	 private void scrollTableFX(Boolean dir) {
-		 int taille = tableFX.getItems().size();	 
 		 int Index = tableFX.getSelectionModel().getSelectedIndex();
-		 if(Index <= taille) {
+		 if(Index <= tableFX.getItems().size()) {
 			 if (dir) {	// TRUE = handleUP()
 				 Index--;
 			 } else {	// FALSE = handleDOWN()

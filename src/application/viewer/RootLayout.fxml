@@ -19,7 +19,8 @@
           	<!--<MenuItem mnemonicParsing="false" text="Importer XML" />
           	<MenuItem mnemonicParsing="false" text="Exporter XML" />
             <SeparatorMenuItem mnemonicParsing="false" />-->
-          	<MenuItem fx:id="IntroLayout" mnemonicParsing="false" onAction="#handleAccueil" text="%root_file_main" />
+            <MenuItem fx:id="IntroLayout" mnemonicParsing="false" onAction="#handleIntro" text="Redémarrer" />
+          	<MenuItem fx:id="AccueilLayout" mnemonicParsing="false" onAction="#handleAccueil" text="%root_file_main" />
             <MenuItem fx:id="MachineLayout" mnemonicParsing="false" onAction="#handleMachine" text="%root_file_machine" />
             <MenuItem fx:id="ComposantLayout1" mnemonicParsing="false" onAction="#handleComposant" text="%root_file_composant" />
             <SeparatorMenuItem mnemonicParsing="false" />
