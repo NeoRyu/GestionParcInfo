@@ -7,19 +7,16 @@ package application.interfaces; /***********************************************
 import java.util.List;
 
 import application.dao.DAOConnection;
+import application.tools.LectureRB;
 
 public interface IDAOHandler {
     DAOConnection conn = new DAOConnection();
+    LectureRB lrb = new LectureRB();
 
-    <T> boolean ajouter(T objet, String query);
+    <T> boolean ajouter(T objet);
 
-    boolean supprimer(String query, String id);
+    <T> boolean modifier(T objet, String id);
 
-     <T> boolean modifier(T objet, String query, String id);
-
-    <T> T lecture(String query, String id);
-
-    <T> List<T> lecture(String query);
-
+    boolean supprimer(String id);
 
 }

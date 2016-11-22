@@ -1,9 +1,7 @@
 package application;
 
-import application.beans.Composant;
-import application.beans.Machine;
+import application.beans.*;
 import application.dao.DAOMachine;
-import application.tools.LectureRB;
 import application.viewer.RootLayoutController;
 import application.viewer.SplashController;
 import javafx.application.Application;
@@ -49,19 +47,27 @@ public class MainAppFX extends Application {
     private boolean TEST = false;
 
     public MainAppFX() {
-
+    	Reflexivite();
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
                 if (TEST) {
                     // JEU D'ESSAI HORS LIGNE
-                    DataMachine.add(new Machine(0,1, "localhost", "333 4444", "2016-10-10", 2,"PC", "127.0.0.1",false,1,new ArrayList<Composant>()));
+                	DataMachine.add(new Machine(0,1, "localhost", "333 4444", "2016-10-10", 2,"PC", "127.0.0.1",false,1,new ArrayList<Composant>()));
                     DataMachine.add(new Machine(1,1, "ANDEUXK", "365 2000", "1999-12-31", 1,"BUG", "4.5.1.6", false,1,new ArrayList<Composant>()));
                     DataMachine.add(new Machine(2,1, "MAYA", "212 2012", "2012-12-21", 2,"MAYA", "21.12.20.12",false,1,new ArrayList<Composant>()));
                     DataMachine.add(new Machine(3,1, "MIR", "222 1345", "1999-08-11", 2, "MIR", "48.86.2.33",false,1,new ArrayList<Composant>()));
+                    
+                    CarteMere cm = new CarteMere(1, "test", "MOI", "test", "test", 3, "Carte Mere", "ATX");
+                    DisqueDur dd = new DisqueDur(1, "test", "MOI", "test", "test", 3, "Disque Dur", "SSD", 540);
+                    Logiciel logiciel = new Logiciel(1, "test", "MOI", "test", "test", 3, "Disque Dur", 64);
+                    Processeur processeur= new Processeur(1, "test", "MOI", "test", "test", 3, "Disque Dur", 4, 3);
+                    Ram ram= new Ram(1, "test", "MOI", "test", "test", 3, "Ram", 4);
+                    SystemeExploitation os= new SystemeExploitation(1, "test", "MOI", "test", "test", 8, "OS", "W10", 4);
+                    Composant composant = new Composant(1, "test", "MOI", "test", "test", 3, "OS");
                 } else {
                     // JEU D'ESSAI BDD
-                    List<Machine> liste = daoMachine.lecture(LectureRB.lireRB("query", "lectureMachines"));
+                	List<Machine> liste = daoMachine.lecture();
                     DataMachine.addAll(liste);
                 }
                 // On récupère d'abord les données a partir du SGBD pour permettre l'affichage
@@ -78,7 +84,8 @@ public class MainAppFX extends Application {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                List<Machine> liste = daoMachine.lecture(LectureRB.lireRB("query", "lectureMachines"));
+            	List<Machine> liste = daoMachine.lecture();
+            	//List<Machine> liste = daoMachine.lecture(LectureRB.lireRB("query", "lectureMachines"));
                 DataMachine.addAll(liste);
             }
         });
@@ -114,10 +121,10 @@ public class MainAppFX extends Application {
 
         
         // Methode permettant d'appeler le layout d'intro
-        String  choixLayout = "viewer/Overview.fxml";        
+        String  choixLayout = getPageIntro();        
         if (ResourceBundle.getBundle("application.Config").getString("sound").equals("ON")) {
         	// Mettre dans Config.properties : Sound = ON
-        	choixLayout = "viewer/Splash.fxml";
+        		choixLayout = "viewer/Splash.fxml";
         }
 
         
@@ -125,7 +132,35 @@ public class MainAppFX extends Application {
         initRootLayout(choixLayout);
         showOverview(choixLayout);
     }
+    
+    // Chargement de la page d'intro/post-intro
+    public String getPageIntro(){
+    	ResourceBundle config = ResourceBundle.getBundle("application.Config");
+    	String page = "viewer/Overview.fxml";
+  	  	if (!config.getString("boot").isEmpty()) {
+  		  switch (config.getString("boot")) {
+		    	  case "INTRO" :
+		    		  // Lecture en boucle de la vidéo d'introduction ! :D
+		    		  page = "viewer/Splash.fxml";
+		    		  break;
+		    	  case "MACHINE" :
+		    		  page = "viewer/Machine.fxml";
+		    		  break;
+		    	  case "COMPOSANT" :
+		    		  page = "viewer/Composant.fxml";
+		    		  break;	    	  
+	    		  case "ACCUEIL" :
+	    		  case "MAIN" :
+	    		  default : 
+	    			  page = "viewer/Overview.fxml";
+	    			  break;
+	    	  }
+		  }
+  	  	
+		return page;
+    }
 
+    //
     public void initRootLayout(String choixLayout) {
         try {
             // Chargement du layout racine à partir du fichier fxml
@@ -183,7 +218,8 @@ public class MainAppFX extends Application {
 
             // charger cet apercu au centre du layout racine
             rootLayout.setCenter(overview);
-
+            System.out.println("["+c+"] -> ["+choixLayout+"]");
+            
             // TODO - ajouts des données dans le tableview controller
             switch (choixLayout) {
 	            case "viewer/Splash.fxml" :
@@ -256,13 +292,22 @@ public class MainAppFX extends Application {
     	System.out.println("\n"+System.getProperty("user.dir")+path +" :");
 		File files = new File(System.getProperty("user.dir")+path);			
 		for (File file : files.listFiles()) System.out.println("fichier : " + file.getName());
-    }
+    }    
+    public String c;		// Nom de la classe
+	public String m; 	// Nom de la methode
+	public void Reflexivite() {
+		Throwable t = new Throwable();
+		t.fillInStackTrace();
+		StackTraceElement s = t.getStackTrace()[1];
+		c = s.getClassName();	// STRING
+		m = s.getMethodName();	// STRING
+	}
 
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        launch(args);
+        launch(args);        
     }
 }

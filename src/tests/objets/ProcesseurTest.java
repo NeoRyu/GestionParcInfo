@@ -17,7 +17,7 @@ import java.util.Set;
  */
 public class ProcesseurTest {
 
-    Processeur proco = new Processeur(3,"i7-6400K","Intel","Proco Intel dernière gen","Proco Intel",3,4,3600);
+    Processeur proco = new Processeur();
     private static Validator validator;
     Set<ConstraintViolation<Processeur>> constraintViolations = new Set<ConstraintViolation<Processeur>>() {
         @Override

@@ -30,6 +30,7 @@ public class RootLayoutController {
 	
 	 public static void setMainApp(MainAppFX mainApp, String choixLayout) {
 		 mainAppFX = mainApp;
+		 mainAppFX.Reflexivite();
 		 layoutActuel = choixLayout;
 		 lang = Language.getLang();
 		 rsc = Language.getsetRsc(ResourceBundle.getBundle("application.resources.UIResources", lang));		 

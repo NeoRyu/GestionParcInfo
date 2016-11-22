@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
  * Created by Boris on 03/11/2016.
  */
 public class LogicielTest {
-    Logiciel logiciel = new Logiciel(1, "Photoshop", "Adobe", "Phoroshop", "Toshop", 3, 64);
+    Logiciel logiciel = new Logiciel();
     private static Validator validator;
     Set<ConstraintViolation<Logiciel>> constraintViolations = new Set<ConstraintViolation<Logiciel>>() {
         @Override

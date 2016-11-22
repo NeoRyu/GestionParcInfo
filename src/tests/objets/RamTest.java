@@ -17,7 +17,7 @@ import java.util.Set;
  * Created by Boris on 03/11/2016.
  */
 public class RamTest {
-    Ram ram = new Ram(3,"Corsair ECC qqch","Corsair","Corsair ECC truc","RAM à correction d'erreurs",3,4);
+    Ram ram = new Ram();
     private static Validator validator;
     Set<ConstraintViolation<Composant>> constraintViolations = new Set<ConstraintViolation<Composant>>() {
         @Override

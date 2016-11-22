@@ -16,7 +16,7 @@ import java.util.Set;
  * Created by Boris on 03/11/2016.
  */
 public class CarteMereTest {
-    CarteMere carteMere = new CarteMere(2, "merguez", "asus", "machin", "machine",1, "ATX");
+    CarteMere carteMere = new CarteMere();
     private static Validator validator;
     Set<ConstraintViolation<CarteMere>> constraintViolations = new Set<ConstraintViolation<CarteMere>>() {
         @Override

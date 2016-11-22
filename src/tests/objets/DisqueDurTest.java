@@ -16,7 +16,7 @@ import java.util.Set;
  * Created by Boris on 03/11/2016.
  */
 public class DisqueDurTest {
-    DisqueDur disqueDur = new DisqueDur(1, "WD Caviar Black", "Western Digital", "WD Caviar Black", "WD Caviar Black", 3,"FSH",20 );
+    DisqueDur disqueDur = new DisqueDur();
     private static Validator validator;
     Set<ConstraintViolation<DisqueDur>> constraintViolations = new Set<ConstraintViolation<DisqueDur>>() {
         @Override

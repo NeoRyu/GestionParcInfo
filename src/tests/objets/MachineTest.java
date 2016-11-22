@@ -22,7 +22,7 @@ public class MachineTest {
     //Machine machine = new Machine(1, 1, "kappa", "420 1337", "2016-11-01", 5, "Tablette", "192.168.1.3", false, 1, new ArrayList<Composant>());
 
     Machine machine = new Machine(1, 1, "kappa", "420 1337", "2014-11-01", 5, "Tablette", "192.168.1.4", false, 1, new ArrayList<Composant>());
-    Composant test = new CarteMere(1, "merguez", "asus", "machin", "machine",1, "ATX");
+    Composant test = new CarteMere();
     Set<ConstraintViolation<Machine>> constraintViolations = new Set<ConstraintViolation<Machine>>() {
         @Override
         public int size() {

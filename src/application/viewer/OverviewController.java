@@ -49,10 +49,9 @@ public class OverviewController {
 	 */
 	 @FXML
 	 private void initialize() {
-		 if (player.getString("sound").equals("ON")) {
-	 		 sound = new Sound(mainAppFX, "../../res/bitVALID.wav");
-	 		 sound.Play();
-		 }
+		 START.setFont(MainAppFX.f);
+	     SELECT.setFont(MainAppFX.f);
+	     CANCEL.setFont(MainAppFX.f);
 	}
 	 
 	 
@@ -190,6 +189,7 @@ public class OverviewController {
 	 * @param mainApp
 	 */
 	 public void setMainAppFX(MainAppFX mainAppFX) {		
-		this.mainAppFX = mainAppFX;		
+		this.mainAppFX = mainAppFX;	
+		mainAppFX.Reflexivite();
 	 }	
 }

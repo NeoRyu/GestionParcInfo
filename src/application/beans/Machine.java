@@ -439,7 +439,7 @@ public class Machine {
     }
 
 
-    /**
+    /**TODO refaire la methode
      * @return *  @pdOid ed539b07-b49c-4883-8b95-773e5a3a6699
      */
     public boolean ipDispo() {
@@ -464,8 +464,7 @@ public class Machine {
                 }
             }
             //On vérifie par rapport à la BDD
-            Machine machineTemp = daoMachine.lecture(LectureRB.lireRB("query", "recupAdresseIP"), adresseIp + "\"");
-            if (machineTemp == null) { // Ici l'adresse est dispo
+            if (daoMachine.machineIP(adresseIp) == 0) { // Ici l'adresse est dispo
                 return true;
             } else { //Ici l'adresse est déjà prise
                 return false;
@@ -474,6 +473,6 @@ public class Machine {
             e.printStackTrace();
             return false;
         }
+    }
 
     }
-}

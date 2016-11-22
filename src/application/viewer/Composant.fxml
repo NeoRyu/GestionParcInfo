@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- @author Neo_Ryu -->
+<!-- @author Neo_Ryu (EDIT: Boris) -->
 
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
@@ -89,34 +89,34 @@
                                     <Insets left="5.0" />
                                  </padding>
                               </Label>
-                      <GridPane layoutY="20.0" prefHeight="245.0" prefWidth="307.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="20.0">
+                      <GridPane fx:id="" layoutY="20.0" prefHeight="245.0" prefWidth="307.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="20.0">
                         <children>
-                          <Label fx:id="Label1" text="ID">
+                          <Label fx:id="Label1" text="%lab_id">
                             <GridPane.margin>
                               <Insets left="10.0" />
                             </GridPane.margin>
                           </Label>
-                          <Label fx:id="Label2" text="Reference" GridPane.rowIndex="1">
+                          <Label fx:id="Label2" text="%lab_ref_compo" GridPane.rowIndex="1">
                             <GridPane.margin>
                               <Insets left="10.0" />
                             </GridPane.margin>
                           </Label>
-                          <Label fx:id="Label3" text="Constructeur" GridPane.rowIndex="2">
+                          <Label fx:id="Label3" text="%lab_const_compo" GridPane.rowIndex="2">
                             <GridPane.margin>
                               <Insets left="10.0" />
                             </GridPane.margin>
                           </Label>
-                          <Label fx:id="Label4" text="Libelle" GridPane.rowIndex="3">
+                          <Label fx:id="Label4" text="%lab_libelle_compo" GridPane.rowIndex="3">
                             <GridPane.margin>
                               <Insets left="10.0" />
                             </GridPane.margin>
                           </Label>
-                          <Label fx:id="Label5" text="Details" GridPane.rowIndex="4">
+                          <Label fx:id="Label5" text="%lab_details_compo" GridPane.rowIndex="4">
                             <GridPane.margin>
                               <Insets left="10.0" />
                             </GridPane.margin>
                           </Label>
-                          <Label fx:id="Label6" text="idMachine" GridPane.rowIndex="5">
+                          <Label fx:id="Label6" text="%lab_idMachine_compo" GridPane.rowIndex="5">
                             <GridPane.margin>
                               <Insets left="10.0" />
                             </GridPane.margin>
@@ -133,6 +133,24 @@
                                     <Label fx:id="label5" text=" " GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                     <Label fx:id="label6" text=" " GridPane.columnIndex="1" GridPane.rowIndex="5" />
                                     <Label fx:id="label7" text=" " GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                    <Label fx:id="Label7" text="%lab_type" GridPane.rowIndex="6">
+                                       <GridPane.margin>
+                                          <Insets left="10.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label fx:id="Label8" GridPane.rowIndex="7">
+                                       <GridPane.margin>
+                                          <Insets left="10.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label fx:id="Label9" GridPane.rowIndex="8">
+                                       <GridPane.margin>
+                                          <Insets left="10.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label fx:id="label7" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                    <Label fx:id="label8" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                    <Label fx:id="label9" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                         </children>
                         <columnConstraints>
                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -146,6 +164,8 @@
                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         </rowConstraints>
                       </GridPane>
                     </children>
@@ -202,7 +222,7 @@
          </cursor>
       </Button>
       <Button fx:id="ENTER" defaultButton="true" layoutX="86.0" layoutY="376.0" mnemonicParsing="false" onAction="#handleENTER" opacity="0.0" text="o" />
-      <Button fx:id="SWITCH" defaultButton="true" disable="false" layoutX="248.0" layoutY="318.0" mnemonicParsing="false" onAction="#handleSWITCH" text="Accès à la liste des machines" />
+      <Button fx:id="SWITCH" defaultButton="true" disable="false" layoutX="248.0" layoutY="318.0" mnemonicParsing="false" onAction="#handleSWITCH" text="%lab_btn_machines" AnchorPane.bottomAnchor="148.0" AnchorPane.leftAnchor="240.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="318.0" />
   </children>
   <stylesheets>
     <URL value="@theme_Overview.css" />

@@ -93,37 +93,37 @@
                               </Label>
                       <GridPane layoutY="20.0" prefHeight="245.0" prefWidth="307.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="20.0">
                         <children>
-                          <Label fx:id="Label1" text="ID">
+                          <Label fx:id="Label1" text="%lab_id">
                             <GridPane.margin>
                               <Insets left="10.0" />
                             </GridPane.margin>
                           </Label>
-                          <Label fx:id="Label2" text="idAfpa" GridPane.rowIndex="1">
+                          <Label fx:id="Label2" text="%lab_idAfpa_machine" GridPane.rowIndex="1">
                             <GridPane.margin>
                               <Insets left="10.0" />
                             </GridPane.margin>
                           </Label>
-                          <Label fx:id="Label3" text="idUnique" GridPane.rowIndex="2">
+                          <Label fx:id="Label3" text="%lab_idUnique_machine" GridPane.rowIndex="2">
                             <GridPane.margin>
                               <Insets left="10.0" />
                             </GridPane.margin>
                           </Label>
-                          <Label fx:id="Label4" text="dateAchat" GridPane.rowIndex="3">
+                          <Label fx:id="Label4" text="%lab_dateAchat_machine" GridPane.rowIndex="3">
                             <GridPane.margin>
                               <Insets left="10.0" />
                             </GridPane.margin>
                           </Label>
-                          <Label fx:id="Label5" text="dureeGarantie" GridPane.rowIndex="4">
+                          <Label fx:id="Label5" text="%lab_dureeGarantie_machine" GridPane.rowIndex="4">
                             <GridPane.margin>
                               <Insets left="10.0" />
                             </GridPane.margin>
                           </Label>
-                          <Label fx:id="Label6" text="adresseIP" GridPane.rowIndex="5">
+                          <Label fx:id="Label6" text="%lab_adresseIP_machine" GridPane.rowIndex="5">
                             <GridPane.margin>
                               <Insets left="10.0" />
                             </GridPane.margin>
                           </Label>
-                          <Label fx:id="Label7" text="type" GridPane.rowIndex="6">
+                          <Label fx:id="Label7" text="%lab_type" GridPane.rowIndex="6">
                             <GridPane.margin>
                               <Insets left="10.0" />
                             </GridPane.margin>
@@ -204,7 +204,7 @@
          </cursor>
       </Button>
       <Button fx:id="ENTER" defaultButton="true" layoutX="86.0" layoutY="376.0" mnemonicParsing="false" onAction="#handleENTER" opacity="0.0" text="o" />
-      <Button fx:id="SWITCH" defaultButton="true" disable="false" layoutX="248.0" layoutY="318.0" mnemonicParsing="false" onAction="#handleSWITCH" text="Accès à la liste des composants pour cette machine" />
+      <Button fx:id="SWITCH" defaultButton="true" disable="false" layoutX="248.0" layoutY="318.0" mnemonicParsing="false" onAction="#handleSWITCH" text="%lab_btn_compo" AnchorPane.bottomAnchor="148.0" AnchorPane.leftAnchor="240.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="318.0" />
   </children>
   <stylesheets>
     <URL value="@theme_Overview.css" />

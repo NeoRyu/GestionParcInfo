@@ -16,7 +16,7 @@ import java.util.Set;
  * Created by Boris on 10/11/2016.
  */
 public class ComposantTest {
-    Composant composant = new Composant(4, "uuuu","dses","dfdsffd","fdsfdf",1);
+    Composant composant = new Composant();
     private static Validator validator;
     Set<ConstraintViolation<Composant>> constraintViolations = new Set<ConstraintViolation<Composant>>() {
         @Override

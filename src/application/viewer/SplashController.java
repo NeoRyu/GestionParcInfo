@@ -1,27 +1,31 @@
 package application.viewer;
 
+
 import application.MainAppFX;
 import application.tools.Sound;
+
+import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
+
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
-
-import javax.imageio.ImageIO;
-import javax.swing.*;
 import javafx.scene.media.*;
 import javafx.scene.media.MediaPlayer.Status;
+
+import java.io.File;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 import javafx.util.Duration;
+import javax.swing.*;
+
+import javafx.scene.image.Image;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 
 /**
@@ -197,6 +201,20 @@ public class SplashController extends JFrame {
 						        CANCEL.setDisable(true);
 					         }
 					   });
+					  
+					  SKIP.setOnAction(new EventHandler<ActionEvent>() {
+						    public void handle(ActionEvent e) {
+						        Status status = mediaPlayer.getStatus();
+						        if (status == Status.UNKNOWN  || status == Status.HALTED)
+						        {
+						           // ne rien faire
+						           return;
+						        } else {
+						        	mediaPlayer.stop();	
+						        	handleSKIP();
+						        }
+					         }
+					   });
 				  }
 		      }); 
 			  
@@ -217,9 +235,10 @@ public class SplashController extends JFrame {
       
       private void skipVideo() {
     	  System.out.println("SEGA, C'EST PLUS FORT QUE TOI !");
-		  // PAGE QUI S'OUVRIRA A LA SUITE DE LA VIDEO		  
-		  mainAppFX.showOverview("viewer/Machine.fxml");
-		  //mainAppFX.showOverview("viewer/Overview.fxml");	//TODO
+    	  
+    	// PAGE QUI S'OUVRIRA A LA SUITE DE LA VIDEO
+    	  mainAppFX.Reflexivite();
+		  mainAppFX.showOverview(mainAppFX.getPageIntro());
       }
       
      // SKIP : Methode appelée lorsque l'utilisateur clique sur le boutton pour passer la video
@@ -263,16 +282,6 @@ public class SplashController extends JFrame {
 		  }
 		  btnSelected = "CANCEL";
 	 } 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
 	 
 	 // GAMEPAD
 	 @FXML
@@ -536,5 +545,6 @@ public class SplashController extends JFrame {
 	 */     
 	 public void setMainAppFX(MainAppFX mainApp) {		
 			mainAppFX = mainApp; 
+			mainAppFX.Reflexivite();
 	 }
 }

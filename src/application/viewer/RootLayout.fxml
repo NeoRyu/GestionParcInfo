@@ -30,18 +30,15 @@
         </Menu>
         <Menu mnemonicParsing="false" text="%root_config">
           <items>
-            <MenuItem mnemonicParsing="false" text="%root_config_db" />
+            <MenuItem mnemonicParsing="false" text="%root_config_db" styleClass="TODO"/>
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="%root_config_skin" />
+            <MenuItem mnemonicParsing="false" text="%root_config_skin" styleClass="TODO"/>
                   <MenuItem mnemonicParsing="false" onAction="#handleLangue" text="%root_config_lang" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="%root_help">
           <items>
-          	<MenuItem fx:id="miAide" mnemonicParsing="false" text="%root_help_use">
-                     <accelerator>
-                        <KeyCodeCombination alt="UP" code="W" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
-                     </accelerator></MenuItem>
+          	<MenuItem fx:id="miAide" mnemonicParsing="false" text="%root_help_use" styleClass="TODO"/>
             <MenuItem mnemonicParsing="false" onAction="#handleAbout" text="%root_help_about" />
           </items>
         </Menu>
