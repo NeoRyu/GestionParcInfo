@@ -40,6 +40,7 @@ public class MainAppFX extends Application {
 
     static DAOMachine daoMachine = new DAOMachine();
     private Stage primaryStage;
+    private Scene scene;
     private BorderPane rootLayout;
 
     private ObservableList<Machine> DataMachine = FXCollections.observableArrayList();
@@ -159,7 +160,7 @@ public class MainAppFX extends Application {
             loader.setController(this);
 
             // Montrer la scene contenant le layout racine
-            Scene scene = new Scene(rootLayout);
+            scene = new Scene(rootLayout);
             scene.getStylesheets().addAll(this.getClass().getResource("viewer/theme_RootLayout.css").toExternalForm());
             primaryStage.setScene(scene);
 
@@ -243,6 +244,18 @@ public class MainAppFX extends Application {
 
     public Stage getPrimaryStage() {
         return primaryStage;
+    }
+    
+    public Scene getScene() {
+        return scene;
+    }
+    
+    // [DEBUG MODE] Methode permettant l'affichage des ressources disponibles dans le dossier visé
+    // MainAppFX.explorer("\\bin\\res\\");
+    public static void explorer(String path) {
+    	System.out.println("\n"+System.getProperty("user.dir")+path +" :");
+		File files = new File(System.getProperty("user.dir")+path);			
+		for (File file : files.listFiles()) System.out.println("fichier : " + file.getName());
     }
 
 

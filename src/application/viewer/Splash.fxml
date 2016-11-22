@@ -69,7 +69,7 @@
                            <children>
                               <ImageView fx:id="imgAnim" fitHeight="268.0" fitWidth="524.0" layoutX="77.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../res/shoryuken.gif" />
+                                    <Image url="@../../res/hadoken.gif" />
                                  </image>
                               </ImageView>                           
                               <MediaView fx:id="mediaView" fitHeight="268.0" fitWidth="524.0" preserveRatio="false" />

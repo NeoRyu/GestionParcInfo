@@ -11,6 +11,10 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.MenuItem;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCombination;
+import javafx.scene.input.KeyEvent;
 
 /**
 *
@@ -28,8 +32,8 @@ public class RootLayoutController {
 		 mainAppFX = mainApp;
 		 layoutActuel = choixLayout;
 		 lang = Language.getLang();
-		 rsc = Language.getsetRsc(ResourceBundle.getBundle("application.resources.UIResources", lang));
-	 }	 
+		 rsc = Language.getsetRsc(ResourceBundle.getBundle("application.resources.UIResources", lang));		 
+	 }	
 	 
 	 @FXML
 	 public void handleLangue() {
@@ -87,6 +91,15 @@ public class RootLayoutController {
 	 }
 	 
 	 @FXML
+	 private void handleHelp() {
+		 if (player.getString("sound").equals("ON")) {
+			 sound = new Sound(mainAppFX, "../../res/bitMENU.wav");
+			 sound.Play();
+		 }
+		 System.out.println("AIDE");	// TODO
+	 }
+	 
+	 @FXML
 	 private void handleAbout() {
 		 if (player.getString("sound").equals("ON")) {
 			 sound = new Sound(mainAppFX, "../../res/bitABOUT.wav");
@@ -100,8 +113,7 @@ public class RootLayoutController {
 			 // TODO STOPPER MUSIQUE	
 			 sound.mediaPlayer.stop();
 		 }
-		 alert.showAndWait();
-		 
+		 alert.showAndWait();		 
 	 }
 	 
 	 @FXML
