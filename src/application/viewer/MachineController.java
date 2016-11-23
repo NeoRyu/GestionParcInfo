@@ -32,10 +32,10 @@ import java.util.logging.Logger;
  */
 public class MachineController {
 
-
     public static int idMachineSelect;
     DAOMachine daoMachine = new DAOMachine();
     LectureRB lrb = new LectureRB();
+    
     // Référence pour le tableview et les colonnes
     @FXML
     public TableView<Machine> tableFX;

@@ -10,22 +10,16 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Year;
 import java.util.*;
-//import java.util.Map;
-
-// IMPORT DES PROPERTIES :
-import application.beans.Composant;
-import application.dao.DAOMachine;
-import application.tools.LectureRB;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.StringProperty;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+
+// IMPORT DES PROPERTIES :
+import application.beans.Composant;
+import application.dao.DAOMachine;
+import javafx.beans.property.StringProperty;
+import javafx.beans.property.SimpleStringProperty;
 /*	PROPERTY :
  *	Avec JavaFX il est courant d'utiliser les Properties pour tous les champs de votre classe.
  *	Une Property (propriété) nous permet, par exemple, d'être automatiquement averti lorsque la
