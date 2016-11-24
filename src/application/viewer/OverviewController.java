@@ -12,6 +12,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Side;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -30,6 +32,8 @@ public class OverviewController {
 		@FXML private Label labDet, label1, label2, label3, label4, label5, label6, label7;
 		@FXML private Label Label1, Label2, Label3, Label4, Label5, Label6, Label7;
 		@FXML private GridPane gdPane; 
+		
+		@FXML private PieChart camembert; 
 		
 		@FXML
 		private Button START, SELECT, CANCEL;
@@ -96,13 +100,17 @@ public class OverviewController {
 	            System.out.println("> TYPE MACHINE : "+String.valueOf(quantite));
 	            
 	            for (int i = 0 ; i < listTypeMachine.size() ; i++) {
-	            	// TODO : Mettre les données qui suivent dans un graphique en camenbert	            	
 	            	// LIBELLE + QTE
 	            	System.out.println(
 	            		listTypeMachine.get(i).getNomSP() 
 	            			+ " -> " +	            	
 	            		listTypeMachine.get(i).getIntQteSP()
 	            	);
+	            	
+	            	// TODO : Mettre les données qui suivent dans un graphique en camenbert	
+	            	camembert.setLabelLineLength(10);
+	            	camembert.setLegendSide(Side.LEFT);
+	            	System.out.println("CAMEMBERT");
 	            }
 
 	        }
