@@ -1,16 +1,15 @@
 package application.dao;
 
-import application.beans.Machine;
 import application.beans.Stats;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 /**
  * Created by RENAUD on 23/11/2016.
@@ -19,6 +18,7 @@ import java.util.List;
 public class DAOStats {
 
     DAOConnection conn = new DAOConnection();
+    private static ResourceBundle config = ResourceBundle.getBundle("application.Config");
     
  // Liste d'objets de type Stats
     public List<Stats> viewStat = new ArrayList<>();    
@@ -62,8 +62,9 @@ public class DAOStats {
 
             	// Ajout dans une list d'objets observables les Stats recupérées
             	listTemp.add(stats.add(rs.getString(1), rs.getString(2)));
-            	
-            	System.out.println(rs.getString(1) + " " + rs.getString(2));
+            	if(config.getString("test").equals("1")) {
+            		System.out.println(rs.getString(1) + " " + rs.getString(2));
+            	}
             }
         } catch (SQLException e) {
             e.printStackTrace();

@@ -48,67 +48,63 @@ public class OverviewController {
 	 * Cette methode est automaticament appelée après le chargement du fichier FXML.
 	 */
 	 @FXML
-	 private void initialize() {		
-
+	 private void initialize() {
         showDetails("");
-
-        
-        
-        // TODO - Need listener pour continuer... : 
-        	// Affichage des stats dans les labels
-        	// Affichage camenbert
-     
-        listTypeMachine.addListener(new ListChangeListener<Stats>() {
-			@Override
-			public void onChanged(javafx.collections.ListChangeListener.Change<? extends Stats> c) {
-				showDetails("TypeMachine");				
-			}        	
-        });
-        
-        
-        
-        // logique qu'il y a dedans (listener) : >
-        //		showDetails("TypeMachine");
 	}
 	 
 	private void showDetails(String stat) {
 		 // CONFIGURATION DE LA POLICE D'ECRITURE
-			// IHM GLOBALE
-			START.setFont(MainAppFX.f);
-		    SELECT.setFont(MainAppFX.f);
-		    CANCEL.setFont(MainAppFX.f);
-		    labDet.setFont(MainAppFX.f);
-		    
-	        // LIBELLE
-	        Label1.setFont(MainAppFX.f);
-	        Label2.setFont(MainAppFX.f);
-	        Label3.setFont(MainAppFX.f);
-	        Label4.setFont(MainAppFX.f);
-	        Label5.setFont(MainAppFX.f);
-	        Label6.setFont(MainAppFX.f);
-	        Label7.setFont(MainAppFX.f);
-	        
-	        // QUANTITE
-	        label1.setFont(MainAppFX.f);
-	        label2.setFont(MainAppFX.f);
-	        label3.setFont(MainAppFX.f);
-	        label4.setFont(MainAppFX.f);
-	        label5.setFont(MainAppFX.f);
-	        label6.setFont(MainAppFX.f);
-	        label7.setFont(MainAppFX.f);
-	        
+			if (stat.equals("")) {
+				// IHM GLOBALE
+				START.setFont(MainAppFX.f);
+			    SELECT.setFont(MainAppFX.f);
+			    CANCEL.setFont(MainAppFX.f);
+			    labDet.setFont(MainAppFX.f);
+			    
+		        // LIBELLE
+		        Label1.setFont(MainAppFX.f);
+		        Label1.setText("TYPES DE MACHINES :");
+		        Label2.setFont(MainAppFX.f);
+		        Label3.setFont(MainAppFX.f);
+		        Label4.setFont(MainAppFX.f);
+		        Label5.setFont(MainAppFX.f);
+		        Label6.setFont(MainAppFX.f);
+		        Label7.setFont(MainAppFX.f);
+		        
+		        // QUANTITE
+		        label1.setFont(MainAppFX.f);
+		        label2.setFont(MainAppFX.f);
+		        label3.setFont(MainAppFX.f);
+		        label4.setFont(MainAppFX.f);
+		        label5.setFont(MainAppFX.f);
+		        label6.setFont(MainAppFX.f);
+		        label7.setFont(MainAppFX.f);
+			}
 	        
 	     // ATTRIBUTION ET AFFICHAGE DES DONNEES 
 	        // [ TYPE MACHINE ]
-	        if (stat.equals("TypeMachine")) {
-	        	System.out.println("> TYPE MACHINE");
-	        
-	            Label1.setText("TYPES DE MACHINES :");
+	        if (stat.equals("TypeMachine")) {	        	
 	            int quantite = 0;
 	            for (int i = 0 ; i < listTypeMachine.size() ; i++) {
-	            	quantite = quantite + listTypeMachine.get(i).getIntQteSP();
+	            	//quantite = quantite + listTypeMachine.get(i).getIntQteSP();
+	            	quantite++;
+	            	if(config.getString("test").equals("1")) {
+	            		System.out.println("> "+listTypeMachine.get(i).getNom()+" : "+listTypeMachine.get(i).getQte());
+	            	}
 	            }
-	            label1.setText(String.valueOf(quantite));            
+	            label1.setText(String.valueOf(quantite));
+	            System.out.println("> TYPE MACHINE : "+String.valueOf(quantite));
+	            
+	            for (int i = 0 ; i < listTypeMachine.size() ; i++) {
+	            	// TODO : Mettre les données qui suivent dans un graphique en camenbert	            	
+	            	// LIBELLE + QTE
+	            	System.out.println(
+	            		listTypeMachine.get(i).getNomSP() 
+	            			+ " -> " +	            	
+	            		listTypeMachine.get(i).getIntQteSP()
+	            	);
+	            }
+
 	        }
 	        
 	        // TODO - idem qu'au dessus pour els autres types de données de stats	        
@@ -258,7 +254,7 @@ public class OverviewController {
             @Override
             public void run() {
             	listTypeMachine = daoStats.countTypeMachine(request.getString("countTypeMachine"));
-            	// TODO - stocage de suatres types de données dans d'autre listes (methode identique, juste la requete qui change)
+            	showDetails("TypeMachine");
             }
         });		
 	 }	
