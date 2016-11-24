@@ -103,6 +103,7 @@ public class SplashController extends JFrame {
 				 try {
 					 System.out.println("Video via chemin local : "+player.getString("intro").toString());
 					 File fichier = new File(player.getString("intro").toString());	
+					 file = fichier;
 					 setVID_URL(fichier.toURI().toString());				 
 				 } catch (IllegalArgumentException e) {
 					 setVID_URL(file.toURI().toString());
@@ -228,14 +229,19 @@ public class SplashController extends JFrame {
 			  
 			  mediaPlayer.setOnEndOfMedia(new Runnable() {
 				  @Override public void run() {
+					  //System.out.println(file.toURI().toString());
+					  if (file.toURI().toString().toLowerCase().contains("SEGA".toLowerCase())){						  
+						  System.out.println("> SEGA, C'EST PLUS FORT QUE TOI !");
+				  	  }
+					  if (file.toURI().toString().toLowerCase().contains("ORACLE".toLowerCase())){						  
+						  System.out.println("> ORACLE : Hardware and Software - Engineered to Work Together");
+				  	  }
 					  skipVideo();
 				  }
 			  });
       }  
       
       private void skipVideo() {
-    	  System.out.println("SEGA, C'EST PLUS FORT QUE TOI !");
-    	  
     	// PAGE QUI S'OUVRIRA A LA SUITE DE LA VIDEO
     	  mainAppFX.Reflexivite();
 		  mainAppFX.showOverview(mainAppFX.getPageIntro());
